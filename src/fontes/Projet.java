@@ -21,12 +21,12 @@ public class Projet extends javax.swing.JFrame {
         
         
         try {
-            con = DriverManager.getConnection("jdbc:mysql://37.59.55.185:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
+            con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
             st = (Statement) con.createStatement();
             JOptionPane.showMessageDialog(null, "Conectado com sucesso");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Não conectado");
+            JOptionPane.showMessageDialog(null, "Não conectado "+e.toString());
 
         }
 
