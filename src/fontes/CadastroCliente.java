@@ -9,14 +9,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
 
-public class Projet extends javax.swing.JFrame {
+public class CadastroCliente extends javax.swing.JFrame {
 
     public Connection con;
     public Statement st;
     public ResultSet resultado = null;
     public int a;
 
-    public Projet() {
+    public CadastroCliente() {
         initComponents();
         
         
@@ -371,9 +371,8 @@ public class Projet extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addComponent(rbtnMascCliente)
                             .addComponent(rbtnFeminCliente)
-                            .addComponent(rbtnOutrosCliente))
-                        .addGap(40, 40, 40)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(rbtnOutrosCliente))))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(226, 238, 251));
@@ -522,7 +521,7 @@ public class Projet extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(16, 16, 16)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 308, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
         );
@@ -582,11 +581,30 @@ public class Projet extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdClienteActionPerformed
 
     private void btnConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarClienteActionPerformed
-        // TODO add your handling code here:
+        try {
+            String minhasql = "SELECT * from cliente where id =" + "'" + txtIdCliente.getText() + "'";
+            resultado = st.executeQuery(minhasql);
+            if (resultado.next()) {
+                txtNomeCliente.setText(resultado.getString("nome"));
+                txtEmailCliente.setText(resultado.getString("email"));
+                txtCPFCliente.setText(resultado.getString("cpf"));
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Registro não existe");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Registro não existe");
+
+        }
     }//GEN-LAST:event_btnConsultarClienteActionPerformed
 
     private void btnCriarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarClienteActionPerformed
-        // TODO add your handling code here:
+        String cpf, nome, nascimento, genero, telefone, endereco, email;
+        cpf = txtCPFCliente.getText();
+        nome = txtNomeCliente.getText();
+        
+        
     }//GEN-LAST:event_btnCriarClienteActionPerformed
 
     private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
@@ -614,21 +632,23 @@ public class Projet extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Projet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Projet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Projet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Projet.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Projet().setVisible(true);
+                new CadastroCliente().setVisible(true);
             }
         });
     }
