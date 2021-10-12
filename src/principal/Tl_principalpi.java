@@ -80,6 +80,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
                
             }
         });
+        ItensdoMenu menuCadastro4 = new ItensdoMenu(iconSubmenu, "Produto",null);
 
         ItensdoMenu menuCompra1 = new ItensdoMenu(iconSubmenu, "Venda de Produto", null);
         ItensdoMenu menuCompra2 = new ItensdoMenu(iconSubmenu, "Compra de Produto",null);
@@ -89,7 +90,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
         ItensdoMenu menuRelotorio2 = new ItensdoMenu(iconSubmenu, "Sintético",null);
 
         ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1, menuUser2, menuUser3);
-        ItensdoMenu menuCadastro = new ItensdoMenu(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3);
+        ItensdoMenu menuCadastro = new ItensdoMenu(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3, menuCadastro4);
         ItensdoMenu menuCompra = new ItensdoMenu(iconCompra, "VENDA/COMPRA", null, menuCompra1, menuCompra2, menuCompra3);
         ItensdoMenu menuRelatorio = new ItensdoMenu(iconRelatorio, "RELATÓRIOS", null, menuRelatorio1, menuRelotorio2);
 
