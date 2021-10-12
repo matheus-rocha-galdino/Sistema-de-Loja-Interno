@@ -1,5 +1,9 @@
-package fontes;
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Telas;
 
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -8,17 +12,15 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
-
-public class CadastroCliente extends javax.swing.JFrame {
+public class CadastroClientes extends javax.swing.JPanel {
 
     public Connection con;
     public Statement st;
     public ResultSet resultado = null;
     public int a;
-
-    public CadastroCliente() {
+    
+    public CadastroClientes() {
         initComponents();
-        
         
         try {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
@@ -29,7 +31,6 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Não conectado "+e.toString());
 
         }
-
     }
 
     /**
@@ -41,12 +42,6 @@ public class CadastroCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
-        buttonGroup6 = new javax.swing.ButtonGroup();
         cdc = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -93,9 +88,6 @@ public class CadastroCliente extends javax.swing.JFrame {
         txtComplementoCliente = new javax.swing.JTextField();
         txtCepCliente = new javax.swing.JFormattedTextField();
         cbxUFCliente = new javax.swing.JComboBox<>();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(226, 238, 251));
 
         cdc.setBackground(new java.awt.Color(226, 238, 251));
 
@@ -561,7 +553,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         );
         cdcLayout.setVerticalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 877, Short.MAX_VALUE)
+            .addGap(0, 852, Short.MAX_VALUE)
             .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cdcLayout.createSequentialGroup()
                     .addGap(5, 5, 5)
@@ -571,8 +563,8 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -587,14 +579,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                 .addComponent(cdc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        setSize(new java.awt.Dimension(1122, 872));
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtEmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailClienteActionPerformed
 
     private void txtIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdClienteActionPerformed
         // TODO add your handling code here:
@@ -609,7 +594,7 @@ public class CadastroCliente extends javax.swing.JFrame {
                 txtEmailCliente.setText(resultado.getString("email"));
                 txtCPFCliente.setText(resultado.getString("cpf"));
                 txtTelefoneCliente.setText(resultado.getString("telefone"));
-                
+
             }
             else
             {
@@ -622,134 +607,93 @@ public class CadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarClienteActionPerformed
 
     private void btnCriarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarClienteActionPerformed
-        
-         try {  
-          String cpf, nome,telefone, email;
-        
-          nome = txtNomeCliente.getText();
-          cpf = txtCPFCliente.getText();
-          telefone = txtTelefoneCliente.getText();
-          email = txtEmailCliente.getText();
-          String minhasql;
-          minhasql = "insert into cliente (nome,cpf,telefone, email) value ('"
-                  +nome+"','"+cpf+"','"+telefone+"','"+email+"')";
-          st.executeUpdate(minhasql);
-      
-          JOptionPane.showMessageDialog(null,"Registro Gravado");
-          
+
+        try {
+            String cpf, nome,telefone, email;
+
+            nome = txtNomeCliente.getText();
+            cpf = txtCPFCliente.getText();
+            telefone = txtTelefoneCliente.getText();
+            email = txtEmailCliente.getText();
+            String minhasql;
+            minhasql = "insert into cliente (nome,cpf,telefone, email) value ('"
+            +nome+"','"+cpf+"','"+telefone+"','"+email+"')";
+            st.executeUpdate(minhasql);
+
+            JOptionPane.showMessageDialog(null,"Registro Gravado");
+
         }
         catch (Exception e) {
-          JOptionPane.showMessageDialog(null,"Não Gravado");
+            JOptionPane.showMessageDialog(null,"Não Gravado");
         }
-    
-        
-        
+
     }//GEN-LAST:event_btnCriarClienteActionPerformed
 
     private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
-         try {  
-          String cpf, nome,telefone, email;
-        
-          nome = txtNomeCliente.getText();
-          cpf = txtCPFCliente.getText();
-          telefone = txtTelefoneCliente.getText();
-          email = txtEmailCliente.getText();
-      
-          String minhasql = "update cliente set nome = '"
-                  +nome+"',cpf = '"
-                  +cpf+"',email ='"
-                  +email+"',,telefone ='"
-                  +telefone+"' where id = "+txtIdCliente.getText();
-          st.executeUpdate(minhasql);
-          JOptionPane.showMessageDialog(null,"Registro Atualizado");
-          
+        try {
+            String cpf, nome,telefone, email;
+
+            nome = txtNomeCliente.getText();
+            cpf = txtCPFCliente.getText();
+            telefone = txtTelefoneCliente.getText();
+            email = txtEmailCliente.getText();
+
+            String minhasql = "update cliente set nome = '"
+            +nome+"',cpf = '"
+            +cpf+"',email ='"
+            +email+"',,telefone ='"
+            +telefone+"' where id = "+txtIdCliente.getText();
+            st.executeUpdate(minhasql);
+            JOptionPane.showMessageDialog(null,"Registro Atualizado");
+
         }
         catch (Exception e) {
-          JOptionPane.showMessageDialog(null,"Registro Não Atualizado");
+            JOptionPane.showMessageDialog(null,"Registro Não Atualizado");
         }
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
 
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
-       try {   
-          String minhasql = "delete from cliente where id = "+txtIdCliente.getText();
-          st.executeUpdate(minhasql);
-          JOptionPane.showMessageDialog(null,"Registro Excluido");
-          txtNomeCliente.setText("");
-          txtCPFCliente.setText("");
-          txtTelefoneCliente.setText("");
-          txtEmailCliente.setText("");
-                      
+        try {
+            String minhasql = "delete from cliente where id = "+txtIdCliente.getText();
+            st.executeUpdate(minhasql);
+            JOptionPane.showMessageDialog(null,"Registro Excluido");
+            txtNomeCliente.setText("");
+            txtCPFCliente.setText("");
+            txtTelefoneCliente.setText("");
+            txtEmailCliente.setText("");
+
         }
         catch (Exception e) {
-          JOptionPane.showMessageDialog(null,"Resgistro não existe "+e);
-        }    
+            JOptionPane.showMessageDialog(null,"Resgistro não existe "+e);
+        }
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
 
     private void txtNomeClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomeClienteMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeClienteMouseEntered
 
-    private void txtCPFClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCPFClienteMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPFClienteMouseEntered
-
     private void txtEmailClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailClienteMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailClienteMouseEntered
+
+    private void txtEmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailClienteActionPerformed
+
+    private void txtCPFClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCPFClienteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPFClienteMouseEntered
 
     private void txtTelefoneClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefoneClienteMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefoneClienteMouseEntered
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastroCliente().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarCliente;
     private javax.swing.JButton btnConsultarCliente;
     private javax.swing.JButton btnCriarCliente;
     private javax.swing.JButton btnExcluirCliente;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
-    private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.JComboBox<String> cbxEstadoCivCliente;
     private javax.swing.JComboBox<String> cbxUFCliente;
     private javax.swing.JPanel cdc;
