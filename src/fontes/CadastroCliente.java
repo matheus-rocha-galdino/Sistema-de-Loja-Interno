@@ -99,10 +99,11 @@ public class CadastroCliente extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(226, 238, 251));
 
-        jPanel3.setBackground(new java.awt.Color(120, 188, 252));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Cadastro de Cliente");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -112,9 +113,9 @@ public class CadastroCliente extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(281, 281, 281)
+                .addGap(371, 371, 371)
                 .addComponent(jLabel2)
-                .addContainerGap(407, Short.MAX_VALUE))
+                .addContainerGap(373, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,6 +221,11 @@ public class CadastroCliente extends javax.swing.JFrame {
         lblNomeCliente.setText("Nome:");
 
         txtNomeCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNomeCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtNomeClienteMouseEntered(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("CPF:");
@@ -255,6 +261,11 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel11.setText("Dados Pessoais");
 
         txtEmailCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtEmailCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtEmailClienteMouseEntered(evt);
+            }
+        });
         txtEmailCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailClienteActionPerformed(evt);
@@ -277,12 +288,22 @@ public class CadastroCliente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCPFCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtCPFClienteMouseEntered(evt);
+            }
+        });
 
         try {
             txtTelefoneCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtTelefoneCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtTelefoneClienteMouseEntered(evt);
+            }
+        });
 
         cbxEstadoCivCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estado Civil", "Solteiro(a)", "Casado(a)", "Separado(a)", "Divorciado(a)", "Viúvo(a)" }));
 
@@ -393,7 +414,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         jLabel16.setText("Bairro:");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel17.setText("Município:");
+        jLabel17.setText("Cidade:");
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel18.setText("Logradouro:");
@@ -420,7 +441,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        cbxUFCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxUFCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AP", "AM", "BA", "CE", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", "DF" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -530,23 +551,22 @@ public class CadastroCliente extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1094, Short.MAX_VALUE)
+            .addGap(0, 1086, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(32, 32, 32)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 822, Short.MAX_VALUE)
+            .addGap(0, 877, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(5, 5, 5)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -588,6 +608,8 @@ public class CadastroCliente extends javax.swing.JFrame {
                 txtNomeCliente.setText(resultado.getString("nome"));
                 txtEmailCliente.setText(resultado.getString("email"));
                 txtCPFCliente.setText(resultado.getString("cpf"));
+                txtTelefoneCliente.setText(resultado.getString("telefone"));
+                
             }
             else
             {
@@ -600,20 +622,84 @@ public class CadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarClienteActionPerformed
 
     private void btnCriarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarClienteActionPerformed
-        String cpf, nome, nascimento, genero, telefone, endereco, email;
-        cpf = txtCPFCliente.getText();
-        nome = txtNomeCliente.getText();
+        
+         try {  
+          String cpf, nome,telefone, email;
+        
+          nome = txtNomeCliente.getText();
+          cpf = txtCPFCliente.getText();
+          telefone = txtTelefoneCliente.getText();
+          email = txtEmailCliente.getText();
+          String minhasql;
+          minhasql = "insert into cliente (nome,cpf,telefone, email) value ('"
+                  +nome+"','"+cpf+"','"+telefone+"','"+email+"')";
+          st.executeUpdate(minhasql);
+      
+          JOptionPane.showMessageDialog(null,"Registro Gravado");
+          
+        }
+        catch (Exception e) {
+          JOptionPane.showMessageDialog(null,"Não Gravado");
+        }
+    
         
         
     }//GEN-LAST:event_btnCriarClienteActionPerformed
 
     private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
-        // TODO add your handling code here:
+         try {  
+          String cpf, nome,telefone, email;
+        
+          nome = txtNomeCliente.getText();
+          cpf = txtCPFCliente.getText();
+          telefone = txtTelefoneCliente.getText();
+          email = txtEmailCliente.getText();
+      
+          String minhasql = "update cliente set nome = '"
+                  +nome+"',cpf = '"
+                  +cpf+"',email ='"
+                  +email+"',,telefone ='"
+                  +telefone+"' where id = "+txtIdCliente.getText();
+          st.executeUpdate(minhasql);
+          JOptionPane.showMessageDialog(null,"Registro Atualizado");
+          
+        }
+        catch (Exception e) {
+          JOptionPane.showMessageDialog(null,"Registro Não Atualizado");
+        }
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
 
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
-        // TODO add your handling code here:
+       try {   
+          String minhasql = "delete from cliente where id = "+txtIdCliente.getText();
+          st.executeUpdate(minhasql);
+          JOptionPane.showMessageDialog(null,"Registro Excluido");
+          txtNomeCliente.setText("");
+          txtCPFCliente.setText("");
+          txtTelefoneCliente.setText("");
+          txtEmailCliente.setText("");
+                      
+        }
+        catch (Exception e) {
+          JOptionPane.showMessageDialog(null,"Resgistro não existe "+e);
+        }    
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
+
+    private void txtNomeClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomeClienteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeClienteMouseEntered
+
+    private void txtCPFClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCPFClienteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPFClienteMouseEntered
+
+    private void txtEmailClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmailClienteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailClienteMouseEntered
+
+    private void txtTelefoneClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefoneClienteMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefoneClienteMouseEntered
 
     /**
      * @param args the command line arguments
