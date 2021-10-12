@@ -5,12 +5,12 @@
  */
 package principal;
 
-import Telas.CadastroCliente;
-import Telas.CadastroFornecedor;
-import Telas.CadastroFuncionario;
-import Telas.CadastroProduto;
-import Telas.Panel1;
-import Telas.Panel2;
+import telas.CadastroCliente;
+import telas.CadastroFornecedor;
+import telas.CadastroFuncionario;
+import telas.CadastroProduto;
+import telas.Panel1;
+import telas.Panel2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
