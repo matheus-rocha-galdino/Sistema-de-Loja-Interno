@@ -48,11 +48,11 @@ public class CadastroProduto extends javax.swing.JPanel {
         jPanelBody = new javax.swing.JPanel();
         jPanelCRUD = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtIdCliente = new javax.swing.JTextField();
-        btnConsultarCliente = new javax.swing.JButton();
-        btnCriarCliente = new javax.swing.JButton();
-        btnAlterarCliente = new javax.swing.JButton();
-        btnExcluirCliente = new javax.swing.JButton();
+        txtIdProduto = new javax.swing.JTextField();
+        btnConsultarProduto = new javax.swing.JButton();
+        btnCriarProduto = new javax.swing.JButton();
+        btnAlterarProduto = new javax.swing.JButton();
+        btnExcluirProduto = new javax.swing.JButton();
         jPanelDados = new javax.swing.JPanel();
         lblNomeProduto = new javax.swing.JLabel();
         txtNomeProduto = new javax.swing.JTextField();
@@ -86,7 +86,7 @@ public class CadastroProduto extends javax.swing.JPanel {
             .addGroup(jPanelHeaderLayout.createSequentialGroup()
                 .addGap(404, 404, 404)
                 .addComponent(jLabel2)
-                .addContainerGap(425, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,47 +103,47 @@ public class CadastroProduto extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Busca pelo Id:");
 
-        txtIdCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtIdCliente.addActionListener(new java.awt.event.ActionListener() {
+        txtIdProduto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtIdProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdClienteActionPerformed(evt);
+                txtIdProdutoActionPerformed(evt);
             }
         });
 
-        btnConsultarCliente.setBackground(new java.awt.Color(226, 238, 251));
-        btnConsultarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pesquisar.png"))); // NOI18N
-        btnConsultarCliente.setBorder(null);
-        btnConsultarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultarProduto.setBackground(new java.awt.Color(226, 238, 251));
+        btnConsultarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pesquisar.png"))); // NOI18N
+        btnConsultarProduto.setBorder(null);
+        btnConsultarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarClienteActionPerformed(evt);
+                btnConsultarProdutoActionPerformed(evt);
             }
         });
 
-        btnCriarCliente.setBackground(new java.awt.Color(226, 238, 251));
-        btnCriarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Adicionar.png"))); // NOI18N
-        btnCriarCliente.setBorder(null);
-        btnCriarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnCriarProduto.setBackground(new java.awt.Color(226, 238, 251));
+        btnCriarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Adicionar.png"))); // NOI18N
+        btnCriarProduto.setBorder(null);
+        btnCriarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCriarClienteActionPerformed(evt);
+                btnCriarProdutoActionPerformed(evt);
             }
         });
 
-        btnAlterarCliente.setBackground(new java.awt.Color(226, 238, 251));
-        btnAlterarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Atualizar.png"))); // NOI18N
-        btnAlterarCliente.setBorder(null);
-        btnAlterarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterarProduto.setBackground(new java.awt.Color(226, 238, 251));
+        btnAlterarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Atualizar.png"))); // NOI18N
+        btnAlterarProduto.setBorder(null);
+        btnAlterarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarClienteActionPerformed(evt);
+                btnAlterarProdutoActionPerformed(evt);
             }
         });
 
-        btnExcluirCliente.setBackground(new java.awt.Color(226, 238, 251));
-        btnExcluirCliente.setForeground(new java.awt.Color(51, 51, 55));
-        btnExcluirCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
-        btnExcluirCliente.setBorder(null);
-        btnExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluirProduto.setBackground(new java.awt.Color(226, 238, 251));
+        btnExcluirProduto.setForeground(new java.awt.Color(51, 51, 55));
+        btnExcluirProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Excluir.png"))); // NOI18N
+        btnExcluirProduto.setBorder(null);
+        btnExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirClienteActionPerformed(evt);
+                btnExcluirProdutoActionPerformed(evt);
             }
         });
 
@@ -155,15 +155,15 @@ public class CadastroProduto extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(btnConsultarCliente)
+                .addComponent(btnConsultarProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCriarCliente)
+                .addComponent(btnCriarProduto)
                 .addGap(73, 73, 73)
-                .addComponent(btnAlterarCliente)
+                .addComponent(btnAlterarProduto)
                 .addGap(70, 70, 70)
-                .addComponent(btnExcluirCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
         );
         jPanelCRUDLayout.setVerticalGroup(
@@ -171,13 +171,13 @@ public class CadastroProduto extends javax.swing.JPanel {
             .addGroup(jPanelCRUDLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnExcluirCliente)
-                    .addComponent(btnConsultarCliente)
+                    .addComponent(btnExcluirProduto)
+                    .addComponent(btnConsultarProduto)
                     .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel3))
-                    .addComponent(btnCriarCliente)
-                    .addComponent(btnAlterarCliente))
+                    .addComponent(btnCriarProduto)
+                    .addComponent(btnAlterarProduto))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -239,7 +239,7 @@ public class CadastroProduto extends javax.swing.JPanel {
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jLabel11)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
                 .addComponent(imgProduto)
                 .addContainerGap())
         );
@@ -273,10 +273,10 @@ public class CadastroProduto extends javax.swing.JPanel {
             jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBodyLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanelDados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelCRUD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(9, 9, 9))
         );
         jPanelBodyLayout.setVerticalGroup(
             jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,25 +292,19 @@ public class CadastroProduto extends javax.swing.JPanel {
         cdc.setLayout(cdcLayout);
         cdcLayout.setHorizontalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cdcLayout.createSequentialGroup()
-                .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(cdcLayout.createSequentialGroup()
-                    .addGap(32, 32, 32)
-                    .addComponent(jPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(36, Short.MAX_VALUE)))
+            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1067, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cdcLayout.createSequentialGroup()
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addComponent(jPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         cdcLayout.setVerticalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cdcLayout.createSequentialGroup()
                 .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 880, Short.MAX_VALUE))
-            .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(cdcLayout.createSequentialGroup()
-                    .addGap(63, 63, 63)
-                    .addComponent(jPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(466, Short.MAX_VALUE)))
+                .addGap(34, 34, 34)
+                .addComponent(jPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 494, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -327,13 +321,13 @@ public class CadastroProduto extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdClienteActionPerformed
+    private void txtIdProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProdutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdClienteActionPerformed
+    }//GEN-LAST:event_txtIdProdutoActionPerformed
 
-    private void btnConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarClienteActionPerformed
+    private void btnConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProdutoActionPerformed
         try {
-            String minhasql = "SELECT * from cliente where id =" + "'" + txtIdCliente.getText() + "'";
+            String minhasql = "SELECT * from cliente where id =" + "'" + txtIdProduto.getText() + "'";
             resultado = st.executeQuery(minhasql);
             if (resultado.next()) {
                 txtNomeProduto.setText(resultado.getString("nome"));
@@ -345,9 +339,9 @@ public class CadastroProduto extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Registro não existe");
 
         }
-    }//GEN-LAST:event_btnConsultarClienteActionPerformed
+    }//GEN-LAST:event_btnConsultarProdutoActionPerformed
 
-    private void btnCriarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarClienteActionPerformed
+    private void btnCriarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarProdutoActionPerformed
 
         try {
             String cpf, nome, telefone, email;
@@ -363,9 +357,9 @@ public class CadastroProduto extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Não Gravado");
         }
 
-    }//GEN-LAST:event_btnCriarClienteActionPerformed
+    }//GEN-LAST:event_btnCriarProdutoActionPerformed
 
-    private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
+    private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
         try {
             String cpf, nome, telefone, email;
 
@@ -382,11 +376,11 @@ public class CadastroProduto extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Registro Não Atualizado");
         }
-    }//GEN-LAST:event_btnAlterarClienteActionPerformed
+    }//GEN-LAST:event_btnAlterarProdutoActionPerformed
 
-    private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
+    private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
         try {
-            String minhasql = "delete from cliente where id = " + txtIdCliente.getText();
+            String minhasql = "delete from cliente where id = " + txtIdProduto.getText();
             st.executeUpdate(minhasql);
             JOptionPane.showMessageDialog(null, "Registro Excluido");
             txtNomeProduto.setText("");
@@ -394,7 +388,7 @@ public class CadastroProduto extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Resgistro não existe " + e);
         }
-    }//GEN-LAST:event_btnExcluirClienteActionPerformed
+    }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 
     private void txtNomeProdutoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomeProdutoMouseEntered
         // TODO add your handling code here:
@@ -406,10 +400,10 @@ public class CadastroProduto extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAlterarCliente;
-    private javax.swing.JButton btnConsultarCliente;
-    private javax.swing.JButton btnCriarCliente;
-    private javax.swing.JButton btnExcluirCliente;
+    private javax.swing.JButton btnAlterarProduto;
+    private javax.swing.JButton btnConsultarProduto;
+    private javax.swing.JButton btnCriarProduto;
+    private javax.swing.JButton btnExcluirProduto;
     private javax.swing.JPanel cdc;
     private javax.swing.JLabel imgProduto;
     private javax.swing.JLabel jLabel11;
@@ -424,7 +418,7 @@ public class CadastroProduto extends javax.swing.JPanel {
     private javax.swing.JLabel lblNomeProduto;
     private javax.swing.JLabel lblValorProduto;
     private javax.swing.JTextArea txtDescricaoProduto;
-    private javax.swing.JTextField txtIdCliente;
+    private javax.swing.JTextField txtIdProduto;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JFormattedTextField txtValorProduto;
     // End of variables declaration//GEN-END:variables
