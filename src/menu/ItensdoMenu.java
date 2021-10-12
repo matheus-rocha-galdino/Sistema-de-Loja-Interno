@@ -14,23 +14,23 @@ import javax.swing.Icon;
  *
  * @author guilh
  */
-public class teste extends javax.swing.JPanel {
+public class ItensdoMenu extends javax.swing.JPanel {
     
     public void setShowing(boolean showing){
         this.showing = showing;
     }
 
-    public ArrayList<teste> getSubMenu() {
+    public ArrayList<ItensdoMenu> getSubMenu() {
         return subMenu;
     }
 
     /**
      * Creates new form teste
      */
-    private final ArrayList<teste> subMenu = new ArrayList<>();
+    private final ArrayList<ItensdoMenu> subMenu = new ArrayList<>();
     private ActionListener act;
     
-    public teste(Icon icon, String nomemenu,ActionListener act, teste... subMenu) {
+    public ItensdoMenu(Icon icon, String nomemenu,ActionListener act, ItensdoMenu... subMenu) {
         initComponents();
         IMGHERE.setIcon(icon);
         Nmenu.setText(nomemenu);
@@ -66,6 +66,7 @@ public class teste extends javax.swing.JPanel {
             }
         });
 
+        Nmenu.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         Nmenu.setText("item menu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

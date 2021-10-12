@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import menu.teste;
+import menu.ItensdoMenu;
 
 /**
  *
@@ -39,7 +39,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
         ImageIcon iconRelatorio = new ImageIcon(getClass().getResource("/menu/relatorio.png"));
         ImageIcon iconSubmenu = new ImageIcon(getClass().getResource("/menu/submenu.png"));
 
-        teste menuUser1 = new teste(iconSubmenu, "Meu Perfil", new ActionListener() {
+        ItensdoMenu menuUser1 = new ItensdoMenu(iconSubmenu, "Meu Perfil", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
@@ -48,7 +48,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        teste menuUser2 = new teste(iconSubmenu, "Minhas Vendas", new ActionListener() {
+        ItensdoMenu menuUser2 = new ItensdoMenu(iconSubmenu, "Minhas Vendas", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
@@ -57,9 +57,9 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        teste menuUser3 = new teste(iconSubmenu, "Sair",null);
+        ItensdoMenu menuUser3 = new ItensdoMenu(iconSubmenu, "Sair",null);
 
-        teste menuCadastro1 = new teste(iconSubmenu, "Cliente",new ActionListener() {
+        ItensdoMenu menuCadastro1 = new ItensdoMenu(iconSubmenu, "Cliente",new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
@@ -68,31 +68,31 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        teste menuCadastro2 = new teste(iconSubmenu, "Fornecedor",null);
-        teste menuCadastro3 = new teste(iconSubmenu, "Colaborador",null);
+        ItensdoMenu menuCadastro2 = new ItensdoMenu(iconSubmenu, "Fornecedor",null);
+        ItensdoMenu menuCadastro3 = new ItensdoMenu(iconSubmenu, "Colaborador",null);
 
-        teste menuCompra1 = new teste(iconSubmenu, "Venda de Produto", null);
-        teste menuCompra2 = new teste(iconSubmenu, "Compra de Produto",null);
-        teste menuCompra3 = new teste(iconSubmenu, "Historico do Dia",null);
+        ItensdoMenu menuCompra1 = new ItensdoMenu(iconSubmenu, "Venda de Produto", null);
+        ItensdoMenu menuCompra2 = new ItensdoMenu(iconSubmenu, "Compra de Produto",null);
+        ItensdoMenu menuCompra3 = new ItensdoMenu(iconSubmenu, "Historico do Dia",null);
 
-        teste menuRelatorio1 = new teste(iconSubmenu, "Analitíco",null);
-        teste menuRelotorio2 = new teste(iconSubmenu, "Sintético",null);
+        ItensdoMenu menuRelatorio1 = new ItensdoMenu(iconSubmenu, "Analitíco",null);
+        ItensdoMenu menuRelotorio2 = new ItensdoMenu(iconSubmenu, "Sintético",null);
 
-        teste menuUser = new teste(iconUser, "USUÁRIO", null, menuUser1, menuUser2, menuUser3);
-        teste menuCadastro = new teste(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3);
-        teste menuCompra = new teste(iconCompra, "VENDA/COMPRA", null, menuCompra1, menuCompra2, menuCompra3);
-        teste menuRelatorio = new teste(iconRelatorio, "RELATÓRIOS", null, menuRelatorio1, menuRelotorio2);
+        ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1, menuUser2, menuUser3);
+        ItensdoMenu menuCadastro = new ItensdoMenu(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3);
+        ItensdoMenu menuCompra = new ItensdoMenu(iconCompra, "VENDA/COMPRA", null, menuCompra1, menuCompra2, menuCompra3);
+        ItensdoMenu menuRelatorio = new ItensdoMenu(iconRelatorio, "RELATÓRIOS", null, menuRelatorio1, menuRelotorio2);
 
         addmenu(menuUser, menuCadastro, menuCompra, menuRelatorio);
 
     }
 
-    private void addmenu(teste... menu) {
+    private void addmenu(ItensdoMenu... menu) {
         for (int i = 0; i < menu.length; i++) {
             menus.add(menu[i]);
 
-            ArrayList<teste> subMenu = menu[i].getSubMenu();
-            for (teste m : subMenu) {
+            ArrayList<ItensdoMenu> subMenu = menu[i].getSubMenu();
+            for (ItensdoMenu m : subMenu) {
                 addmenu(m);
             }
         }
@@ -111,6 +111,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         painelCabeca = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         painelMenu = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         menus = new javax.swing.JPanel();
@@ -124,18 +125,26 @@ public class Tl_principalpi extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        painelCabeca.setBackground(new java.awt.Color(87, 188, 144));
-        painelCabeca.setPreferredSize(new java.awt.Dimension(795, 50));
+        painelCabeca.setBackground(new java.awt.Color(3, 150, 166));
+        painelCabeca.setPreferredSize(new java.awt.Dimension(795, 55));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout painelCabecaLayout = new javax.swing.GroupLayout(painelCabeca);
         painelCabeca.setLayout(painelCabecaLayout);
         painelCabecaLayout.setHorizontalGroup(
             painelCabecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(painelCabecaLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(662, Short.MAX_VALUE))
         );
         painelCabecaLayout.setVerticalGroup(
             painelCabecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCabecaLayout.createSequentialGroup()
+                .addGap(0, 5, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(painelCabeca, java.awt.BorderLayout.PAGE_START);
@@ -145,7 +154,8 @@ public class Tl_principalpi extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
 
-        menus.setBackground(new java.awt.Color(1, 82, 73));
+        menus.setBackground(new java.awt.Color(7, 51, 89));
+        menus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         menus.setLayout(new javax.swing.BoxLayout(menus, javax.swing.BoxLayout.Y_AXIS));
         jScrollPane1.setViewportView(menus);
 
@@ -157,7 +167,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
         );
         painelMenuLayout.setVerticalGroup(
             painelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
 
         getContentPane().add(painelMenu, java.awt.BorderLayout.LINE_START);
@@ -207,6 +217,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
