@@ -61,7 +61,7 @@ public class Panel1 extends javax.swing.JPanel {
                 .addGap(0, 173, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
     }
 
