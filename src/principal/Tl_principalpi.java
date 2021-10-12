@@ -5,11 +5,10 @@
  */
 package principal;
 
-import Telas.CadastroClientes;
+import Telas.CadastroCliente;
 import Telas.CadastroFuncionario;
 import Telas.Panel1;
 import Telas.Panel2;
-import fontes.CadastroCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -64,7 +63,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
-                painelCorpo.add(new CadastroClientes());
+                painelCorpo.add(new CadastroCliente());
                 painelCorpo.repaint();
                 painelCorpo.revalidate();
             }
