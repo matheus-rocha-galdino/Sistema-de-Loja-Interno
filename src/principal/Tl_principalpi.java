@@ -6,6 +6,7 @@
 package principal;
 
 import Telas.CadastroClientes;
+import Telas.CadastroFuncionario;
 import Telas.Panel1;
 import Telas.Panel2;
 import fontes.CadastroCliente;
@@ -69,7 +70,16 @@ public class Tl_principalpi extends javax.swing.JFrame {
             }
         });
         ItensdoMenu menuCadastro2 = new ItensdoMenu(iconSubmenu, "Fornecedor",null);
-        ItensdoMenu menuCadastro3 = new ItensdoMenu(iconSubmenu, "Colaborador",null);
+        ItensdoMenu menuCadastro3 = new ItensdoMenu(iconSubmenu, "Colaborador",new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                painelCorpo.removeAll();
+                painelCorpo.add(new CadastroFuncionario());
+                painelCorpo.repaint();
+                painelCorpo.revalidate();
+               
+            }
+        });
 
         ItensdoMenu menuCompra1 = new ItensdoMenu(iconSubmenu, "Venda de Produto", null);
         ItensdoMenu menuCompra2 = new ItensdoMenu(iconSubmenu, "Compra de Produto",null);
