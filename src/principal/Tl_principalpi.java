@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import menu.ItensdoMenu;
+import telas.Cartoes;
 
 /**
  *
@@ -35,6 +36,11 @@ public class Tl_principalpi extends javax.swing.JFrame {
     }
 
     private void execute() {
+        
+        painelCorpo.add(new Cartoes());
+        painelCorpo.repaint();
+        painelCorpo.revalidate();
+        
         ImageIcon iconUser = new ImageIcon(getClass().getResource("/menu/usuario.png"));
         ImageIcon iconCadastro = new ImageIcon(getClass().getResource("/menu/cadastro.png"));
         ImageIcon iconCompra = new ImageIcon(getClass().getResource("/menu/compra.png"));
