@@ -88,7 +88,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
         cdc.setBackground(new java.awt.Color(226, 238, 251));
 
-        jPanelHeader.setBackground(new java.awt.Color(8, 152, 207));
+        jPanelHeader.setBackground(new java.awt.Color(4, 102, 140));
         jPanelHeader.setPreferredSize(new java.awt.Dimension(795, 55));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
