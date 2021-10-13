@@ -146,6 +146,8 @@ public class Tl_principalpi extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         painelCabeca = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         painelMenu = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         menus = new javax.swing.JPanel();
@@ -165,20 +167,34 @@ public class Tl_principalpi extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Iniciar.png"))); // NOI18N
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair.png"))); // NOI18N
+
         javax.swing.GroupLayout painelCabecaLayout = new javax.swing.GroupLayout(painelCabeca);
         painelCabeca.setLayout(painelCabecaLayout);
         painelCabecaLayout.setHorizontalGroup(
             painelCabecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCabecaLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(662, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 573, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18))
         );
         painelCabecaLayout.setVerticalGroup(
             painelCabecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCabecaLayout.createSequentialGroup()
-                .addGap(0, 5, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(painelCabecaLayout.createSequentialGroup()
+                .addGroup(painelCabecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painelCabecaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(painelCabecaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
 
         getContentPane().add(painelCabeca, java.awt.BorderLayout.PAGE_START);
@@ -252,6 +268,8 @@ public class Tl_principalpi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
