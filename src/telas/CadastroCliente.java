@@ -75,12 +75,12 @@ public class CadastroCliente extends javax.swing.JPanel {
 
         cdc.setBackground(new java.awt.Color(226, 238, 251));
 
-        jPanelHeader.setBackground(new java.awt.Color(4, 102, 140));
+        jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
         jPanelHeader.setPreferredSize(new java.awt.Dimension(795, 55));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Cadastro de Cliente");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -93,7 +93,7 @@ public class CadastroCliente extends javax.swing.JPanel {
             .addGroup(jPanelHeaderLayout.createSequentialGroup()
                 .addGap(404, 404, 404)
                 .addComponent(jLabel2)
-                .addContainerGap(479, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,7 +505,7 @@ public class CadastroCliente extends javax.swing.JPanel {
             .addGroup(jPanelBodyLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
+                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE)
                     .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelCRUD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 9, Short.MAX_VALUE))
@@ -525,7 +525,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         cdc.setLayout(cdcLayout);
         cdcLayout.setHorizontalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1108, Short.MAX_VALUE)
+            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1111, Short.MAX_VALUE)
             .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cdcLayout.createSequentialGroup()
                     .addGap(32, 32, 32)

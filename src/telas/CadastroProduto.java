@@ -60,12 +60,12 @@ public class CadastroProduto extends javax.swing.JPanel {
 
         cdc.setBackground(new java.awt.Color(226, 238, 251));
 
-        jPanelHeader.setBackground(new java.awt.Color(4, 102, 140));
+        jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
         jPanelHeader.setPreferredSize(new java.awt.Dimension(795, 55));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Cadastro de Produto");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

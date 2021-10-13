@@ -19,6 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import menu.ItensdoMenu;
 import telas.Cartoes;
+import telas.EntradaMerc;
+import telas.SaidaMerc;
 
 /**
  *
@@ -105,8 +107,24 @@ public class Tl_principalpi extends javax.swing.JFrame {
             }
         });
 
-        ItensdoMenu menuCompra1 = new ItensdoMenu(iconSubmenu, "Venda de Produto", null);
-        ItensdoMenu menuCompra2 = new ItensdoMenu(iconSubmenu, "Compra de Produto",null);
+        ItensdoMenu menuCompra1 = new ItensdoMenu(iconSubmenu, "Venda de Produto", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                painelCorpo.removeAll();
+                painelCorpo.add(new SaidaMerc());
+                painelCorpo.repaint();
+                painelCorpo.revalidate();
+            }
+        });
+        ItensdoMenu menuCompra2 = new ItensdoMenu(iconSubmenu, "Compra de Produto",new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                painelCorpo.removeAll();
+                painelCorpo.add(new EntradaMerc());
+                painelCorpo.repaint();
+                painelCorpo.revalidate();
+            }
+        });
         ItensdoMenu menuCompra3 = new ItensdoMenu(iconSubmenu, "Historico do Dia",null);
 
         ItensdoMenu menuRelatorio1 = new ItensdoMenu(iconSubmenu, "Analitíco",null);
