@@ -6,6 +6,7 @@
 package principal;
 
 import telas.CadastroCliente;
+import telas.RelatorioAnalitico;
 import telas.CadastroFornecedor;
 import telas.CadastroFuncionario;
 import telas.CadastroProduto;
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
 import menu.ItensdoMenu;
 import telas.Cartoes;
 import telas.EntradaMerc;
+import telas.RelatorioSintetico;
 import telas.SaidaMerc;
 
 /**
@@ -38,11 +40,11 @@ public class Tl_principalpi extends javax.swing.JFrame {
     }
 
     private void execute() {
-        
+
         painelCorpo.add(new Cartoes());
         painelCorpo.repaint();
         painelCorpo.revalidate();
-        
+
         ImageIcon iconUser = new ImageIcon(getClass().getResource("/menu/usuario.png"));
         ImageIcon iconCadastro = new ImageIcon(getClass().getResource("/menu/cadastro.png"));
         ImageIcon iconCompra = new ImageIcon(getClass().getResource("/menu/compra.png"));
@@ -67,9 +69,9 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        ItensdoMenu menuUser3 = new ItensdoMenu(iconSubmenu, "Sair",null);
+        ItensdoMenu menuUser3 = new ItensdoMenu(iconSubmenu, "Sair", null);
 
-        ItensdoMenu menuCadastro1 = new ItensdoMenu(iconSubmenu, "Cliente",new ActionListener() {
+        ItensdoMenu menuCadastro1 = new ItensdoMenu(iconSubmenu, "Cliente", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
@@ -78,29 +80,29 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        ItensdoMenu menuCadastro2 = new ItensdoMenu(iconSubmenu, "Fornecedor",new ActionListener() {
+        ItensdoMenu menuCadastro2 = new ItensdoMenu(iconSubmenu, "Fornecedor", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
                 painelCorpo.add(new CadastroFornecedor());
                 painelCorpo.repaint();
-                painelCorpo.revalidate(); 
+                painelCorpo.revalidate();
             }
         });
-        ItensdoMenu menuCadastro3 = new ItensdoMenu(iconSubmenu, "Colaborador",new ActionListener() {
+        ItensdoMenu menuCadastro3 = new ItensdoMenu(iconSubmenu, "Colaborador", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
                 painelCorpo.add(new CadastroFuncionario());
                 painelCorpo.repaint();
                 painelCorpo.revalidate();
-               
+
             }
         });
-        ItensdoMenu menuCadastro4 = new ItensdoMenu(iconSubmenu, "Produto",new ActionListener() {
+        ItensdoMenu menuCadastro4 = new ItensdoMenu(iconSubmenu, "Produto", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               painelCorpo.removeAll();
+                painelCorpo.removeAll();
                 painelCorpo.add(new CadastroProduto());
                 painelCorpo.repaint();
                 painelCorpo.revalidate();
@@ -116,7 +118,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        ItensdoMenu menuCompra2 = new ItensdoMenu(iconSubmenu, "Compra de Produto",new ActionListener() {
+        ItensdoMenu menuCompra2 = new ItensdoMenu(iconSubmenu, "Compra de Produto", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
@@ -125,10 +127,26 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        ItensdoMenu menuCompra3 = new ItensdoMenu(iconSubmenu, "Historico do Dia",null);
+        ItensdoMenu menuCompra3 = new ItensdoMenu(iconSubmenu, "Historico do Dia", null);
 
-        ItensdoMenu menuRelatorio1 = new ItensdoMenu(iconSubmenu, "Analitíco",null);
-        ItensdoMenu menuRelotorio2 = new ItensdoMenu(iconSubmenu, "Sintético",null);
+        ItensdoMenu menuRelatorio1 = new ItensdoMenu(iconSubmenu, "Analitíco", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                painelCorpo.removeAll();
+                painelCorpo.add(new RelatorioAnalitico());
+                painelCorpo.repaint();
+                painelCorpo.revalidate();
+            }
+        });
+        ItensdoMenu menuRelotorio2 = new ItensdoMenu(iconSubmenu, "Sintético", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                painelCorpo.removeAll();
+                painelCorpo.add(new RelatorioSintetico());
+                painelCorpo.repaint();
+                painelCorpo.revalidate();
+            }
+        });
 
         ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1, menuUser2, menuUser3);
         ItensdoMenu menuCadastro = new ItensdoMenu(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3, menuCadastro4);
