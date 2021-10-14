@@ -39,9 +39,9 @@ public class Tl_principalpi extends javax.swing.JFrame {
 
     private void execute() {
         
-        painelCorpo.add(new Cartoes());
-        painelCorpo.repaint();
-        painelCorpo.revalidate();
+        painelCorpo1.add(new Cartoes());
+        painelCorpo1.repaint();
+        painelCorpo1.revalidate();
         
         ImageIcon iconUser = new ImageIcon(getClass().getResource("/menu/usuario.png"));
         ImageIcon iconCadastro = new ImageIcon(getClass().getResource("/menu/cadastro.png"));
@@ -52,19 +52,19 @@ public class Tl_principalpi extends javax.swing.JFrame {
         ItensdoMenu menuUser1 = new ItensdoMenu(iconSubmenu, "Meu Perfil", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                painelCorpo.removeAll();
-                painelCorpo.add(new Panel1());
-                painelCorpo.repaint();
-                painelCorpo.revalidate();
+                painelCorpo1.removeAll();
+                painelCorpo1.add(new Panel1());
+                painelCorpo1.repaint();
+                painelCorpo1.revalidate();
             }
         });
         ItensdoMenu menuUser2 = new ItensdoMenu(iconSubmenu, "Minhas Vendas", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                painelCorpo.removeAll();
-                painelCorpo.add(new Panel2());
-                painelCorpo.repaint();
-                painelCorpo.revalidate();
+                painelCorpo1.removeAll();
+                painelCorpo1.add(new Panel2());
+                painelCorpo1.repaint();
+                painelCorpo1.revalidate();
             }
         });
         ItensdoMenu menuUser3 = new ItensdoMenu(iconSubmenu, "Sair",null);
@@ -72,57 +72,57 @@ public class Tl_principalpi extends javax.swing.JFrame {
         ItensdoMenu menuCadastro1 = new ItensdoMenu(iconSubmenu, "Cliente",new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                painelCorpo.removeAll();
-                painelCorpo.add(new CadastroCliente());
-                painelCorpo.repaint();
-                painelCorpo.revalidate();
+                painelCorpo1.removeAll();
+                painelCorpo1.add(new CadastroCliente());
+                painelCorpo1.repaint();
+                painelCorpo1.revalidate();
             }
         });
         ItensdoMenu menuCadastro2 = new ItensdoMenu(iconSubmenu, "Fornecedor",new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                painelCorpo.removeAll();
-                painelCorpo.add(new CadastroFornecedor());
-                painelCorpo.repaint();
-                painelCorpo.revalidate(); 
+                painelCorpo1.removeAll();
+                painelCorpo1.add(new CadastroFornecedor());
+                painelCorpo1.repaint();
+                painelCorpo1.revalidate(); 
             }
         });
         ItensdoMenu menuCadastro3 = new ItensdoMenu(iconSubmenu, "Colaborador",new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                painelCorpo.removeAll();
-                painelCorpo.add(new CadastroFuncionario());
-                painelCorpo.repaint();
-                painelCorpo.revalidate();
+                painelCorpo1.removeAll();
+                painelCorpo1.add(new CadastroFuncionario());
+                painelCorpo1.repaint();
+                painelCorpo1.revalidate();
                
             }
         });
         ItensdoMenu menuCadastro4 = new ItensdoMenu(iconSubmenu, "Produto",new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               painelCorpo.removeAll();
-                painelCorpo.add(new CadastroProduto());
-                painelCorpo.repaint();
-                painelCorpo.revalidate();
+               painelCorpo1.removeAll();
+                painelCorpo1.add(new CadastroProduto());
+                painelCorpo1.repaint();
+                painelCorpo1.revalidate();
             }
         });
 
         ItensdoMenu menuCompra1 = new ItensdoMenu(iconSubmenu, "Venda de Produto", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                painelCorpo.removeAll();
-                painelCorpo.add(new SaidaMerc());
-                painelCorpo.repaint();
-                painelCorpo.revalidate();
+                painelCorpo1.removeAll();
+                painelCorpo1.add(new SaidaMerc());
+                painelCorpo1.repaint();
+                painelCorpo1.revalidate();
             }
         });
         ItensdoMenu menuCompra2 = new ItensdoMenu(iconSubmenu, "Compra de Produto",new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                painelCorpo.removeAll();
-                painelCorpo.add(new EntradaMerc());
-                painelCorpo.repaint();
-                painelCorpo.revalidate();
+                painelCorpo1.removeAll();
+                painelCorpo1.add(new EntradaMerc());
+                painelCorpo1.repaint();
+                painelCorpo1.revalidate();
             }
         });
         ItensdoMenu menuCompra3 = new ItensdoMenu(iconSubmenu, "Historico do Dia",null);
@@ -171,6 +171,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
         menus = new javax.swing.JPanel();
         painelCorpo = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        painelCorpo1 = new javax.swing.JPanel();
 
         jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("cadastros");
@@ -241,6 +242,12 @@ public class Tl_principalpi extends javax.swing.JFrame {
 
         painelCorpo.setBackground(new java.awt.Color(255, 255, 255));
         painelCorpo.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane2.setBorder(null);
+
+        painelCorpo1.setLayout(new java.awt.BorderLayout());
+        jScrollPane2.setViewportView(painelCorpo1);
+
         painelCorpo.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(painelCorpo, java.awt.BorderLayout.CENTER);
@@ -296,6 +303,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
     private javax.swing.JPanel menus;
     private javax.swing.JPanel painelCabeca;
     private javax.swing.JPanel painelCorpo;
+    private javax.swing.JPanel painelCorpo1;
     private javax.swing.JPanel painelMenu;
     // End of variables declaration//GEN-END:variables
 }
