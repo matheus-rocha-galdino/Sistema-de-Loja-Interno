@@ -543,6 +543,8 @@ public class EntradaMerc extends javax.swing.JPanel {
         jPanel8.setBackground(new java.awt.Color(226, 238, 251));
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setForeground(new java.awt.Color(255, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -551,6 +553,7 @@ public class EntradaMerc extends javax.swing.JPanel {
                 "ID", "NOME", "QTD.", "VALOR", "TOTAL"
             }
         ));
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable1);
 
