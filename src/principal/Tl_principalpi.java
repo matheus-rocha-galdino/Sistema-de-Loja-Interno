@@ -187,8 +187,8 @@ public class Tl_principalpi extends javax.swing.JFrame {
         painelMenu = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         menus = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         painelCorpo = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
 
         jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setText("cadastros");
@@ -252,16 +252,17 @@ public class Tl_principalpi extends javax.swing.JFrame {
         );
         painelMenuLayout.setVerticalGroup(
             painelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
 
         getContentPane().add(painelMenu, java.awt.BorderLayout.LINE_START);
 
-        painelCorpo.setBackground(new java.awt.Color(255, 255, 255));
-        painelCorpo.setLayout(new java.awt.BorderLayout());
-        painelCorpo.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+        jScrollPane3.setBorder(null);
 
-        getContentPane().add(painelCorpo, java.awt.BorderLayout.CENTER);
+        painelCorpo.setLayout(new java.awt.BorderLayout());
+        jScrollPane3.setViewportView(painelCorpo);
+
+        getContentPane().add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
         setSize(new java.awt.Dimension(811, 464));
         setLocationRelativeTo(null);
@@ -310,7 +311,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel menus;
     private javax.swing.JPanel painelCabeca;
     private javax.swing.JPanel painelCorpo;
