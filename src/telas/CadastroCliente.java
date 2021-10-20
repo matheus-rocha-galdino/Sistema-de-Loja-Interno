@@ -5,16 +5,16 @@
  */
 package telas;
 
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import javax.swing.JFrame;
 import util.ConnectionUtils;
+import util.StringUtils;
 
 public class CadastroCliente extends javax.swing.JPanel {
+
+    String genero = null;
 
     public CadastroCliente() {
         initComponents();
@@ -24,6 +24,7 @@ public class CadastroCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         cdc = new javax.swing.JPanel();
         jPanelHeader = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -43,8 +44,8 @@ public class CadastroCliente extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        rbtnFeminCliente = new javax.swing.JRadioButton();
         rbtnMascCliente = new javax.swing.JRadioButton();
+        rbtnFeminCliente = new javax.swing.JRadioButton();
         rbtnOutrosCliente = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         txtEmailCliente = new javax.swing.JTextField();
@@ -65,7 +66,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         txtMunicipioCliente = new javax.swing.JTextField();
         txtNumeroCliente = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
+        txtBairroCliente = new javax.swing.JTextField();
         txtLogradouroCliente = new javax.swing.JTextField();
         txtComplementoCliente = new javax.swing.JTextField();
         txtCepCliente = new javax.swing.JFormattedTextField();
@@ -216,20 +217,38 @@ public class CadastroCliente extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Genêro:");
 
-        rbtnFeminCliente.setBackground(new java.awt.Color(226, 238, 251));
-        rbtnFeminCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rbtnFeminCliente.setText("Feminino");
-        rbtnFeminCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
         rbtnMascCliente.setBackground(new java.awt.Color(226, 238, 251));
+        buttonGroup1.add(rbtnMascCliente);
         rbtnMascCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnMascCliente.setText("Masculino");
         rbtnMascCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtnMascCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnMascClienteActionPerformed(evt);
+            }
+        });
+
+        rbtnFeminCliente.setBackground(new java.awt.Color(226, 238, 251));
+        buttonGroup1.add(rbtnFeminCliente);
+        rbtnFeminCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnFeminCliente.setText("Feminino");
+        rbtnFeminCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtnFeminCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnFeminClienteActionPerformed(evt);
+            }
+        });
 
         rbtnOutrosCliente.setBackground(new java.awt.Color(226, 238, 251));
+        buttonGroup1.add(rbtnOutrosCliente);
         rbtnOutrosCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnOutrosCliente.setText("Outros");
         rbtnOutrosCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtnOutrosCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnOutrosClienteActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Dados Pessoais");
@@ -405,7 +424,7 @@ public class CadastroCliente extends javax.swing.JPanel {
 
         txtNumeroCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTextField11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtBairroCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         txtLogradouroCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -455,7 +474,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                                 .addComponent(jLabel16)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtBairroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(45, 45, 45)
@@ -494,7 +513,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBairroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(82, 82, 82))))
         );
 
@@ -595,12 +614,10 @@ public class CadastroCliente extends javax.swing.JPanel {
 
     private void btnCriarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarClienteActionPerformed
         String teste = txtDataCliente.getText();
-        
-        
-        String minhasql = "INSERT INTO cliente (cpf, nome, nascimento,genero, endereco, telefone, email, cep, cidade, logradouro, numero, complemento, uf, bairro)"
+
+        String minhasql = "INSERT INTO cliente (cpf, nome, nascimento,genero, telefone, email, cep, cidade, logradouro, numero, complemento, uf, bairro)"
                 + " VALUES "
                 + "(?,"
-                + " ?,"
                 + " ?,"
                 + " ?,"
                 + " ?,"
@@ -622,10 +639,20 @@ public class CadastroCliente extends javax.swing.JPanel {
             //Long CPF = Long.parseLong(txtCPFCliente.getText());
             ps.setString(1, txtCPFCliente.getText());
             ps.setString(2, txtNomeCliente.getText());
-            //new java.sql.Timestamp(date.getTime());
-            //ps.setString(2, txtDataCliente.());
-            ps.setString(2, txtNomeCliente.getText());
-            ps.setString(2, txtNomeCliente.getText());
+            String dataConvertida = StringUtils.converteDataParaOBanco(txtDataCliente.getText());
+            ps.setString(3, dataConvertida);
+            ps.setString(4, genero);
+            String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneCliente.getText());
+            ps.setString(5, telefone);
+            ps.setString(6, txtEmailCliente.getText());
+            ps.setString(7, txtCepCliente.getText());
+            ps.setString(8, txtMunicipioCliente.getText());
+            ps.setString(9, txtLogradouroCliente.getText());
+            ps.setString(10, txtNumeroCliente.getText());
+            ps.setString(11, txtComplementoCliente.getText());
+            ps.setString(12, cbxUFCliente.getSelectedItem().toString());
+            ps.setString(13, txtBairroCliente.getText());
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Registro não existe");
@@ -693,12 +720,29 @@ public class CadastroCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeClienteMouseEntered
 
+    private void rbtnMascClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMascClienteActionPerformed
+        // TODO add your handling code here:
+        genero = "Masculino";
+
+    }//GEN-LAST:event_rbtnMascClienteActionPerformed
+
+    private void rbtnFeminClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFeminClienteActionPerformed
+        // TODO add your handling code here:
+        genero = "Feminino";
+    }//GEN-LAST:event_rbtnFeminClienteActionPerformed
+
+    private void rbtnOutrosClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnOutrosClienteActionPerformed
+        // TODO add your handling code here:
+        genero = "Outros";
+    }//GEN-LAST:event_rbtnOutrosClienteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarCliente;
     private javax.swing.JButton btnConsultarCliente;
     private javax.swing.JButton btnCriarCliente;
     private javax.swing.JButton btnExcluirCliente;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxEstadoCivCliente;
     private javax.swing.JComboBox<String> cbxUFCliente;
     private javax.swing.JPanel cdc;
@@ -724,12 +768,12 @@ public class CadastroCliente extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelDadosPessoais;
     private javax.swing.JPanel jPanelEndereco;
     private javax.swing.JPanel jPanelHeader;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JLabel lblDataNasCliente;
     private javax.swing.JLabel lblNomeCliente;
     private javax.swing.JRadioButton rbtnFeminCliente;
     private javax.swing.JRadioButton rbtnMascCliente;
     private javax.swing.JRadioButton rbtnOutrosCliente;
+    private javax.swing.JTextField txtBairroCliente;
     private javax.swing.JFormattedTextField txtCPFCliente;
     private javax.swing.JFormattedTextField txtCepCliente;
     private javax.swing.JTextField txtComplementoCliente;
