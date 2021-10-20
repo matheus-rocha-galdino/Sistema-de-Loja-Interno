@@ -636,8 +636,8 @@ public class CadastroCliente extends javax.swing.JPanel {
         try {
             conexao = ConnectionUtils.getConnection();
             ps = conexao.prepareStatement(minhasql);
-            //Long CPF = Long.parseLong(txtCPFCliente.getText());
-            ps.setString(1, txtCPFCliente.getText());
+            String CPF = StringUtils.limpaValorParaOBanco(txtCPFCliente.getText());
+            ps.setString(1, CPF);
             ps.setString(2, txtNomeCliente.getText());
             String dataConvertida = StringUtils.converteDataParaOBanco(txtDataCliente.getText());
             ps.setString(3, dataConvertida);
@@ -652,10 +652,11 @@ public class CadastroCliente extends javax.swing.JPanel {
             ps.setString(11, txtComplementoCliente.getText());
             ps.setString(12, cbxUFCliente.getSelectedItem().toString());
             ps.setString(13, txtBairroCliente.getText());
-            
+            ps.execute();
+            JOptionPane.showMessageDialog(null,"Registro Inserido com Sucesso");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Registro não existe");
+            JOptionPane.showMessageDialog(null, "Não foi possivel inserir o registro");
 
         } finally {
             ConnectionUtils.closeConnection(conexao, ps);
