@@ -17,6 +17,13 @@ public class StringUtils {
         String dataBD = (data[2] + "-" + data[1] + "-" + data[0]);
         return dataBD;
     }
+    
+    public static String converteDataParaOPrograma(String dataBD) {
+
+        String data[] = dataBD.split("-");
+        String dataCampo = (data[1] +""+ data[1] + "" + data[0]);
+        return dataCampo;
+    }
 
     public static String limpaValorParaOBanco(String valor) {
         valor = valor.replaceAll("[^0-9]+", "");

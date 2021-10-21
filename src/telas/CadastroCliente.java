@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import util.ConnectionUtils;
 import util.StringUtils;
+import util.buttonGroupUtils;
 
 public class CadastroCliente extends javax.swing.JPanel {
 
@@ -18,6 +19,7 @@ public class CadastroCliente extends javax.swing.JPanel {
 
     public CadastroCliente() {
         initComponents();
+        btnAlterarCliente.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -112,9 +114,9 @@ public class CadastroCliente extends javax.swing.JPanel {
         jLabel3.setText("Busca pelo Id:");
 
         txtIdCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtIdCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdClienteActionPerformed(evt);
+        txtIdCliente.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtIdClienteCaretUpdate(evt);
             }
         });
 
@@ -577,10 +579,6 @@ public class CadastroCliente extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdClienteActionPerformed
-
     private void btnConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarClienteActionPerformed
 
         String minhasql = "SELECT * from cliente where id = ?";
@@ -595,10 +593,20 @@ public class CadastroCliente extends javax.swing.JPanel {
             ps.setLong(1, idCliente);
             resultado = ps.executeQuery();
             if (resultado.next()) {
-                txtNomeCliente.setText(resultado.getString("nome"));
-                txtEmailCliente.setText(resultado.getString("email"));
                 txtCPFCliente.setText(resultado.getString("cpf"));
+                txtNomeCliente.setText(resultado.getString("nome"));
+                String nascimento = StringUtils.converteDataParaOPrograma(resultado.getString("nascimento"));
+                txtDataCliente.setText(nascimento);
+                buttonGroupUtils.setButtonGroup(resultado.getString("genero"), buttonGroup1.getElements());
                 txtTelefoneCliente.setText(resultado.getString("telefone"));
+                txtEmailCliente.setText(resultado.getString("email"));
+                txtCepCliente.setText(resultado.getString("cep"));
+                txtMunicipioCliente.setText(resultado.getString("cidade"));
+                txtLogradouroCliente.setText(resultado.getString("logradouro"));
+                txtNumeroCliente.setText(resultado.getString("numero"));
+                txtComplementoCliente.setText(resultado.getString("complemento"));
+                cbxUFCliente.setSelectedItem(resultado.getString("uf"));
+                txtBairroCliente.setText(resultado.getString("bairro"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "Registro não existe");
@@ -653,7 +661,7 @@ public class CadastroCliente extends javax.swing.JPanel {
             ps.setString(12, cbxUFCliente.getSelectedItem().toString());
             ps.setString(13, txtBairroCliente.getText());
             ps.execute();
-            JOptionPane.showMessageDialog(null,"Registro Inserido com Sucesso");
+            JOptionPane.showMessageDialog(null, "Registro Inserido com Sucesso");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não foi possivel inserir o registro");
@@ -736,6 +744,16 @@ public class CadastroCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
         genero = "Outros";
     }//GEN-LAST:event_rbtnOutrosClienteActionPerformed
+
+    private void txtIdClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdClienteCaretUpdate
+        if (!txtIdCliente.getText().isEmpty()) {
+            btnCriarCliente.setEnabled(false);
+            btnAlterarCliente.setEnabled(true);
+        } else {
+            btnCriarCliente.setEnabled(true);
+            btnAlterarCliente.setEnabled(false);
+        }
+    }//GEN-LAST:event_txtIdClienteCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
