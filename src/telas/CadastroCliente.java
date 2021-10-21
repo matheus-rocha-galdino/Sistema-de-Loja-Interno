@@ -8,6 +8,7 @@ package telas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javafx.beans.binding.Bindings;
 import javax.swing.JOptionPane;
 import util.ConnectionUtils;
 import util.StringUtils;
@@ -20,6 +21,7 @@ public class CadastroCliente extends javax.swing.JPanel {
     public CadastroCliente() {
         initComponents();
         btnAlterarCliente.setEnabled(false);
+        btnExcluirCliente.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -618,95 +620,149 @@ public class CadastroCliente extends javax.swing.JPanel {
             ConnectionUtils.closeConnection(conexao, ps, resultado);
         }
 
+
     }//GEN-LAST:event_btnConsultarClienteActionPerformed
 
     private void btnCriarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarClienteActionPerformed
-        String teste = txtDataCliente.getText();
 
-        String minhasql = "INSERT INTO cliente (cpf, nome, nascimento,genero, telefone, email, cep, cidade, logradouro, numero, complemento, uf, bairro)"
-                + " VALUES "
-                + "(?,"
-                + " ?,"
-                + " ?,"
-                + " ?,"
-                + " ?,"
-                + " ?,"
-                + " ?,"
-                + " ?,"
-                + " ?,"
-                + " ?,"
-                + " ?,"
-                + " ?,"
-                + " ?);";
-        Connection conexao = null;
-        PreparedStatement ps = null;
+        Object[] options = {"Confirmar", "Cancelar"};
+        int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja inserir um novo registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        if (escolha == 0) {
+            String minhasql = "INSERT INTO cliente (cpf, nome, nascimento,genero, telefone, email, cep, cidade, logradouro, numero, complemento, uf, bairro)"
+                    + " VALUES "
+                    + "(?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?);";
+            Connection conexao = null;
+            PreparedStatement ps = null;
 
-        try {
-            conexao = ConnectionUtils.getConnection();
-            ps = conexao.prepareStatement(minhasql);
-            String CPF = StringUtils.limpaValorParaOBanco(txtCPFCliente.getText());
-            ps.setString(1, CPF);
-            ps.setString(2, txtNomeCliente.getText());
-            String dataConvertida = StringUtils.converteDataParaOBanco(txtDataCliente.getText());
-            ps.setString(3, dataConvertida);
-            ps.setString(4, genero);
-            String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneCliente.getText());
-            ps.setString(5, telefone);
-            ps.setString(6, txtEmailCliente.getText());
-            ps.setString(7, txtCepCliente.getText());
-            ps.setString(8, txtMunicipioCliente.getText());
-            ps.setString(9, txtLogradouroCliente.getText());
-            ps.setString(10, txtNumeroCliente.getText());
-            ps.setString(11, txtComplementoCliente.getText());
-            ps.setString(12, cbxUFCliente.getSelectedItem().toString());
-            ps.setString(13, txtBairroCliente.getText());
-            ps.execute();
-            JOptionPane.showMessageDialog(null, "Registro Inserido com Sucesso");
+            try {
+                conexao = ConnectionUtils.getConnection();
+                ps = conexao.prepareStatement(minhasql);
+                String CPF = StringUtils.limpaValorParaOBanco(txtCPFCliente.getText());
+                ps.setString(1, CPF);
+                ps.setString(2, txtNomeCliente.getText());
+                String dataConvertida = StringUtils.converteDataParaOBanco(txtDataCliente.getText());
+                ps.setString(3, dataConvertida);
+                ps.setString(4, genero);
+                String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneCliente.getText());
+                ps.setString(5, telefone);
+                ps.setString(6, txtEmailCliente.getText());
+                ps.setString(7, txtCepCliente.getText());
+                ps.setString(8, txtMunicipioCliente.getText());
+                ps.setString(9, txtLogradouroCliente.getText());
+                ps.setString(10, txtNumeroCliente.getText());
+                ps.setString(11, txtComplementoCliente.getText());
+                ps.setString(12, cbxUFCliente.getSelectedItem().toString());
+                ps.setString(13, txtBairroCliente.getText());
+                ps.execute();
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Não foi possivel inserir o registro");
+                JOptionPane.showMessageDialog(null, "Registro Inserido com Sucesso");
 
-        } finally {
-            ConnectionUtils.closeConnection(conexao, ps);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel inserir o registro");
+
+            } finally {
+                ConnectionUtils.closeConnection(conexao, ps);
+            }
+        } else {
+
         }
 
     }//GEN-LAST:event_btnCriarClienteActionPerformed
 
     private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
-//        try {
-//            String cpf, nome, telefone, email;
-//
-//            nome = txtNomeCliente.getText();
-//            cpf = txtCPFCliente.getText();
-//            telefone = txtTelefoneCliente.getText();
-//            email = txtEmailCliente.getText();
-//
-//            String minhasql = "update cliente set nome = '"
-//                    + nome + "',cpf = '"
-//                    + cpf + "',email ='"
-//                    + email + "',,telefone ='"
-//                    + telefone + "' where id = " + txtIdCliente.getText();
-//            st.executeUpdate(minhasql);
-//            JOptionPane.showMessageDialog(null, "Registro Atualizado");
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Registro Não Atualizado");
-//        }
+
+        Object[] options = {"Confirmar", "Cancelar"};
+        int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja atualizar este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        if (escolha == 0) {
+            String minhasql = "UPDATE cliente SET cpf = ?,"
+                    + " nome = ?,"
+                    + " nascimento =?,"
+                    + "genero =?, "
+                    + "telefone =?,"
+                    + "  email =?,"
+                    + " cep =?,"
+                    + " cidade =?,"
+                    + " logradouro =?,"
+                    + " numero =?,"
+                    + " complemento =?,"
+                    + "uf =?,"
+                    + " bairro  =?"
+                    + " where id = ?;";
+            Connection conexao = null;
+            PreparedStatement ps = null;
+
+            try {
+                conexao = ConnectionUtils.getConnection();
+                ps = conexao.prepareStatement(minhasql);
+                String CPF = StringUtils.limpaValorParaOBanco(txtCPFCliente.getText());
+                ps.setString(1, CPF);
+                ps.setString(2, txtNomeCliente.getText());
+                String dataConvertida = StringUtils.converteDataParaOBanco(txtDataCliente.getText());
+                ps.setString(3, dataConvertida);
+                ps.setString(4, genero);
+                String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneCliente.getText());
+                ps.setString(5, telefone);
+                ps.setString(6, txtEmailCliente.getText());
+                ps.setString(7, txtCepCliente.getText());
+                ps.setString(8, txtMunicipioCliente.getText());
+                ps.setString(9, txtLogradouroCliente.getText());
+                ps.setString(10, txtNumeroCliente.getText());
+                ps.setString(11, txtComplementoCliente.getText());
+                ps.setString(12, cbxUFCliente.getSelectedItem().toString());
+                ps.setString(13, txtBairroCliente.getText());
+                ps.setString(14, txtIdCliente.getText());
+                ps.execute();
+
+                JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
+
+            } finally {
+                ConnectionUtils.closeConnection(conexao, ps);
+            }
+        } else {
+
+        }
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
 
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
-//        try {
-//            String minhasql = "delete from cliente where id = " + txtIdCliente.getText();
-//            st.executeUpdate(minhasql);
-//            JOptionPane.showMessageDialog(null, "Registro Excluido");
-//            txtNomeCliente.setText("");
-//            txtCPFCliente.setText("");
-//            txtTelefoneCliente.setText("");
-//            txtEmailCliente.setText("");
-//
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Resgistro não existe " + e);
-//        }
+
+        Object[] options = {"Confirmar", "Cancelar"};
+        int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+        if (escolha == 0) {
+            String minhasql = "delete from cliente where id = ?;";
+            Connection conexao = null;
+            PreparedStatement ps = null;
+
+            try {
+                conexao = ConnectionUtils.getConnection();
+                ps = conexao.prepareStatement(minhasql);          
+                ps.setString(1, txtIdCliente.getText());
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "Registro Excluído com Sucesso");
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel excluir o registro");
+
+            } finally {
+                ConnectionUtils.closeConnection(conexao, ps);
+            }
+        } else {
+
+        }
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
 
     private void txtTelefoneClienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefoneClienteMouseEntered
@@ -749,9 +805,11 @@ public class CadastroCliente extends javax.swing.JPanel {
         if (!txtIdCliente.getText().isEmpty()) {
             btnCriarCliente.setEnabled(false);
             btnAlterarCliente.setEnabled(true);
+            btnExcluirCliente.setEnabled(true);
         } else {
             btnCriarCliente.setEnabled(true);
             btnAlterarCliente.setEnabled(false);
+            btnExcluirCliente.setEnabled(false);
         }
     }//GEN-LAST:event_txtIdClienteCaretUpdate
 
