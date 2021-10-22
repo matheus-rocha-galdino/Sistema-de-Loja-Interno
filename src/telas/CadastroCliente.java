@@ -28,7 +28,7 @@ public class CadastroCliente extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        Genêro = new javax.swing.ButtonGroup();
         cdc = new javax.swing.JPanel();
         jPanelHeader = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -85,7 +85,6 @@ public class CadastroCliente extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Cadastro de Cliente");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -222,7 +221,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         jLabel9.setText("Genêro:");
 
         rbtnMascCliente.setBackground(new java.awt.Color(226, 238, 251));
-        buttonGroup1.add(rbtnMascCliente);
+        Genêro.add(rbtnMascCliente);
         rbtnMascCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnMascCliente.setText("Masculino");
         rbtnMascCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -233,7 +232,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         });
 
         rbtnFeminCliente.setBackground(new java.awt.Color(226, 238, 251));
-        buttonGroup1.add(rbtnFeminCliente);
+        Genêro.add(rbtnFeminCliente);
         rbtnFeminCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnFeminCliente.setText("Feminino");
         rbtnFeminCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -244,7 +243,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         });
 
         rbtnOutrosCliente.setBackground(new java.awt.Color(226, 238, 251));
-        buttonGroup1.add(rbtnOutrosCliente);
+        Genêro.add(rbtnOutrosCliente);
         rbtnOutrosCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnOutrosCliente.setText("Outros");
         rbtnOutrosCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -559,7 +558,7 @@ public class CadastroCliente extends javax.swing.JPanel {
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cdcLayout.createSequentialGroup()
                 .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(830, Short.MAX_VALUE))
+                .addContainerGap(848, Short.MAX_VALUE))
             .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cdcLayout.createSequentialGroup()
                     .addGap(63, 63, 63)
@@ -599,7 +598,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                 txtNomeCliente.setText(resultado.getString("nome"));
                 String nascimento = StringUtils.converteDataParaOPrograma(resultado.getString("nascimento"));
                 txtDataCliente.setText(nascimento);
-                buttonGroupUtils.setButtonGroup(resultado.getString("genero"), buttonGroup1.getElements());
+                buttonGroupUtils.setButtonGroup(resultado.getString("genero"), Genêro.getElements());
                 txtTelefoneCliente.setText(resultado.getString("telefone"));
                 txtEmailCliente.setText(resultado.getString("email"));
                 txtCepCliente.setText(resultado.getString("cep"));
@@ -815,11 +814,11 @@ public class CadastroCliente extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Genêro;
     private javax.swing.JButton btnAlterarCliente;
     private javax.swing.JButton btnConsultarCliente;
     private javax.swing.JButton btnCriarCliente;
     private javax.swing.JButton btnExcluirCliente;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbxEstadoCivCliente;
     private javax.swing.JComboBox<String> cbxUFCliente;
     private javax.swing.JPanel cdc;

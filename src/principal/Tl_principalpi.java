@@ -10,7 +10,7 @@ import telas.RelatorioAnalitico;
 import telas.CadastroFornecedor;
 import telas.CadastroFuncionario;
 import telas.CadastroProduto;
-import telas.Panel1;
+import telas.MeuPerfil;
 import telas.Panel2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import menu.ItensdoMenu;
 import telas.Cartoes;
 import telas.EntradaMerc;
+import telas.MeuPerfil;
 import telas.RelatorioSintetico;
 import telas.SaidaMerc;
 
@@ -55,7 +56,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
-                painelCorpo.add(new Panel1());
+                painelCorpo.add(new MeuPerfil());
                 painelCorpo.repaint();
                 painelCorpo.revalidate();
             }
