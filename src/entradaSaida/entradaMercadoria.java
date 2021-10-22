@@ -1,11 +1,278 @@
 package entradaSaida;
 
 import java.awt.Color;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-public class saida extends javax.swing.JFrame {
+public class entradaMercadoria extends javax.swing.JPanel {
 
-    public saida() {
+    public Connection con;
+    public Statement st;
+    public ResultSet resultado = null;
+
+    public entradaMercadoria() {
         initComponents();
+
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
+            st = (Statement) con.createStatement();
+            JOptionPane.showMessageDialog(null, "Conectado com sucesso.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Não conectado.");
+        }
+
+        jFormattedTextField5.setEditable(false);
+        jFormattedTextField6.setEditable(false);
+    }
+
+    public void pesquisaCNPJ() {
+        try {
+            String minhaSql = "select*from fornecedor where cnpj = " + jFormattedTextField1.getText().replaceAll("\\p{Punct}", "");
+            resultado = st.executeQuery(minhaSql);
+            if (resultado.next()) {
+                jLabel16.setText(resultado.getString("nome"));
+                jLabel17.setText(resultado.getString("logradouro"));
+                jLabel22.setText(resultado.getString("numero"));
+                jLabel20.setText(resultado.getString("bairro"));
+                jLabel19.setText(resultado.getString("complemento"));
+                jLabel18.setText(resultado.getString("cidade"));
+                jLabel21.setText(resultado.getString("uf"));
+                jLabel23.setText(resultado.getString("cep"));
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public void pesquisaProduto() {
+        try {
+            String minhaSql = "select*from produto where id = " + jFormattedTextField2.getText();
+            resultado = st.executeQuery(minhaSql);
+            if (resultado.next()) {
+                jLabel28.setText(resultado.getString("nome"));
+                jLabel30.setText(resultado.getString("estoque"));
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public void preencherJtable1() {
+        String id = jFormattedTextField2.getText();
+        String nome = jLabel28.getText().trim();
+        String qtd = jFormattedTextField3.getText().trim();
+        String valor = jFormattedTextField4.getText().trim().replaceAll(",", ".");
+
+        Double qtdDouble = Double.parseDouble(qtd);
+        Double valorDouble = Double.parseDouble(valor);
+
+        Double totalDouble = qtdDouble * valorDouble;
+
+        String total = String.valueOf(totalDouble);
+
+        DefaultTableModel tabela = (DefaultTableModel) jTable1.getModel();
+        tabela.addRow(new String[]{id, nome, qtd, valor, total});
+    }
+
+    public void somaParcialJtable1() {
+        double totalParcialDouble = 0;
+
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            totalParcialDouble += Double.parseDouble(jTable1.getValueAt(i, 4).toString());
+        }
+
+        String totalParcial = String.valueOf(totalParcialDouble);
+
+        jFormattedTextField5.setText(totalParcial);
+    }
+
+    public void limparProduto() {
+        jFormattedTextField2.setText("");
+        jFormattedTextField3.setText("");
+        jFormattedTextField4.setText("");
+        jLabel28.setText("");
+        jLabel30.setText("");
+    }
+
+    public void excluirLinhaJtable1() {
+        ((DefaultTableModel) jTable1.getModel()).removeRow(jTable1.getSelectedRow());
+    }
+
+    public void finalizarPedidoCompra() {
+        try {
+            inseriPedidoCompra();
+            ultimoRegistrodeCompra();
+            inseriPedidoProdutoCompra();
+            somaTotalEntrada();
+            JOptionPane.showMessageDialog(null, "Processo Concluido");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Processo Não Concluido");
+        }
+    }
+
+    public void inseriPedidoCompra() {
+        String cnpj = jFormattedTextField1.getText().replaceAll("\\p{Punct}", "");
+        String valor = jFormattedTextField5.getText();
+        try {
+            String compra = "insert into compra (valor_compra, hora_compra, fk_cnpj) values (" + valor + ", '1999-12-31','" + cnpj + "')";
+            st.executeUpdate(compra);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro Pedido Compra");
+        }
+    }
+
+    public void ultimoRegistrodeCompra() {
+        try {
+            String ultimoRegistro = "select * from compra where id = (select max(id) from compra)";
+            resultado = st.executeQuery(ultimoRegistro);
+            if (resultado.next()) {
+                jLabel45.setText(resultado.getString("id"));
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro Ultimo Registro de Compra");
+        }
+    }
+
+    public void inseriPedidoProdutoCompra() {
+        try {
+            String ultimoRegistroId = jLabel45.getText();
+            for (int i = 0; i < jTable1.getRowCount(); i++) {
+                String quantidade = jTable1.getValueAt(i, 2).toString();
+                String id_produto = jTable1.getValueAt(i, 0).toString();
+                String produto_compra = "insert into produto_compra (quantidade, fk_id_compra, fk_id_produto) values (" + quantidade + "," + ultimoRegistroId + " ," + id_produto + ")";
+                st.executeUpdate(produto_compra);
+
+                atualizaEstoquePositivo(quantidade, id_produto);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro Inseri Pedido Produto Compra");
+        }
+    }
+
+    public void atualizaEstoquePositivo(String quantidade, String produto) {
+        try {
+            String atualizaEstoque = "update produto set estoque = estoque + '" + quantidade + "' where id = " + produto;
+            st.executeUpdate(atualizaEstoque);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro Atualiza Estoque Positivo");
+        }
+    }
+
+    public void somaTotalEntrada() {
+        double totalEntradaDouble = 0;
+
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            totalEntradaDouble += Double.parseDouble(jTable1.getValueAt(i, 4).toString());
+        }
+
+        String totalEntrada = String.valueOf(totalEntradaDouble);
+
+        jFormattedTextField6.setText(totalEntrada);
+    }
+
+    public void limpaEntrada() {
+        jFormattedTextField1.setText("");
+        jFormattedTextField2.setText("");
+        jFormattedTextField3.setText("");
+        jFormattedTextField4.setText("");
+        jLabel16.setText("");
+        jLabel17.setText("");
+        jLabel18.setText("");
+        jLabel19.setText("");
+        jLabel20.setText("");
+        jLabel21.setText("");
+        jLabel22.setText("");
+        jLabel23.setText("");
+        jLabel28.setText("");
+        jLabel30.setText("");
+        jFormattedTextField5.setText("0.0");
+        jFormattedTextField6.setText("0.0");
+        jLabel45.setText("");
+        DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
+        dm.getDataVector().removeAllElements();
+        dm.fireTableDataChanged();
+    }
+
+    public boolean verificacaoBotaoAdicionar() {
+        boolean vazio = false;
+
+        String produto = jFormattedTextField2.getText().trim();
+        String quantidade = jFormattedTextField3.getText().trim();
+        String unidade = jFormattedTextField4.getText().trim();
+
+        if (produto.isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Campo ID PRODUTO vazio!");
+            vazio = true;
+        }
+
+        if (quantidade.isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Campo QUANTIDADE vazio!");
+            vazio = true;
+        }
+
+        if (unidade.isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Campo VALOR UNIDADE vazio!");
+            vazio = true;
+        }
+
+        return vazio;
+    }
+
+    public boolean verificacaoBotaoPesquisaProduto() {
+        boolean vazio = false;
+
+        String produto = jFormattedTextField2.getText().trim();
+
+        if (produto.isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Campo ID PRODUTO vazio!");
+            vazio = true;
+        }
+
+        return vazio;
+    }
+
+    public boolean verificacaoBotaoPesquisaFornecedor() {
+        boolean vazio = false;
+
+        String fornecedor = jFormattedTextField1.getText().replaceAll("\\p{Punct}", "").trim();
+
+        if (fornecedor.isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Campo CNPJ vazio!");
+            vazio = true;
+        }
+
+        return vazio;
+    }
+
+    public boolean verificacaoBotaoExcluirLinha() {
+        boolean vazio = false;
+
+        if (jTable1.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(null, "Nenhuma Linha da Tabela foi Selecionada!");
+            vazio = true;
+        }
+
+        return vazio;
+    }
+
+    public boolean verificacaoBotaoFinalizarEntrada() {
+        boolean vazio = false;
+
+        String fornecedor = jFormattedTextField1.getText().trim().replaceAll("\\p{Punct}", "");
+
+        if (fornecedor.isEmpty() == true) {
+            JOptionPane.showMessageDialog(null, "Campo CNPJ vazio!");
+            vazio = true;
+        }
+
+        if (jTable1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Campo Tabela de Produtos esta vazio!");
+            vazio = true;
+        }
+
+        return vazio;
     }
 
     @SuppressWarnings("unchecked")
@@ -16,9 +283,7 @@ public class saida extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -26,7 +291,7 @@ public class saida extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -57,49 +322,44 @@ public class saida extends javax.swing.JFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        jFormattedTextField4 = new javax.swing.JFormattedTextField();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
-        jLabel39 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jLabel47 = new javax.swing.JLabel();
+        jFormattedTextField5 = new javax.swing.JFormattedTextField();
         jPanel14 = new javax.swing.JPanel();
-        jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jFormattedTextField6 = new javax.swing.JFormattedTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SAIDAS");
+        jLabel1.setText("ENTRADAS");
 
         jLabel24.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("No COLABORADOR");
 
         jLabel25.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("NOME COLABORADOR");
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel29.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel29.setText("PESQUISAR");
         jLabel29.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel29MouseEntered(evt);
@@ -134,31 +394,23 @@ public class saida extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(162, 162, 162)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(394, 394, 394))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -169,7 +421,7 @@ public class saida extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("CPF");
+        jLabel5.setText("CNPJ");
 
         jPanel7.setBackground(new java.awt.Color(226, 238, 251));
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -178,6 +430,9 @@ public class saida extends javax.swing.JFrame {
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel33.setText("PESQUISAR");
         jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel33MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel33MouseEntered(evt);
             }
@@ -203,6 +458,13 @@ public class saida extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jFormattedTextField1.setToolTipText("");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -211,8 +473,8 @@ public class saida extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -222,9 +484,9 @@ public class saida extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -233,7 +495,7 @@ public class saida extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("NOME");
+        jLabel13.setText("RAZÃO SOCIAL");
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -407,6 +669,9 @@ public class saida extends javax.swing.JFrame {
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("PESQUISAR");
         jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel35MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel35MouseEntered(evt);
             }
@@ -439,6 +704,9 @@ public class saida extends javax.swing.JFrame {
         jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel36.setText("ADICIONAR");
         jLabel36.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel36MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel36MouseEntered(evt);
             }
@@ -464,6 +732,15 @@ public class saida extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        jFormattedTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextField3ActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -474,7 +751,7 @@ public class saida extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -487,7 +764,7 @@ public class saida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -498,9 +775,9 @@ public class saida extends javax.swing.JFrame {
                             .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jFormattedTextField3)
+                            .addComponent(jFormattedTextField4))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -517,7 +794,7 @@ public class saida extends javax.swing.JFrame {
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField3)))
+                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -531,11 +808,11 @@ public class saida extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4))
+                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5))))
+                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
 
@@ -549,15 +826,32 @@ public class saida extends javax.swing.JFrame {
             new String [] {
                 "ID", "NOME", "QTD.", "VALOR", "TOTAL"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(25);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(25);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(25);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(25);
+        }
 
         jPanel13.setBackground(new java.awt.Color(226, 238, 251));
         jPanel13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel39.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel39.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel34.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -570,6 +864,9 @@ public class saida extends javax.swing.JFrame {
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel38.setText("FINALIZAR ENTRADA");
         jLabel38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel38MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel38MouseEntered(evt);
             }
@@ -606,6 +903,9 @@ public class saida extends javax.swing.JFrame {
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel47.setText("EXCLUIR LINHA");
         jLabel47.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel47MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel47MouseEntered(evt);
             }
@@ -631,6 +931,11 @@ public class saida extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jFormattedTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jFormattedTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField5.setText("0.0");
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
@@ -638,14 +943,14 @@ public class saida extends javax.swing.JFrame {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel13Layout.createSequentialGroup()
                         .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel41, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jFormattedTextField5))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
@@ -656,8 +961,8 @@ public class saida extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jFormattedTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -666,9 +971,6 @@ public class saida extends javax.swing.JFrame {
 
         jPanel14.setBackground(new java.awt.Color(226, 238, 251));
         jPanel14.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel42.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel42.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel43.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -681,6 +983,9 @@ public class saida extends javax.swing.JFrame {
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel44.setText("NOVA ENTRADA");
         jLabel44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel44MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel44MouseEntered(evt);
             }
@@ -707,11 +1012,17 @@ public class saida extends javax.swing.JFrame {
         );
 
         jLabel45.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel45.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel46.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel46.setText("ENTRADA No.");
+
+        jFormattedTextField6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jFormattedTextField6.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jFormattedTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jFormattedTextField6.setText("0.0");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -719,13 +1030,16 @@ public class saida extends javax.swing.JFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel46, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jFormattedTextField6))
+                .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -737,7 +1051,7 @@ public class saida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jFormattedTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -815,8 +1129,8 @@ public class saida extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(painelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -825,8 +1139,6 @@ public class saida extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(painelFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel29MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel29MouseEntered
@@ -837,6 +1149,14 @@ public class saida extends javax.swing.JFrame {
         jPanel11.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_jLabel29MouseExited
 
+    private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
+        Boolean verificacao = verificacaoBotaoPesquisaFornecedor();
+
+        if (verificacao == false) {
+            pesquisaCNPJ();
+        }
+    }//GEN-LAST:event_jLabel33MouseClicked
+
     private void jLabel33MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseEntered
         jPanel7.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_jLabel33MouseEntered
@@ -844,6 +1164,14 @@ public class saida extends javax.swing.JFrame {
     private void jLabel33MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseExited
         jPanel7.setBackground(new Color(226, 238, 251));
     }//GEN-LAST:event_jLabel33MouseExited
+
+    private void jLabel35MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseClicked
+        Boolean verificacao = verificacaoBotaoPesquisaProduto();
+
+        if (verificacao == false) {
+            pesquisaProduto();
+        }
+    }//GEN-LAST:event_jLabel35MouseClicked
 
     private void jLabel35MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseEntered
         jPanel9.setBackground(new Color(255, 255, 255));
@@ -853,6 +1181,16 @@ public class saida extends javax.swing.JFrame {
         jPanel9.setBackground(new Color(226, 238, 251));
     }//GEN-LAST:event_jLabel35MouseExited
 
+    private void jLabel36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseClicked
+        boolean verificacao = verificacaoBotaoAdicionar();
+
+        if (verificacao == false) {
+            preencherJtable1();
+            somaParcialJtable1();
+            limparProduto();
+        }
+    }//GEN-LAST:event_jLabel36MouseClicked
+
     private void jLabel36MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseEntered
         jPanel10.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_jLabel36MouseEntered
@@ -860,6 +1198,18 @@ public class saida extends javax.swing.JFrame {
     private void jLabel36MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseExited
         jPanel10.setBackground(new Color(226, 238, 251));
     }//GEN-LAST:event_jLabel36MouseExited
+
+    private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
+
+    }//GEN-LAST:event_jFormattedTextField3ActionPerformed
+
+    private void jLabel38MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseClicked
+        boolean verificacao = verificacaoBotaoFinalizarEntrada();
+
+        if (verificacao == false) {
+            finalizarPedidoCompra();
+        }
+    }//GEN-LAST:event_jLabel38MouseClicked
 
     private void jLabel38MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel38MouseEntered
         jPanel12.setBackground(new Color(255, 255, 255));
@@ -869,6 +1219,15 @@ public class saida extends javax.swing.JFrame {
         jPanel12.setBackground(new Color(226, 238, 251));
     }//GEN-LAST:event_jLabel38MouseExited
 
+    private void jLabel47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseClicked
+        boolean verificacao = verificacaoBotaoExcluirLinha();
+
+        if (verificacao == false) {
+            excluirLinhaJtable1();
+            somaParcialJtable1();
+        }
+    }//GEN-LAST:event_jLabel47MouseClicked
+
     private void jLabel47MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseEntered
         jPanel16.setBackground(new Color(255, 255, 255));
     }//GEN-LAST:event_jLabel47MouseEntered
@@ -876,6 +1235,10 @@ public class saida extends javax.swing.JFrame {
     private void jLabel47MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseExited
         jPanel16.setBackground(new Color(226, 238, 251));
     }//GEN-LAST:event_jLabel47MouseExited
+
+    private void jLabel44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseClicked
+        limpaEntrada();
+    }//GEN-LAST:event_jLabel44MouseClicked
 
     private void jLabel44MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseEntered
         jPanel15.setBackground(new Color(255, 255, 255));
@@ -885,16 +1248,14 @@ public class saida extends javax.swing.JFrame {
         jPanel15.setBackground(new Color(226, 238, 251));
     }//GEN-LAST:event_jLabel44MouseExited
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new saida().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
+    private javax.swing.JFormattedTextField jFormattedTextField4;
+    private javax.swing.JFormattedTextField jFormattedTextField5;
+    private javax.swing.JFormattedTextField jFormattedTextField6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -923,10 +1284,8 @@ public class saida extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
@@ -954,12 +1313,6 @@ public class saida extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JPanel painelFundo;
     // End of variables declaration//GEN-END:variables
 }
