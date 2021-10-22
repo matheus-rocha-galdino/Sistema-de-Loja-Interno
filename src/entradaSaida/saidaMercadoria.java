@@ -303,6 +303,16 @@ public class saidaMercadoria extends javax.swing.JPanel {
 
         return vazio;
     }
+    
+        public void verificacaoQuantidadeEstoque() {
+        int estoque = Integer.parseInt(jLabel30.getText());
+        int quantidade = Integer.parseInt(jFormattedTextField2.getText());
+
+        if (quantidade > estoque) {
+            JOptionPane.showMessageDialog(null, "Estoque insuficiente");
+            jFormattedTextField2.setText("");
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -1236,6 +1246,8 @@ public class saidaMercadoria extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel35MouseExited
 
     private void jLabel36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseClicked
+        verificacaoQuantidadeEstoque();
+        
         boolean verificacao = verificacaoBotaoAdicionar();
 
         if (verificacao == false) {
