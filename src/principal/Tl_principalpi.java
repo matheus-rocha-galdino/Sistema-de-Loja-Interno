@@ -206,6 +206,11 @@ public class Tl_principalpi extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Iniciar.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair.png"))); // NOI18N
 
@@ -268,6 +273,13 @@ public class Tl_principalpi extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(811, 464));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        painelCorpo.removeAll();
+        painelCorpo.add(new Cartoes());
+        painelCorpo.repaint();
+        painelCorpo.revalidate();
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments

@@ -33,6 +33,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        generoFuncionario = new javax.swing.ButtonGroup();
         cdc = new javax.swing.JPanel();
         jPanelHeader = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,9 +53,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        rbtnFeminCliente = new javax.swing.JRadioButton();
-        rbtnMascCliente = new javax.swing.JRadioButton();
-        rbtnOutrosCliente = new javax.swing.JRadioButton();
+        rbtnFeminFuncionario = new javax.swing.JRadioButton();
+        rbtnMascFuncionario = new javax.swing.JRadioButton();
+        rbtnOutrosFuncionario = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         txtEmailFuncionario = new javax.swing.JTextField();
         imgCliente = new javax.swing.JLabel();
@@ -229,20 +230,23 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Genêro:");
 
-        rbtnFeminCliente.setBackground(new java.awt.Color(226, 238, 251));
-        rbtnFeminCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rbtnFeminCliente.setText("Feminino");
-        rbtnFeminCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtnFeminFuncionario.setBackground(new java.awt.Color(226, 238, 251));
+        generoFuncionario.add(rbtnFeminFuncionario);
+        rbtnFeminFuncionario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnFeminFuncionario.setText("Feminino");
+        rbtnFeminFuncionario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        rbtnMascCliente.setBackground(new java.awt.Color(226, 238, 251));
-        rbtnMascCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rbtnMascCliente.setText("Masculino");
-        rbtnMascCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtnMascFuncionario.setBackground(new java.awt.Color(226, 238, 251));
+        generoFuncionario.add(rbtnMascFuncionario);
+        rbtnMascFuncionario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnMascFuncionario.setText("Masculino");
+        rbtnMascFuncionario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        rbtnOutrosCliente.setBackground(new java.awt.Color(226, 238, 251));
-        rbtnOutrosCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        rbtnOutrosCliente.setText("Outros");
-        rbtnOutrosCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        rbtnOutrosFuncionario.setBackground(new java.awt.Color(226, 238, 251));
+        generoFuncionario.add(rbtnOutrosFuncionario);
+        rbtnOutrosFuncionario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rbtnOutrosFuncionario.setText("Outros");
+        rbtnOutrosFuncionario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Dados Pessoais");
@@ -312,11 +316,11 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(25, 25, 25)
-                                .addComponent(rbtnMascCliente)
+                                .addComponent(rbtnMascFuncionario)
                                 .addGap(27, 27, 27)
-                                .addComponent(rbtnFeminCliente)
+                                .addComponent(rbtnFeminFuncionario)
                                 .addGap(40, 40, 40)
-                                .addComponent(rbtnOutrosCliente)
+                                .addComponent(rbtnOutrosFuncionario)
                                 .addGap(118, 118, 118)
                                 .addComponent(txtSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
@@ -393,9 +397,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(rbtnMascCliente)
-                    .addComponent(rbtnFeminCliente)
-                    .addComponent(rbtnOutrosCliente)
+                    .addComponent(rbtnMascFuncionario)
+                    .addComponent(rbtnFeminFuncionario)
+                    .addComponent(rbtnOutrosFuncionario)
                     .addComponent(jLabel1)
                     .addComponent(txtSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
@@ -705,6 +709,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbxEstadoCivFuncionario;
     private javax.swing.JComboBox<String> cbxUFFuncionario;
     private javax.swing.JPanel cdc;
+    private javax.swing.ButtonGroup generoFuncionario;
     private javax.swing.JLabel imgCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -731,9 +736,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JLabel lblDataNasCliente;
     private javax.swing.JLabel lblNomeFuncionario;
-    private javax.swing.JRadioButton rbtnFeminCliente;
-    private javax.swing.JRadioButton rbtnMascCliente;
-    private javax.swing.JRadioButton rbtnOutrosCliente;
+    private javax.swing.JRadioButton rbtnFeminFuncionario;
+    private javax.swing.JRadioButton rbtnMascFuncionario;
+    private javax.swing.JRadioButton rbtnOutrosFuncionario;
     private javax.swing.JTextField txtBairroFuncionario;
     private javax.swing.JFormattedTextField txtCPFFuncionario;
     private javax.swing.JFormattedTextField txtCepFuncionario;
