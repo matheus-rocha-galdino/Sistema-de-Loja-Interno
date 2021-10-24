@@ -12,6 +12,10 @@ import javax.swing.JOptionPane;
 import util.ConnectionUtils;
 import util.StringUtils;
 import util.buttonGroupUtils;
+import br.com.parg.viacep.ViaCEP;
+import br.com.parg.viacep.ViaCEPException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroCliente extends javax.swing.JPanel {
 
@@ -74,6 +78,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         txtComplementoCliente = new javax.swing.JTextField();
         txtCepCliente = new javax.swing.JFormattedTextField();
         cbxUFCliente = new javax.swing.JComboBox<>();
+        btnConsultarCEP = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(226, 238, 251));
 
@@ -415,6 +420,15 @@ public class CadastroCliente extends javax.swing.JPanel {
 
         cbxUFCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AP", "AM", "BA", "CE", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", "DF" }));
 
+        btnConsultarCEP.setBackground(new java.awt.Color(226, 238, 251));
+        btnConsultarCEP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pesquisar.png"))); // NOI18N
+        btnConsultarCEP.setBorder(null);
+        btnConsultarCEP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarCEPActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelEnderecoLayout = new javax.swing.GroupLayout(jPanelEndereco);
         jPanelEndereco.setLayout(jPanelEnderecoLayout);
         jPanelEnderecoLayout.setHorizontalGroup(
@@ -455,18 +469,21 @@ public class CadastroCliente extends javax.swing.JPanel {
                             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                                 .addComponent(jLabel15)
                                 .addGap(45, 45, 45)
-                                .addComponent(cbxUFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(cbxUFCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnConsultarCEP))))
+                .addContainerGap(359, Short.MAX_VALUE))
         );
         jPanelEnderecoLayout.setVerticalGroup(
             jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
-                .addGap(35, 35, 35)
-                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtCepCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14)
+                        .addComponent(txtCepCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsultarCEP))
                 .addGap(22, 22, 22)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
@@ -560,8 +577,6 @@ public class CadastroCliente extends javax.swing.JPanel {
         Connection conexao = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
-        
-        
 
         try {
             conexao = ConnectionUtils.getConnection();
@@ -775,9 +790,27 @@ public class CadastroCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_rbtnOutrosClienteStateChanged
 
+    private void btnConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCEPActionPerformed
+        // TODO add your handling code here:
+        ViaCEP viaCep = new ViaCEP();
+
+        try {
+            viaCep.buscar(util.StringUtils.limpaValorParaOBanco(txtCepCliente.getText()));
+            txtMunicipioCliente.setText(viaCep.getLocalidade());
+            txtLogradouroCliente.setText(viaCep.getLogradouro());
+            cbxUFCliente.setSelectedItem(viaCep.getUf());
+            txtBairroCliente.setText(viaCep.getBairro());
+
+        } catch (ViaCEPException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possivel encontrar o CEP", "ERRO", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnConsultarCEPActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarCliente;
+    private javax.swing.JButton btnConsultarCEP;
     private javax.swing.JButton btnConsultarCliente;
     private javax.swing.JButton btnCriarCliente;
     private javax.swing.JButton btnExcluirCliente;
