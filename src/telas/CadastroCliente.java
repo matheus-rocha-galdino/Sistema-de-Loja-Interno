@@ -219,9 +219,9 @@ public class CadastroCliente extends javax.swing.JPanel {
         rbtnMascCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnMascCliente.setText("Masculino");
         rbtnMascCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        rbtnMascCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnMascClienteActionPerformed(evt);
+        rbtnMascCliente.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rbtnMascClienteStateChanged(evt);
             }
         });
 
@@ -230,9 +230,9 @@ public class CadastroCliente extends javax.swing.JPanel {
         rbtnFeminCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnFeminCliente.setText("Feminino");
         rbtnFeminCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        rbtnFeminCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnFeminClienteActionPerformed(evt);
+        rbtnFeminCliente.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rbtnFeminClienteStateChanged(evt);
             }
         });
 
@@ -241,9 +241,9 @@ public class CadastroCliente extends javax.swing.JPanel {
         rbtnOutrosCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rbtnOutrosCliente.setText("Outros");
         rbtnOutrosCliente.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        rbtnOutrosCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnOutrosClienteActionPerformed(evt);
+        rbtnOutrosCliente.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                rbtnOutrosClienteStateChanged(evt);
             }
         });
 
@@ -560,6 +560,8 @@ public class CadastroCliente extends javax.swing.JPanel {
         Connection conexao = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
+        
+        
 
         try {
             conexao = ConnectionUtils.getConnection();
@@ -575,6 +577,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                 buttonGroupUtils.setButtonGroup(resultado.getString("genero"), generoCliente.getElements());
                 txtTelefoneCliente.setText(resultado.getString("telefone"));
                 txtEmailCliente.setText(resultado.getString("email"));
+                cbxEstadoCivCliente.setSelectedItem(resultado.getString("estado_civil"));
                 txtCepCliente.setText(resultado.getString("cep"));
                 txtMunicipioCliente.setText(resultado.getString("cidade"));
                 txtLogradouroCliente.setText(resultado.getString("logradouro"));
@@ -601,9 +604,10 @@ public class CadastroCliente extends javax.swing.JPanel {
         Object[] options = {"Confirmar", "Cancelar"};
         int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja inserir um novo registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
         if (escolha == 0) {
-            String minhasql = "INSERT INTO cliente (cpf, nome, nascimento,genero, telefone, email, cep, cidade, logradouro, numero, complemento, uf, bairro)"
+            String minhasql = "INSERT INTO cliente (cpf, nome, nascimento,genero, telefone, email, estado_civil, cep, cidade, logradouro, numero, complemento, uf, bairro)"
                     + " VALUES "
                     + "(?,"
+                    + " ?,"
                     + " ?,"
                     + " ?,"
                     + " ?,"
@@ -631,13 +635,14 @@ public class CadastroCliente extends javax.swing.JPanel {
                 String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneCliente.getText());
                 ps.setString(5, telefone);
                 ps.setString(6, txtEmailCliente.getText());
-                ps.setString(7, txtCepCliente.getText());
-                ps.setString(8, txtMunicipioCliente.getText());
-                ps.setString(9, txtLogradouroCliente.getText());
-                ps.setString(10, txtNumeroCliente.getText());
-                ps.setString(11, txtComplementoCliente.getText());
-                ps.setString(12, cbxUFCliente.getSelectedItem().toString());
-                ps.setString(13, txtBairroCliente.getText());
+                ps.setString(7, cbxEstadoCivCliente.getSelectedItem().toString());
+                ps.setString(8, txtCepCliente.getText());
+                ps.setString(9, txtMunicipioCliente.getText());
+                ps.setString(10, txtLogradouroCliente.getText());
+                ps.setString(11, txtNumeroCliente.getText());
+                ps.setString(12, txtComplementoCliente.getText());
+                ps.setString(13, cbxUFCliente.getSelectedItem().toString());
+                ps.setString(14, txtBairroCliente.getText());
                 ps.execute();
 
                 JOptionPane.showMessageDialog(null, "Registro Inserido com Sucesso");
@@ -661,6 +666,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                     + "genero =?, "
                     + "telefone =?,"
                     + "email =?,"
+                    + "estado_civil =?,"
                     + "cep =?,"
                     + "cidade =?,"
                     + "logradouro =?,"
@@ -684,15 +690,16 @@ public class CadastroCliente extends javax.swing.JPanel {
                 String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneCliente.getText());
                 ps.setString(5, telefone);
                 ps.setString(6, txtEmailCliente.getText());
-                ps.setString(7, txtCepCliente.getText());
-                ps.setString(8, txtMunicipioCliente.getText());
-                ps.setString(9, txtLogradouroCliente.getText());
-                ps.setString(10, txtNumeroCliente.getText());
-                ps.setString(11, txtComplementoCliente.getText());
-                ps.setString(12, cbxUFCliente.getSelectedItem().toString());
-                ps.setString(13, txtBairroCliente.getText());
+                ps.setString(7, cbxEstadoCivCliente.getSelectedItem().toString());
+                ps.setString(8, txtCepCliente.getText());
+                ps.setString(9, txtMunicipioCliente.getText());
+                ps.setString(10, txtLogradouroCliente.getText());
+                ps.setString(11, txtNumeroCliente.getText());
+                ps.setString(12, txtComplementoCliente.getText());
+                ps.setString(13, cbxUFCliente.getSelectedItem().toString());
+                ps.setString(14, txtBairroCliente.getText());
                 Long idCliente = Long.parseLong(txtIdCliente.getText());
-                ps.setLong(14, idCliente);
+                ps.setLong(15, idCliente);
                 ps.execute();
 
                 JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
@@ -734,22 +741,6 @@ public class CadastroCliente extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
 
-    private void rbtnMascClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMascClienteActionPerformed
-        // TODO add your handling code here:
-        genero = "Masculino";
-
-    }//GEN-LAST:event_rbtnMascClienteActionPerformed
-
-    private void rbtnFeminClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnFeminClienteActionPerformed
-        // TODO add your handling code here:
-        genero = "Feminino";
-    }//GEN-LAST:event_rbtnFeminClienteActionPerformed
-
-    private void rbtnOutrosClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnOutrosClienteActionPerformed
-        // TODO add your handling code here:
-        genero = "Outros";
-    }//GEN-LAST:event_rbtnOutrosClienteActionPerformed
-
     private void txtIdClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdClienteCaretUpdate
         if (!txtIdCliente.getText().isEmpty()) {
             btnCriarCliente.setEnabled(false);
@@ -761,6 +752,28 @@ public class CadastroCliente extends javax.swing.JPanel {
             btnExcluirCliente.setEnabled(false);
         }
     }//GEN-LAST:event_txtIdClienteCaretUpdate
+
+    private void rbtnMascClienteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbtnMascClienteStateChanged
+        // TODO add your handling code here:
+
+        if (rbtnMascCliente.isSelected()) {
+            genero = "Masculino";
+        }
+    }//GEN-LAST:event_rbtnMascClienteStateChanged
+
+    private void rbtnFeminClienteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbtnFeminClienteStateChanged
+        // TODO add your handling code here:
+        if (rbtnFeminCliente.isSelected()) {
+            genero = "Feminino";
+        }
+    }//GEN-LAST:event_rbtnFeminClienteStateChanged
+
+    private void rbtnOutrosClienteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_rbtnOutrosClienteStateChanged
+        // TODO add your handling code here:
+        if (rbtnOutrosCliente.isSelected()) {
+            genero = "Outros";
+        }
+    }//GEN-LAST:event_rbtnOutrosClienteStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

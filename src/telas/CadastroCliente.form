@@ -508,7 +508,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnMascClienteActionPerformed"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rbtnMascClienteStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rbtnFeminCliente">
@@ -530,7 +530,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnFeminClienteActionPerformed"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rbtnFeminClienteStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rbtnOutrosCliente">
@@ -552,7 +552,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnOutrosClienteActionPerformed"/>
+                    <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="rbtnOutrosClienteStateChanged"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
