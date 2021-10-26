@@ -70,7 +70,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        ItensdoMenu menuUser3 = new ItensdoMenu(iconSubmenu, "Sair", null);
+        
 
         ItensdoMenu menuCadastro1 = new ItensdoMenu(iconSubmenu, "Cliente", new ActionListener() {
             @Override
@@ -128,7 +128,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        ItensdoMenu menuCompra3 = new ItensdoMenu(iconSubmenu, "Historico do Dia", null);
+        
 
         ItensdoMenu menuRelatorio1 = new ItensdoMenu(iconSubmenu, "Analitíco", new ActionListener() {
             @Override
@@ -148,11 +148,13 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
+        
+        ItensdoMenu menuRelatorio3 = new ItensdoMenu(iconSubmenu, "Historico do Dia", null);
 
-        ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1, menuUser2, menuUser3);
+        ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1, menuUser2);
         ItensdoMenu menuCadastro = new ItensdoMenu(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3, menuCadastro4);
-        ItensdoMenu menuCompra = new ItensdoMenu(iconCompra, "VENDA/COMPRA", null, menuCompra1, menuCompra2, menuCompra3);
-        ItensdoMenu menuRelatorio = new ItensdoMenu(iconRelatorio, "RELATÓRIOS", null, menuRelatorio1, menuRelotorio2);
+        ItensdoMenu menuCompra = new ItensdoMenu(iconCompra, "VENDA/COMPRA", null, menuCompra1, menuCompra2);
+        ItensdoMenu menuRelatorio = new ItensdoMenu(iconRelatorio, "RELATÓRIOS", null, menuRelatorio1, menuRelotorio2, menuRelatorio3);
 
         addmenu(menuUser, menuCadastro, menuCompra, menuRelatorio);
 
