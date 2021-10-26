@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import util.ConnectionUtils;
+import util.StringUtils;
 
 public class CadastroFornecedor extends javax.swing.JPanel {
 
@@ -55,7 +56,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         txtEmailFornecedor = new javax.swing.JTextField();
         imgFornecedor = new javax.swing.JLabel();
-        txtCPFFornecedor = new javax.swing.JFormattedTextField();
+        txtCNPJFornecedor = new javax.swing.JFormattedTextField();
         txtTelefoneFornecedor = new javax.swing.JFormattedTextField();
         jPanelEndereco = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -114,6 +115,11 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         jLabel3.setText("Busca pelo Id:");
 
         txtIdFornecedor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtIdFornecedor.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtIdFornecedorCaretUpdate(evt);
+            }
+        });
         txtIdFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdFornecedorActionPerformed(evt);
@@ -231,19 +237,19 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         imgFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fornecedor.png"))); // NOI18N
 
         try {
-            txtCPFFornecedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            txtCNPJFornecedor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtCPFFornecedor.setText("");
-        txtCPFFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtCNPJFornecedor.setText("");
+        txtCNPJFornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtCPFFornecedorMouseEntered(evt);
+                txtCNPJFornecedorMouseEntered(evt);
             }
         });
-        txtCPFFornecedor.addActionListener(new java.awt.event.ActionListener() {
+        txtCNPJFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPFFornecedorActionPerformed(evt);
+                txtCNPJFornecedorActionPerformed(evt);
             }
         });
 
@@ -284,7 +290,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                             .addGroup(jPanelDadosFornecedorLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtCPFFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtCNPJFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addComponent(imgFornecedor)
                         .addGap(82, 82, 82))
@@ -314,7 +320,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                                 .addGap(44, 44, 44)
                                 .addGroup(jPanelDadosFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel5)
-                                    .addComponent(txtCPFFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtCNPJFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addComponent(imgFornecedor))
                 .addGap(24, 24, 24)
                 .addGroup(jPanelDadosFornecedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -523,85 +529,159 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         try {
             conexao = ConnectionUtils.getConnection();
             ps = conexao.prepareStatement(minhasql);
-            Long cnpjFornecedor = Long.parseLong(txtIdFornecedor.getText());
-            ps.setLong(1, cnpjFornecedor);
+            Long idFornecedor = Long.parseLong(txtIdFornecedor.getText());
+            ps.setLong(1, idFornecedor);
             resultado = ps.executeQuery();
             if (resultado.next()) {
                 txtNomeFornecedor.setText(resultado.getString("nome"));
                 txtEmailFornecedor.setText(resultado.getString("email"));
-                txtCPFFornecedor.setText(resultado.getString("cpf"));
+                txtCNPJFornecedor.setText(resultado.getString("cnpj"));
                 txtTelefoneFornecedor.setText(resultado.getString("telefone"));
+                txtCepFornecedor.setText(resultado.getString("cep"));
+                txtMunicipioFornecedor.setText(resultado.getString("cidade"));
+                txtLogradouroFornecedor.setText(resultado.getString("logradouro"));
+                txtNumeroFornecedor.setText(resultado.getString("numero"));
+                cbxUFFornecedor.setSelectedItem(resultado.getString("uf"));
+                txtBairroFornecedor.setText(resultado.getString("bairro"));
+                txtComplementoFornecedor.setText(resultado.getString("complemento"));
 
             }
-            else
-            {
+            else{
                 JOptionPane.showMessageDialog(null, "Registro não existe");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Registro não existe");
-
+            
+        }finally {
+            ConnectionUtils.closeConnection(conexao, ps, resultado);
         }
     }//GEN-LAST:event_btnConsultarFornecedorActionPerformed
 
     private void btnCriarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarFornecedorActionPerformed
 
+        Object[] options = {"Confirmar", "Cancelar"};
+        int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja inserir um novo registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if (escolha == 0) {
+            String minhasql = "INSERT INTO fornecedor (cnpj, nome, telefone, email, cep, cidade, logradouro, numero, complemento, uf, bairro)"
+                    + " VALUES "
+                    + "(?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?);";
+            Connection conexao = null;
+            PreparedStatement ps = null;
+        
         try {
-            String cpf, nome,telefone, email;
+            conexao = ConnectionUtils.getConnection();
+                ps = conexao.prepareStatement(minhasql);
+                String CNPJ = StringUtils.limpaValorParaOBanco(txtCNPJFornecedor.getText());
+                ps.setString(1, CNPJ);
+                ps.setString(2, txtNomeFornecedor.getText());
+                String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneFornecedor.getText());
+                ps.setString(3, telefone);
+                ps.setString(4, txtEmailFornecedor.getText());
+                ps.setString(5, StringUtils.limpaValorParaOBanco(txtCepFornecedor.getText()));
+                ps.setString(6, txtMunicipioFornecedor.getText());
+                ps.setString(7, txtLogradouroFornecedor.getText());
+                ps.setString(8, txtNumeroFornecedor.getText());
+                ps.setString(9, txtComplementoFornecedor.getText());
+                ps.setString(10, cbxUFFornecedor.getSelectedItem().toString());
+                ps.setString(11, txtBairroFornecedor.getText());
+                ps.execute();
 
-            nome = txtNomeFornecedor.getText();
-            cpf = txtCPFFornecedor.getText();
-            telefone = txtTelefoneFornecedor.getText();
-            email = txtEmailFornecedor.getText();
-            String minhasql;
-            minhasql = "insert into cliente (nome,cpf,telefone, email) value ('"
-            +nome+"','"+cpf+"','"+telefone+"','"+email+"')";
-            st.executeUpdate(minhasql);
-
-            JOptionPane.showMessageDialog(null,"Registro Gravado");
+                JOptionPane.showMessageDialog(null, "Registro Inserido com Sucesso");
 
         }
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Não Gravado");
+        }finally {
+                ConnectionUtils.closeConnection(conexao, ps);
+            }
         }
 
     }//GEN-LAST:event_btnCriarFornecedorActionPerformed
 
     private void btnAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFornecedorActionPerformed
+        
+        Object[] options = {"Confirmar", "Cancelar"};
+        int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja atualizar este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if (escolha == 0) {
+            String minhasql = "UPDATE fornecedor SET cnpj = ?,"
+                    + " nome = ?,"
+                    + "telefone =?,"
+                    + "email =?,"
+                    + "cep =?,"
+                    + "cidade =?,"
+                    + "logradouro =?,"
+                    + "numero =?,"
+                    + "complemento =?,"
+                    + "uf =?,"
+                    + " bairro  =?"
+                    + " where id = ?;";
+            Connection conexao = null;
+            PreparedStatement ps = null;
+            
         try {
-            String cpf, nome,telefone, email;
-
-            nome = txtNomeFornecedor.getText();
-            cpf = txtCPFFornecedor.getText();
-            telefone = txtTelefoneFornecedor.getText();
-            email = txtEmailFornecedor.getText();
-
-            String minhasql = "update cliente set nome = '"
-            +nome+"',cpf = '"
-            +cpf+"',email ='"
-            +email+"',,telefone ='"
-            +telefone+"' where id = "+txtIdFornecedor.getText();
-            st.executeUpdate(minhasql);
-            JOptionPane.showMessageDialog(null,"Registro Atualizado");
-
+            conexao = ConnectionUtils.getConnection();
+                ps = conexao.prepareStatement(minhasql);
+                String CNPJ = StringUtils.limpaValorParaOBanco(txtCNPJFornecedor.getText());
+                ps.setString(1, CNPJ);
+                ps.setString(2, txtNomeFornecedor.getText());
+                String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneFornecedor.getText());
+                ps.setString(3, telefone);
+                ps.setString(4, txtEmailFornecedor.getText());
+                ps.setString(5, StringUtils.limpaValorParaOBanco(txtCepFornecedor.getText()));
+                ps.setString(6, txtMunicipioFornecedor.getText());
+                ps.setString(7, txtLogradouroFornecedor.getText());
+                ps.setString(8, txtNumeroFornecedor.getText());
+                ps.setString(9, txtComplementoFornecedor.getText());
+                ps.setString(10, cbxUFFornecedor.getSelectedItem().toString());
+                ps.setString(11, txtBairroFornecedor.getText());
+                Long idFornecedor = Long.parseLong(txtIdFornecedor.getText());
+                ps.setLong(12, idFornecedor);
+                ps.execute();
+                
+            JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Registro Não Atualizado");
+            
+            JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
+            
+        }finally {
+                ConnectionUtils.closeConnection(conexao, ps);
+            }
         }
     }//GEN-LAST:event_btnAlterarFornecedorActionPerformed
 
     private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
-        try {
-            String minhasql = "delete from cliente where id = "+txtIdFornecedor.getText();
-            st.executeUpdate(minhasql);
-            JOptionPane.showMessageDialog(null,"Registro Excluido");
-            txtNomeFornecedor.setText("");
-            txtCPFFornecedor.setText("");
-            txtTelefoneFornecedor.setText("");
-            txtEmailFornecedor.setText("");
+        Object[] options = {"Confirmar", "Cancelar"};
+        int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
+        if (escolha == 0) {
+            String minhasql = "delete from fornecedor where id = ?;";
+            Connection conexao = null;
+            PreparedStatement ps = null;
+
+            try {
+                conexao = ConnectionUtils.getConnection();
+                ps = conexao.prepareStatement(minhasql);
+                Long idFornecedor = Long.parseLong(txtIdFornecedor.getText());
+                ps.setLong(1, idFornecedor);
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "Registro Excluído com Sucesso");
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Resgistro não existe "+e);
+            JOptionPane.showMessageDialog(null, "Não foi possivel excluir o registro");
+        }finally {
+                ConnectionUtils.closeConnection(conexao, ps);
+            }
         }
     }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
 
@@ -609,9 +689,9 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTelefoneFornecedorMouseEntered
 
-    private void txtCPFFornecedorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCPFFornecedorMouseEntered
+    private void txtCNPJFornecedorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCNPJFornecedorMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPFFornecedorMouseEntered
+    }//GEN-LAST:event_txtCNPJFornecedorMouseEntered
 
     private void txtEmailFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailFornecedorActionPerformed
         // TODO add your handling code here:
@@ -625,9 +705,22 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeFornecedorMouseEntered
 
-    private void txtCPFFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFFornecedorActionPerformed
+    private void txtCNPJFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCNPJFornecedorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPFFornecedorActionPerformed
+    }//GEN-LAST:event_txtCNPJFornecedorActionPerformed
+
+    private void txtIdFornecedorCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdFornecedorCaretUpdate
+        
+        if (!txtIdFornecedor.getText().isEmpty()) {
+            btnCriarFornecedor.setEnabled(false);
+            btnAlterarFornecedor.setEnabled(true);
+            btnExcluirFornecedor.setEnabled(true);
+        } else {
+            btnCriarFornecedor.setEnabled(true);
+            btnAlterarFornecedor.setEnabled(false);
+            btnExcluirFornecedor.setEnabled(false);
+        }
+    }//GEN-LAST:event_txtIdFornecedorCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -659,7 +752,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelHeader;
     private javax.swing.JLabel lblNomeFornecedor;
     private javax.swing.JTextField txtBairroFornecedor;
-    private javax.swing.JFormattedTextField txtCPFFornecedor;
+    private javax.swing.JFormattedTextField txtCNPJFornecedor;
     private javax.swing.JFormattedTextField txtCepFornecedor;
     private javax.swing.JTextField txtComplementoFornecedor;
     private javax.swing.JTextField txtEmailFornecedor;

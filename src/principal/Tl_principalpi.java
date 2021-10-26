@@ -20,10 +20,10 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import menu.ItensdoMenu;
 import telas.Cartoes;
-import telas.EntradaMerc;
+import telas.EntradaMercadoria;
 import telas.MeuPerfil;
 import telas.RelatorioSintetico;
-import telas.SaidaMerc;
+import telas.SaidaMercadoria;
 
 /**
  *
@@ -114,7 +114,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
-                painelCorpo.add(new SaidaMerc());
+                painelCorpo.add(new SaidaMercadoria());
                 painelCorpo.repaint();
                 painelCorpo.revalidate();
             }
@@ -123,7 +123,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
-                painelCorpo.add(new EntradaMerc());
+                painelCorpo.add(new EntradaMercadoria());
                 painelCorpo.repaint();
                 painelCorpo.revalidate();
             }
