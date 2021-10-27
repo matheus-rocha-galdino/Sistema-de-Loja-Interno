@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -212,8 +215,9 @@ public class SaidaMercadoria extends javax.swing.JPanel {
         String id = jFormattedTextField1.getText();
         String cpf = jFormattedTextField4.getText().replaceAll("\\p{Punct}", "");
         String valor = jFormattedTextField6.getText();
+        String data = geradorData();
         try {
-            String venda = "insert into venda (valor_venda, hora_venda, fk_cpf, fk_id) values (" + valor + ", '1999-12-31','" + cpf + "', " + id + ")";
+            String venda = "insert into venda (valor_venda, hora_venda, fk_cpf, fk_id) values (" + valor + ", '" + data + "','" + cpf + "', " + id + ")";
             st.executeUpdate(venda);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro Pedido venda");
@@ -309,8 +313,8 @@ public class SaidaMercadoria extends javax.swing.JPanel {
 
         return vazio;
     }
-    
-        public void verificacaoQuantidadeEstoque() {
+
+    public void verificacaoQuantidadeEstoque() {
         int estoque = Integer.parseInt(jLabel30.getText());
         int quantidade = Integer.parseInt(jFormattedTextField2.getText());
 
@@ -318,6 +322,12 @@ public class SaidaMercadoria extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Estoque insuficiente");
             jFormattedTextField2.setText("");
         }
+    }
+
+    public String geradorData() {
+        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date data = new Date();
+        return formato.format(data);
     }
 
     @SuppressWarnings("unchecked")
@@ -1253,7 +1263,7 @@ public class SaidaMercadoria extends javax.swing.JPanel {
 
     private void jLabel36MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel36MouseClicked
         verificacaoQuantidadeEstoque();
-        
+
         boolean verificacao = verificacaoBotaoAdicionar();
 
         if (verificacao == false) {

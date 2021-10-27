@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -45,7 +48,7 @@ public class EntradaMercadoria extends javax.swing.JPanel {
             } else {
                 JOptionPane.showMessageDialog(null, "CNPJ Inexistente!");
             }
-        } catch (Exception e) {            
+        } catch (Exception e) {
         }
     }
 
@@ -119,8 +122,9 @@ public class EntradaMercadoria extends javax.swing.JPanel {
     public void inseriPedidoCompra() {
         String cnpj = jFormattedTextField1.getText().replaceAll("\\p{Punct}", "");
         String valor = jFormattedTextField5.getText();
+        String data = geradorData();
         try {
-            String compra = "insert into compra (valor_compra, hora_compra, fk_cnpj) values (" + valor + ", '1999-12-31','" + cnpj + "')";
+            String compra = "insert into compra (valor_compra, hora_compra, fk_cnpj) values (" + valor + ", '" + data + "','" + cnpj + "')";
             st.executeUpdate(compra);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro Pedido Compra");
@@ -277,6 +281,12 @@ public class EntradaMercadoria extends javax.swing.JPanel {
         }
 
         return vazio;
+    }
+
+    public String geradorData() {
+        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date data = new Date();
+        return formato.format(data);
     }
 
     @SuppressWarnings("unchecked")
