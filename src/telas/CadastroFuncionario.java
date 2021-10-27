@@ -5,24 +5,30 @@
  */
 package telas;
 
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import javax.swing.JFrame;
+import util.ConnectionUtils;
+import util.StringUtils;
+import util.buttonGroupUtils;
+import br.com.parg.viacep.ViaCEP;
+import br.com.parg.viacep.ViaCEPException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CadastroFuncionario extends javax.swing.JPanel {
+    
+    String genero = null;
 
-    public Connection con;
-    public Statement st;
-    public ResultSet resultado = null;
-    public int a;
     
     public CadastroFuncionario() {
         initComponents();
-       
+         btnAlterarFuncionario.setEnabled(false);
+        btnExcluirFuncionario.setEnabled(false);
     }
+       
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -598,76 +604,176 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     }//GEN-LAST:event_txtIdFuncionarioActionPerformed
 
     private void btnConsultarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFuncionarioActionPerformed
-        try {
-            String minhasql = "SELECT * from cliente where id =" + "'" + txtIdFuncionario.getText() + "'";
-            resultado = st.executeQuery(minhasql);
-            if (resultado.next()) {
-                txtNomeFuncionario.setText(resultado.getString("nome"));
-                txtEmailFuncionario.setText(resultado.getString("email"));
-                txtCPFFuncionario.setText(resultado.getString("cpf"));
-                txtTelefoneFuncionario.setText(resultado.getString("telefone"));
+        String minhasql = "SELECT * from colaborador where id = ?";
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        ResultSet resultado = null;
 
-            }
-            else
-            {
+        try {
+            conexao = ConnectionUtils.getConnection();
+            ps = conexao.prepareStatement(minhasql);
+            Long idColaborador = Long.parseLong(txtIdFuncionario.getText());
+            ps.setLong(1, idColaborador);
+            resultado = ps.executeQuery();
+            if (resultado.next()) {
+                txtCPFFuncionario.setText(resultado.getString("cpf"));
+                txtNomeFuncionario.setText(resultado.getString("nome"));
+                String nascimento = StringUtils.converteDataParaOPrograma(resultado.getString("nascimento"));
+                txtDataFuncionario.setText(nascimento);
+                buttonGroupUtils.setButtonGroup(resultado.getString("genero"), generoFuncionario.getElements());
+                txtTelefoneFuncionario.setText(resultado.getString("telefone"));
+                txtEmailFuncionario.setText(resultado.getString("email"));
+                cbxEstadoCivFuncionario.setSelectedItem(resultado.getString("estado_civil"));
+                txtCepFuncionario.setText(resultado.getString("cep"));
+                txtMunicipioFuncionario.setText(resultado.getString("cidade"));
+                txtLogradouroFuncionario.setText(resultado.getString("logradouro"));
+                txtNumeroFuncionario.setText(resultado.getString("numero"));
+                txtComplementoFuncionario.setText(resultado.getString("complemento"));
+                cbxUFFuncionario.setSelectedItem(resultado.getString("uf"));
+                txtBairroFuncionario.setText(resultado.getString("bairro"));
+                
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Registro não existe");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Registro não existe");
 
+        } finally {
+            ConnectionUtils.closeConnection(conexao, ps, resultado);
         }
+                                                        
+
     }//GEN-LAST:event_btnConsultarFuncionarioActionPerformed
 
     private void btnCriarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarFuncionarioActionPerformed
 
-        try {
-            String cpf, nome,telefone, email;
+       Object[] options = {"Confirmar", "Cancelar"};
+        int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja inserir um novo registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if (escolha == 0) {
+            String minhasql = "INSERT INTO colaborador (cpf, nome, nascimento,genero, telefone, email, estado_civil, cep, cidade, logradouro, numero, complemento, uf, bairro, senha)"
+                    + " VALUES "
+                    + "(?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?,"
+                    + " ?);";
+            Connection conexao = null;
+            PreparedStatement ps = null;
 
-            nome = txtNomeFuncionario.getText();
-            cpf = txtCPFFuncionario.getText();
-            telefone = txtTelefoneFuncionario.getText();
-            email = txtEmailFuncionario.getText();
-            String minhasql;
-            minhasql = "insert into cliente (nome,cpf,telefone, email) value ('"
-            +nome+"','"+cpf+"','"+telefone+"','"+email+"')";
-            st.executeUpdate(minhasql);
+            try {
+                conexao = ConnectionUtils.getConnection();
+                ps = conexao.prepareStatement(minhasql);
+                String CPF = StringUtils.limpaValorParaOBanco(txtCPFFuncionario.getText());
+                ps.setString(1, CPF);
+                ps.setString(2, txtNomeFuncionario.getText());
+                String dataConvertida = StringUtils.converteDataParaOBanco(txtDataFuncionario.getText());
+                ps.setString(3, dataConvertida);
+                ps.setString(4, genero);
+                String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneFuncionario.getText());
+                ps.setString(5, telefone);
+                ps.setString(6, txtEmailFuncionario.getText());
+                ps.setString(7, cbxEstadoCivFuncionario.getSelectedItem().toString());
+                ps.setString(8, StringUtils.limpaValorParaOBanco(txtCepFuncionario.getText()));
+                ps.setString(9, txtMunicipioFuncionario.getText());
+                ps.setString(10, txtLogradouroFuncionario.getText());
+                ps.setString(11, txtNumeroFuncionario.getText());
+                ps.setString(12, txtComplementoFuncionario.getText());
+                ps.setString(13, cbxUFFuncionario.getSelectedItem().toString());
+                ps.setString(14, txtBairroFuncionario.getText());
+                ps.setString(15, txtSenhaFuncionario.getText());
+                ps.execute();
+                
 
-            JOptionPane.showMessageDialog(null,"Registro Gravado");
+                JOptionPane.showMessageDialog(null, "Registro inserido com sucesso");
 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel inserir o registro");
+
+            } finally {
+                ConnectionUtils.closeConnection(conexao, ps);
+            }
         }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Não Gravado");
-        }
+        
+                                               
+
+
 
     }//GEN-LAST:event_btnCriarFuncionarioActionPerformed
 
     private void btnAlterarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFuncionarioActionPerformed
-        try {
-            String cpf, nome,telefone, email;
+       
+        Object[] options = {"Confirmar", "Cancelar"};
+        int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja atualizar este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if (escolha == 0) {
+            String minhasql = "UPDATE colaborador SET cpf = ?,"
+                    + " nome = ?,"
+                    + " nascimento =?,"
+                    + "genero =?, "
+                    + "telefone =?,"
+                    + "email =?,"
+                    + "estado_civil =?,"
+                    + "cep =?,"
+                    + "cidade =?,"
+                    + "logradouro =?,"
+                    + "numero =?,"
+                    + "complemento =?,"
+                    + "uf =?,"
+                    + " bairro  =?,"
+                    + "senha =?"
+                    + " where id = ?;";
+            Connection conexao = null;
+            PreparedStatement ps = null;
 
-            nome = txtNomeFuncionario.getText();
-            cpf = txtCPFFuncionario.getText();
-            telefone = txtTelefoneFuncionario.getText();
-            email = txtEmailFuncionario.getText();
+            try {
+                conexao = ConnectionUtils.getConnection();
+                ps = conexao.prepareStatement(minhasql);
+                String CPF = StringUtils.limpaValorParaOBanco(txtCPFFuncionario.getText());
+                ps.setString(1, CPF);
+                ps.setString(2, txtNomeFuncionario.getText());
+                String dataConvertida = StringUtils.converteDataParaOBanco(txtDataFuncionario.getText());
+                ps.setString(3, dataConvertida);
+                ps.setString(4, genero);
+                String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneFuncionario.getText());
+                ps.setString(5, telefone);
+                ps.setString(6, txtEmailFuncionario.getText());
+                ps.setString(7, cbxEstadoCivFuncionario.getSelectedItem().toString());
+                ps.setString(8, StringUtils.limpaValorParaOBanco(txtCepFuncionario.getText()));
+                ps.setString(9, txtMunicipioFuncionario.getText());
+                ps.setString(10, txtLogradouroFuncionario.getText());
+                ps.setString(11, txtNumeroFuncionario.getText());
+                ps.setString(12, txtComplementoFuncionario.getText());
+                ps.setString(13, cbxUFFuncionario.getSelectedItem().toString());
+                ps.setString(14, txtBairroFuncionario.getText());
+                Long idCliente = Long.parseLong(txtIdFuncionario.getText());
+                ps.setLong(15, idCliente);
+                ps.execute();
 
-            String minhasql = "update cliente set nome = '"
-            +nome+"',cpf = '"
-            +cpf+"',email ='"
-            +email+"',,telefone ='"
-            +telefone+"' where id = "+txtIdFuncionario.getText();
-            st.executeUpdate(minhasql);
-            JOptionPane.showMessageDialog(null,"Registro Atualizado");
+                JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
 
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Registro Não Atualizado");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
+
+            } finally {
+                ConnectionUtils.closeConnection(conexao, ps);
+            }
         }
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
     private void btnExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFuncionarioActionPerformed
         try {
             String minhasql = "delete from cliente where id = "+txtIdFuncionario.getText();
-            st.executeUpdate(minhasql);
+           // st.executeUpdate(minhasql);
             JOptionPane.showMessageDialog(null,"Registro Excluido");
             txtNomeFuncionario.setText("");
             txtCPFFuncionario.setText("");
