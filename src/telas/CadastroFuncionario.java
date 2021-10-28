@@ -14,6 +14,7 @@ import util.StringUtils;
 import util.buttonGroupUtils;
 import br.com.parg.viacep.ViaCEP;
 import br.com.parg.viacep.ViaCEPException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -328,10 +329,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Senha:");
 
-        txtSenhaFuncionario.setText("jPasswordField1");
-
-        txtConfirmarSenhaFuncionario.setText("jPasswordField1");
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Confirmar Senha:");
 
@@ -604,7 +601,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             .addGroup(jPanelBodyLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1049, Short.MAX_VALUE)
+                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1070, Short.MAX_VALUE)
                     .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelCRUD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(9, 9, 9))
@@ -624,7 +621,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         cdc.setLayout(cdcLayout);
         cdcLayout.setHorizontalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1129, Short.MAX_VALUE)
+            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
             .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cdcLayout.createSequentialGroup()
                     .addGap(32, 32, 32)
@@ -774,63 +771,71 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
         Object[] options = {"Confirmar", "Cancelar"};
         int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja atualizar este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-        if (escolha == 0) {
-            String minhasql = "UPDATE colaborador SET cpf = ?,"
-                    + " nome = ?,"
-                    + " nascimento =?,"
-                    + "genero =?, "
-                    + "telefone =?,"
-                    + "email =?,"
-                    + "estado_civil =?,"
-                    + "cep =?,"
-                    + "cidade =?,"
-                    + "logradouro =?,"
-                    + "numero =?,"
-                    + "complemento =?,"
-                    + "uf =?,"
-                    + " bairro  =?,"
-                    + "senha =?"
-                    + " where id = ?;";
-            Connection conexao = null;
-            PreparedStatement ps = null;
+        if (Arrays.equals(txtSenhaFuncionario.getPassword(), txtConfirmarSenhaFuncionario.getPassword())) {
+            if (escolha == 0) {
+                String minhasql = "UPDATE colaborador SET cpf = ?,"
+                        + " nome = ?,"
+                        + " nascimento =?,"
+                        + "genero =?, "
+                        + "telefone =?,"
+                        + "email =?,"
+                        + "estado_civil =?,"
+                        + "cep =?,"
+                        + "cidade =?,"
+                        + "logradouro =?,"
+                        + "numero =?,"
+                        + "complemento =?,"
+                        + "uf =?,"
+                        + " bairro  =?,"
+                        + "senha =?"
+                        + " where id = ?;";
+                Connection conexao = null;
+                PreparedStatement ps = null;
 
-            try {
-                conexao = ConnectionUtils.getConnection();
-                ps = conexao.prepareStatement(minhasql);
-                String CPF = StringUtils.limpaValorParaOBanco(txtCPFFuncionario.getText());
-                ps.setString(1, CPF);
-                ps.setString(2, txtNomeFuncionario.getText());
-                String dataConvertida = StringUtils.converteDataParaOBanco(txtDataFuncionario.getText());
-                ps.setString(3, dataConvertida);
-                ps.setString(4, genero);
-                String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneFuncionario.getText());
-                ps.setString(5, telefone);
-                ps.setString(6, txtEmailFuncionario.getText());
-                ps.setString(7, cbxEstadoCivFuncionario.getSelectedItem().toString());
-                ps.setString(8, StringUtils.limpaValorParaOBanco(txtCepFuncionario.getText()));
-                ps.setString(9, txtMunicipioFuncionario.getText());
-                ps.setString(10, txtLogradouroFuncionario.getText());
-                ps.setString(11, txtNumeroFuncionario.getText());
-                ps.setString(12, txtComplementoFuncionario.getText());
-                ps.setString(13, cbxUFFuncionario.getSelectedItem().toString());
-                ps.setString(14, txtBairroFuncionario.getText());
-                Long idCliente = Long.parseLong(txtIdFuncionario.getText());
-                ps.setLong(15, idCliente);
-                ps.execute();
+                try {
+                    conexao = ConnectionUtils.getConnection();
+                    ps = conexao.prepareStatement(minhasql);
+                    String CPF = StringUtils.limpaValorParaOBanco(txtCPFFuncionario.getText());
+                    ps.setString(1, CPF);
+                    ps.setString(2, txtNomeFuncionario.getText());
+                    String dataConvertida = StringUtils.converteDataParaOBanco(txtDataFuncionario.getText());
+                    ps.setString(3, dataConvertida);
+                    ps.setString(4, genero);
+                    String telefone = StringUtils.limpaValorParaOBanco(txtTelefoneFuncionario.getText());
+                    ps.setString(5, telefone);
+                    ps.setString(6, txtEmailFuncionario.getText());
+                    ps.setString(7, cbxEstadoCivFuncionario.getSelectedItem().toString());
+                    ps.setString(8, StringUtils.limpaValorParaOBanco(txtCepFuncionario.getText()));
+                    ps.setString(9, txtMunicipioFuncionario.getText());
+                    ps.setString(10, txtLogradouroFuncionario.getText());
+                    ps.setString(11, txtNumeroFuncionario.getText());
+                    ps.setString(12, txtComplementoFuncionario.getText());
+                    ps.setString(13, cbxUFFuncionario.getSelectedItem().toString());
+                    ps.setString(14, txtBairroFuncionario.getText());
+                    System.out.println(txtSenhaFuncionario.getPassword());
+                    ps.setString(15, Arrays.toString(txtSenhaFuncionario.getPassword()));
+                    Long idFuncionario = Long.parseLong(txtIdFuncionario.getText());
+                    ps.setLong(16, idFuncionario);
+                    ps.execute();
 
-                JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
+                    JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
 
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
 
-            } finally {
-                ConnectionUtils.closeConnection(conexao, ps);
+                } finally {
+                    ConnectionUtils.closeConnection(conexao, ps);
+                }
+            } else {
+
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Senha divergente");
         }
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
     private void btnExcluirFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFuncionarioActionPerformed
-       Object[] options = {"Confirmar", "Cancelar"};
+        Object[] options = {"Confirmar", "Cancelar"};
         int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
 
         if (escolha == 0) {
@@ -928,7 +933,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCepFuncionarioActionPerformed
 
     private void btnConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCEPActionPerformed
-      ViaCEP viaCep = new ViaCEP();
+        ViaCEP viaCep = new ViaCEP();
 
         try {
             viaCep.buscar(util.StringUtils.limpaValorParaOBanco(txtCepFuncionario.getText()));
@@ -941,7 +946,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Não foi possivel encontrar o CEP", "ERRO", JOptionPane.WARNING_MESSAGE);
 
         }
-        
+
     }//GEN-LAST:event_btnConsultarCEPActionPerformed
 
 
