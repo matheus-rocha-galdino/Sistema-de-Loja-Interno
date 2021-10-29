@@ -23,7 +23,6 @@ public class EntradaMercadoria extends javax.swing.JPanel {
         try {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
             st = (Statement) con.createStatement();
-            JOptionPane.showMessageDialog(null, "Conectado com sucesso.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não conectado.");
         }
@@ -46,7 +45,7 @@ public class EntradaMercadoria extends javax.swing.JPanel {
                 jLabel21.setText(resultado.getString("uf"));
                 jLabel23.setText(resultado.getString("cep"));
             } else {
-                JOptionPane.showMessageDialog(null, "CNPJ Inexistente!");
+                JOptionPane.showMessageDialog(null, "Dados invalidos!");
             }
         } catch (Exception e) {
         }
@@ -60,7 +59,7 @@ public class EntradaMercadoria extends javax.swing.JPanel {
                 jLabel28.setText(resultado.getString("nome"));
                 jLabel30.setText(resultado.getString("estoque"));
             } else {
-                JOptionPane.showMessageDialog(null, "Produto Inexistente!");
+                JOptionPane.showMessageDialog(null, "Dados invalidos!");
             }
         } catch (Exception e) {
         }

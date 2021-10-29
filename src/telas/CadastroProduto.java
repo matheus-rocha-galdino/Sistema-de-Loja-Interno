@@ -18,7 +18,6 @@ public class CadastroProduto extends javax.swing.JPanel {
         try {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
             st = (Statement) con.createStatement();
-            JOptionPane.showMessageDialog(null, "Conectado.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não conectado.");
         }

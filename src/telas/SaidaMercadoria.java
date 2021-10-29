@@ -23,7 +23,6 @@ public class SaidaMercadoria extends javax.swing.JPanel {
         try {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
             st = (Statement) con.createStatement();
-            JOptionPane.showMessageDialog(null, "Conectado com sucesso.");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não conectado.");
         }
@@ -39,7 +38,7 @@ public class SaidaMercadoria extends javax.swing.JPanel {
             if (resultado.next()) {
                 jLabel31.setText(resultado.getString("nome"));
             } else {
-                JOptionPane.showMessageDialog(null, "Colaborador Inexistente!");
+                JOptionPane.showMessageDialog(null, "Dados invalidos!");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro Pesquisa Colaborador!");
@@ -73,7 +72,7 @@ public class SaidaMercadoria extends javax.swing.JPanel {
                 jLabel21.setText(resultado.getString("uf"));
                 jLabel23.setText(resultado.getString("cep"));
             } else {
-                JOptionPane.showMessageDialog(null, "Cliente Inexistente!");
+                JOptionPane.showMessageDialog(null, "Dados invalidos!");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro Pesquisa Cliente!");
@@ -102,7 +101,7 @@ public class SaidaMercadoria extends javax.swing.JPanel {
                 jLabel30.setText(resultado.getString("estoque"));
                 jFormattedTextField3.setText(resultado.getString("valor_venda"));
             } else {
-                JOptionPane.showMessageDialog(null, "Produto Inexistente!");
+                JOptionPane.showMessageDialog(null, "Dados invalidos!");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro Pesquisa Produto!");
