@@ -68,7 +68,7 @@ public class CadastroProduto extends javax.swing.JPanel {
             st.executeUpdate(adicionaProduto);
             JOptionPane.showMessageDialog(null, "Item adicionado");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro Adicionar Item!");
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar item!");
         }
     }
 

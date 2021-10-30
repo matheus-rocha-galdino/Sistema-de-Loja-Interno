@@ -5,20 +5,20 @@
  */
 package telas;
 
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
-import javax.swing.JFrame;
+import util.ConnectionUtils;
+import util.StringUtils;
+import util.buttonGroupUtils;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MeuPerfil extends javax.swing.JPanel {
 
-    public Connection con;
-    public Statement st;
-    public ResultSet resultado = null;
-    public int a;
-    
+
     public MeuPerfil() {
         initComponents();
        
@@ -501,33 +501,46 @@ public class MeuPerfil extends javax.swing.JPanel {
     }//GEN-LAST:event_txtIdFuncionarioActionPerformed
 
     private void btnConsultarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFuncionarioActionPerformed
-        try {
-            String minhasql = "SELECT * from cliente where id =" + "'" + txtIdFuncionario.getText() + "'";
-            resultado = st.executeQuery(minhasql);
-            if (resultado.next()) {
-                lblNome.setText(resultado.getString("nome"));
-                lblEmail.setText(resultado.getString("email"));
-                lblCpf.setText(resultado.getString("cpf"));
-                lblTelefone.setText(resultado.getString("telefone"));
-                 lblCep.setText(resultado.getString("cep"));
-                  lblEstdCivil.setText(resultado.getString("estado civil"));
-                   lblGenero.setText(resultado.getString("genero"));
-                   lblCidade.setText(resultado.getString("cidade"));
-                    lblLogradouro.setText(resultado.getString("logradouro"));
-                     lblNumero.setText(resultado.getString("numero"));
-                      lblUf.setText(resultado.getString("uf"));
-                       lblBairro.setText(resultado.getString("bairro"));
-                        lblComplemento.setText(resultado.getString("complemento"));
+      
+        String minhasql = "SELECT * from colaborador where id = ?";
+        Connection conexao = null;
+        PreparedStatement ps = null;
+        ResultSet resultado = null;
 
-            }
-            else
-            {
+        try {
+            conexao = ConnectionUtils.getConnection();
+            ps = conexao.prepareStatement(minhasql);
+            Long idColaborador = Long.parseLong(txtIdFuncionario.getText());
+            ps.setLong(1, idColaborador);
+            resultado = ps.executeQuery();
+            if (resultado.next()) {
+                lblCpf.setText(resultado.getString("cpf"));
+                lblNome.setText(resultado.getString("nome"));
+                lblDataNasc.setText("nascimento");
+                lblEstdCivil.setText("estado_civil");
+                lblGenero.setText("genero");
+                lblTelefone.setText(resultado.getString("telefone"));
+                lblEmail.setText(resultado.getString("email"));
+                lblCep.setText(resultado.getString("cep"));
+                lblCidade.setText(resultado.getString("cidade"));
+                lblLogradouro.setText(resultado.getString("logradouro"));
+                lblNumero.setText(resultado.getString("numero"));
+                lblComplemento.setText(resultado.getString("complemento"));
+                lblUf.setText(resultado.getString("cep"));
+                lblBairro.setText(resultado.getString("bairro"));
+
+            } else {
                 JOptionPane.showMessageDialog(null, "Registro não existe");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Registro Encontrado");
+            JOptionPane.showMessageDialog(null, "Registro não existe");
 
+        } finally {
+            ConnectionUtils.closeConnection(conexao, ps, resultado);
         }
+
+
+         
     }//GEN-LAST:event_btnConsultarFuncionarioActionPerformed
 
 

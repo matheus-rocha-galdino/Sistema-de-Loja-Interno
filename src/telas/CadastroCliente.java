@@ -14,6 +14,7 @@ import util.StringUtils;
 import util.buttonGroupUtils;
 import br.com.parg.viacep.ViaCEP;
 import br.com.parg.viacep.ViaCEPException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +26,27 @@ public class CadastroCliente extends javax.swing.JPanel {
         initComponents();
         btnAlterarCliente.setEnabled(false);
         btnExcluirCliente.setEnabled(false);
+    }
+
+    public void limpaTela() {
+        txtNomeCliente.setText("");
+        txtCPFCliente.setText("");
+        txtTelefoneCliente.setText("");
+        txtIdCliente.setText("");
+        txtEmailCliente.setText("");
+        txtCPFCliente.setText("");
+        txtNumeroCliente.setText("");
+        txtCepCliente.setText("");
+        txtComplementoCliente.setText("");
+        txtDataCliente.setText("");
+        txtLogradouroCliente.setText("");
+        txtBairroCliente.setText("");
+        generoCliente.clearSelection();
+        cbxUFCliente.setSelectedItem(null);
+        cbxEstadoCivCliente.setSelectedItem(null);
+        txtMunicipioCliente.setText("");
+        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -619,7 +641,8 @@ public class CadastroCliente extends javax.swing.JPanel {
         } finally {
             ConnectionUtils.closeConnection(conexao, ps, resultado);
         }
-
+        
+       
 
     }//GEN-LAST:event_btnConsultarClienteActionPerformed
 
@@ -670,6 +693,8 @@ public class CadastroCliente extends javax.swing.JPanel {
                 ps.execute();
 
                 JOptionPane.showMessageDialog(null, "Registro Inserido com Sucesso");
+                
+                 limpaTela();
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel inserir o registro");
@@ -678,6 +703,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                 ConnectionUtils.closeConnection(conexao, ps);
             }
         }
+        
     }//GEN-LAST:event_btnCriarClienteActionPerformed
 
     private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
@@ -727,6 +753,8 @@ public class CadastroCliente extends javax.swing.JPanel {
                 ps.execute();
 
                 JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
+                
+                limpaTela();
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
@@ -734,9 +762,9 @@ public class CadastroCliente extends javax.swing.JPanel {
             } finally {
                 ConnectionUtils.closeConnection(conexao, ps);
             }
-        }
+       
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
-
+    }
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
 
         Object[] options = {"Confirmar", "Cancelar"};
@@ -754,6 +782,8 @@ public class CadastroCliente extends javax.swing.JPanel {
                 ps.setLong(1, idCliente);
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Registro Excluído com Sucesso");
+                
+                 limpaTela();
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel excluir o registro");
@@ -764,6 +794,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         } else {
 
         }
+       
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
 
     private void txtIdClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdClienteCaretUpdate

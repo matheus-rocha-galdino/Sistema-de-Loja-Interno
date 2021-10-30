@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/br/com/parg/viacep/ViaCEP.java</file>
-            <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/br/com/parg/viacep/ViaCEPException.java</file>
+            <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/telas/CadastroProduto.java</file>
             <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/telas/CadastroCliente.java</file>
-            <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/br/com/parg/viacep/ViaCEPBase.java</file>
-            <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/br/com/parg/viacep/ViaCEPEvents.java</file>
-            <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/br/com/parg/viacep/CEP.java</file>
+            <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/telas/CadastroFornecedor.java</file>
+            <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/telas/MeuPerfil.java</file>
             <file>file:/C:/Users/giovana.santos/Documents/GitHub/ProjetoTeste/src/telas/CadastroFuncionario.java</file>
         </group>
     </open-files>

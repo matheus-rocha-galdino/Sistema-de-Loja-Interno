@@ -5,6 +5,8 @@
  */
 package telas;
 
+import br.com.parg.viacep.ViaCEP;
+import br.com.parg.viacep.ViaCEPException;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.Connection;
@@ -21,17 +23,31 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     public Statement st;
     public ResultSet resultado = null;
     public int a;
-    
+
     public CadastroFornecedor() {
         initComponents();
-        
+
         btnAlterarFornecedor.setEnabled(false);
         btnExcluirFornecedor.setEnabled(false);
-        
-        
+
     }
 
-    
+    public void limpaTela() {
+        txtNomeFornecedor.setText("");
+        txtCNPJFornecedor.setText("");
+        txtTelefoneFornecedor.setText("");
+        txtIdFornecedor.setText("");
+        txtEmailFornecedor.setText("");
+        txtNumeroFornecedor.setText("");
+        txtCepFornecedor.setText("");
+        txtComplementoFornecedor.setText("");
+        txtLogradouroFornecedor.setText("");
+        txtBairroFornecedor.setText("");
+        cbxUFFornecedor.setSelectedItem(null);
+        txtMunicipioFornecedor.setText("");
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,6 +90,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         txtComplementoFornecedor = new javax.swing.JTextField();
         txtCepFornecedor = new javax.swing.JFormattedTextField();
         cbxUFFornecedor = new javax.swing.JComboBox<>();
+        btnConsultarCep = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -84,7 +101,6 @@ public class CadastroFornecedor extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Cadastro de Fornecedor");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -376,6 +392,15 @@ public class CadastroFornecedor extends javax.swing.JPanel {
 
         cbxUFFornecedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UF", "AC", "AL", "AP", "AM", "BA", "CE", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO", "DF" }));
 
+        btnConsultarCep.setBackground(new java.awt.Color(226, 238, 251));
+        btnConsultarCep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pesquisar.png"))); // NOI18N
+        btnConsultarCep.setBorder(null);
+        btnConsultarCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarCepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelEnderecoLayout = new javax.swing.GroupLayout(jPanelEndereco);
         jPanelEndereco.setLayout(jPanelEnderecoLayout);
         jPanelEnderecoLayout.setHorizontalGroup(
@@ -384,8 +409,22 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                 .addGap(56, 56, 56)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
-                    .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                        .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelEnderecoLayout.createSequentialGroup()
+                            .addComponent(jLabel20)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtNumeroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(94, 94, 94)
+                            .addComponent(jLabel15)
+                            .addGap(145, 145, 145)
+                            .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                                    .addComponent(jLabel19)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtComplementoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel16)
+                                .addComponent(cbxUFFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelEnderecoLayout.createSequentialGroup()
                             .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelEnderecoLayout.createSequentialGroup()
                                     .addComponent(jLabel14)
@@ -399,35 +438,26 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                                     .addComponent(jLabel17)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(txtMunicipioFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNumeroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(94, 94, 94)
-                        .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtComplementoFornecedor))
-                            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBairroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(45, 45, 45)
-                                .addComponent(cbxUFFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnConsultarCep))
+                                .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                                    .addGap(177, 177, 177)
+                                    .addComponent(txtBairroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
         jPanelEnderecoLayout.setVerticalGroup(
             jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
-                .addGap(35, 35, 35)
-                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtCepFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14)
+                        .addComponent(txtCepFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsultarCep))
                 .addGap(22, 22, 22)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
@@ -435,24 +465,19 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                     .addComponent(txtMunicipioFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxUFFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
+                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(txtLogradouroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBairroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                        .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel18)
-                            .addComponent(txtLogradouroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel20)
-                            .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtNumeroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel19)
-                                .addComponent(txtComplementoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                        .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtBairroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(82, 82, 82))))
+                    .addComponent(jLabel20)
+                    .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtNumeroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel19)
+                        .addComponent(txtComplementoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelBodyLayout = new javax.swing.GroupLayout(jPanelBody);
@@ -493,7 +518,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cdcLayout.createSequentialGroup()
                 .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 835, Short.MAX_VALUE))
+                .addGap(0, 844, Short.MAX_VALUE))
             .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cdcLayout.createSequentialGroup()
                     .addGap(63, 63, 63)
@@ -520,12 +545,12 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     }//GEN-LAST:event_txtIdFornecedorActionPerformed
 
     private void btnConsultarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFornecedorActionPerformed
-        
+
         String minhasql = "SELECT * from fornecedor where id = ?";
         Connection conexao = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
-        
+
         try {
             conexao = ConnectionUtils.getConnection();
             ps = conexao.prepareStatement(minhasql);
@@ -545,16 +570,16 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                 txtBairroFornecedor.setText(resultado.getString("bairro"));
                 txtComplementoFornecedor.setText(resultado.getString("complemento"));
 
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Registro não existe");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Registro não existe");
-            
-        }finally {
+
+        } finally {
             ConnectionUtils.closeConnection(conexao, ps, resultado);
         }
+
     }//GEN-LAST:event_btnConsultarFornecedorActionPerformed
 
     private void btnCriarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarFornecedorActionPerformed
@@ -577,9 +602,9 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                     + " ?);";
             Connection conexao = null;
             PreparedStatement ps = null;
-        
-        try {
-            conexao = ConnectionUtils.getConnection();
+
+            try {
+                conexao = ConnectionUtils.getConnection();
                 ps = conexao.prepareStatement(minhasql);
                 String CNPJ = StringUtils.limpaValorParaOBanco(txtCNPJFornecedor.getText());
                 ps.setString(1, CNPJ);
@@ -598,18 +623,20 @@ public class CadastroFornecedor extends javax.swing.JPanel {
 
                 JOptionPane.showMessageDialog(null, "Registro Inserido com Sucesso");
 
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Não Gravado");
-        }finally {
+                limpaTela();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel inserir o registro");
+            } finally {
                 ConnectionUtils.closeConnection(conexao, ps);
             }
         }
 
+
     }//GEN-LAST:event_btnCriarFornecedorActionPerformed
 
     private void btnAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFornecedorActionPerformed
-        
+      
         Object[] options = {"Confirmar", "Cancelar"};
         int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja atualizar este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         if (escolha == 0) {
@@ -627,9 +654,9 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                     + " where id = ?;";
             Connection conexao = null;
             PreparedStatement ps = null;
-            
-        try {
-            conexao = ConnectionUtils.getConnection();
+
+            try {
+                conexao = ConnectionUtils.getConnection();
                 ps = conexao.prepareStatement(minhasql);
                 String CNPJ = StringUtils.limpaValorParaOBanco(txtCNPJFornecedor.getText());
                 ps.setString(1, CNPJ);
@@ -647,17 +674,19 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                 Long idFornecedor = Long.parseLong(txtIdFornecedor.getText());
                 ps.setLong(12, idFornecedor);
                 ps.execute();
-                
-            JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
-        }
-        catch (Exception e) {
-            
-            JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
-            
-        }finally {
+
+                JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
+
+                limpaTela();
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
+
+            } finally {
                 ConnectionUtils.closeConnection(conexao, ps);
             }
         }
+
     }//GEN-LAST:event_btnAlterarFornecedorActionPerformed
 
     private void btnExcluirFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirFornecedorActionPerformed
@@ -676,13 +705,15 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                 ps.setLong(1, idFornecedor);
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Registro Excluído com Sucesso");
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Não foi possivel excluir o registro");
-        }finally {
+
+                limpaTela();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel excluir o registro");
+            } finally {
                 ConnectionUtils.closeConnection(conexao, ps);
             }
         }
+
     }//GEN-LAST:event_btnExcluirFornecedorActionPerformed
 
     private void txtTelefoneFornecedorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefoneFornecedorMouseEntered
@@ -722,9 +753,26 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtIdFornecedorCaretUpdate
 
+    private void btnConsultarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCepActionPerformed
+      ViaCEP viaCep = new ViaCEP();
+
+        try {
+            viaCep.buscar(util.StringUtils.limpaValorParaOBanco(txtCepFornecedor.getText()));
+            txtMunicipioFornecedor.setText(viaCep.getLocalidade());
+            txtLogradouroFornecedor.setText(viaCep.getLogradouro());
+            cbxUFFornecedor.setSelectedItem(viaCep.getUf());
+            txtBairroFornecedor.setText(viaCep.getBairro());
+
+        } catch (ViaCEPException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possivel encontrar o CEP", "ERRO", JOptionPane.WARNING_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnConsultarCepActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterarFornecedor;
+    private javax.swing.JButton btnConsultarCep;
     private javax.swing.JButton btnConsultarFornecedor;
     private javax.swing.JButton btnCriarFornecedor;
     private javax.swing.JButton btnExcluirFornecedor;
