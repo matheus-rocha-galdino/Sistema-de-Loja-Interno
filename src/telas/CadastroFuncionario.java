@@ -12,11 +12,11 @@ import javax.swing.JOptionPane;
 import util.ConnectionUtils;
 import util.StringUtils;
 import util.buttonGroupUtils;
-import br.com.parg.viacep.ViaCEP;
-import br.com.parg.viacep.ViaCEPException;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CadastroFuncionario extends javax.swing.JPanel {
 
@@ -958,18 +958,17 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCepFuncionarioActionPerformed
 
     private void btnConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCEPActionPerformed
-        ViaCEP viaCep = new ViaCEP();
-
+         String CEP = (util.StringUtils.limpaValorParaOBanco(txtCepFuncionario.getText()));
+        JSONObject endereco = util.ViaCep.buscarCep(CEP);
         try {
-            viaCep.buscar(util.StringUtils.limpaValorParaOBanco(txtCepFuncionario.getText()));
-            txtMunicipioFuncionario.setText(viaCep.getLocalidade());
-            txtLogradouroFuncionario.setText(viaCep.getLogradouro());
-            cbxUFFuncionario.setSelectedItem(viaCep.getUf());
-            txtBairroFuncionario.setText(viaCep.getBairro());
-
-        } catch (ViaCEPException ex) {
+            txtMunicipioFuncionario.setText(endereco.getString("localidade"));
+            txtLogradouroFuncionario.setText(endereco.getString("logradouro"));
+            txtBairroFuncionario.setText(endereco.getString("bairro"));
+            cbxUFFuncionario.setSelectedItem(endereco.getString("uf"));
+            txtComplementoFuncionario.setText(endereco.getString("complemento"));
+        } catch (JSONException ex) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Não foi possivel encontrar o CEP", "ERRO", JOptionPane.WARNING_MESSAGE);
-
         }
 
     }//GEN-LAST:event_btnConsultarCEPActionPerformed

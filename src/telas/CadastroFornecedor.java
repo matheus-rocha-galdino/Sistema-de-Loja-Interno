@@ -5,15 +5,17 @@
  */
 package telas;
 
-import br.com.parg.viacep.ViaCEP;
-import br.com.parg.viacep.ViaCEPException;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import org.json.JSONException;
+import org.json.JSONObject;
 import util.ConnectionUtils;
 import util.StringUtils;
 
@@ -411,20 +413,6 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                     .addComponent(jLabel13)
                     .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelEnderecoLayout.createSequentialGroup()
-                            .addComponent(jLabel20)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtNumeroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(94, 94, 94)
-                            .addComponent(jLabel15)
-                            .addGap(145, 145, 145)
-                            .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                    .addComponent(jLabel19)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtComplementoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel16)
-                                .addComponent(cbxUFFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelEnderecoLayout.createSequentialGroup()
                             .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelEnderecoLayout.createSequentialGroup()
                                     .addComponent(jLabel14)
@@ -444,7 +432,22 @@ public class CadastroFornecedor extends javax.swing.JPanel {
                                     .addComponent(btnConsultarCep))
                                 .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                                     .addGap(177, 177, 177)
-                                    .addComponent(txtBairroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cbxUFFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtBairroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelEnderecoLayout.createSequentialGroup()
+                            .addComponent(jLabel20)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtNumeroFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(260, 260, 260)
+                            .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel15)
+                                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtComplementoFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel16))))))
                 .addContainerGap(272, Short.MAX_VALUE))
         );
         jPanelEnderecoLayout.setVerticalGroup(
@@ -636,7 +639,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCriarFornecedorActionPerformed
 
     private void btnAlterarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarFornecedorActionPerformed
-      
+
         Object[] options = {"Confirmar", "Cancelar"};
         int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja atualizar este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         if (escolha == 0) {
@@ -741,7 +744,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCNPJFornecedorActionPerformed
 
     private void txtIdFornecedorCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdFornecedorCaretUpdate
-        
+
         if (!txtIdFornecedor.getText().isEmpty()) {
             btnCriarFornecedor.setEnabled(false);
             btnAlterarFornecedor.setEnabled(true);
@@ -754,18 +757,17 @@ public class CadastroFornecedor extends javax.swing.JPanel {
     }//GEN-LAST:event_txtIdFornecedorCaretUpdate
 
     private void btnConsultarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCepActionPerformed
-      ViaCEP viaCep = new ViaCEP();
-
+        String CEP = (util.StringUtils.limpaValorParaOBanco(txtCepFornecedor.getText()));
+        JSONObject endereco = util.ViaCep.buscarCep(CEP);
         try {
-            viaCep.buscar(util.StringUtils.limpaValorParaOBanco(txtCepFornecedor.getText()));
-            txtMunicipioFornecedor.setText(viaCep.getLocalidade());
-            txtLogradouroFornecedor.setText(viaCep.getLogradouro());
-            cbxUFFornecedor.setSelectedItem(viaCep.getUf());
-            txtBairroFornecedor.setText(viaCep.getBairro());
-
-        } catch (ViaCEPException ex) {
+            txtMunicipioFornecedor.setText(endereco.getString("localidade"));
+            txtLogradouroFornecedor.setText(endereco.getString("logradouro"));
+            txtBairroFornecedor.setText(endereco.getString("bairro"));
+            cbxUFFornecedor.setSelectedItem(endereco.getString("uf"));
+            txtComplementoFornecedor.setText(endereco.getString("complemento"));
+        } catch (JSONException ex) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Não foi possivel encontrar o CEP", "ERRO", JOptionPane.WARNING_MESSAGE);
-
         }
     }//GEN-LAST:event_btnConsultarCepActionPerformed
 

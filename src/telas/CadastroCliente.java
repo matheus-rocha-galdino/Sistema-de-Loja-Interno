@@ -12,22 +12,22 @@ import javax.swing.JOptionPane;
 import util.ConnectionUtils;
 import util.StringUtils;
 import util.buttonGroupUtils;
-import br.com.parg.viacep.ViaCEP;
-import br.com.parg.viacep.ViaCEPException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CadastroCliente extends javax.swing.JPanel {
-
+    
     String genero = null;
-
+    
     public CadastroCliente() {
         initComponents();
         btnAlterarCliente.setEnabled(false);
         btnExcluirCliente.setEnabled(false);
     }
-
+    
     public void limpaTela() {
         txtNomeCliente.setText("");
         txtCPFCliente.setText("");
@@ -46,9 +46,8 @@ public class CadastroCliente extends javax.swing.JPanel {
         cbxEstadoCivCliente.setSelectedItem(null);
         txtMunicipioCliente.setText("");
         
-
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -603,12 +602,12 @@ public class CadastroCliente extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarClienteActionPerformed
-
+        
         String minhasql = "SELECT * from cliente where id = ?";
         Connection conexao = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
-
+        
         try {
             conexao = ConnectionUtils.getConnection();
             ps = conexao.prepareStatement(minhasql);
@@ -631,23 +630,22 @@ public class CadastroCliente extends javax.swing.JPanel {
                 txtComplementoCliente.setText(resultado.getString("complemento"));
                 cbxUFCliente.setSelectedItem(resultado.getString("uf"));
                 txtBairroCliente.setText(resultado.getString("bairro"));
-
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Registro não existe");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Registro não existe");
-
+            
         } finally {
             ConnectionUtils.closeConnection(conexao, ps, resultado);
         }
         
-       
 
     }//GEN-LAST:event_btnConsultarClienteActionPerformed
 
     private void btnCriarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarClienteActionPerformed
-
+        
         Object[] options = {"Confirmar", "Cancelar"};
         int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja inserir um novo registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
         if (escolha == 0) {
@@ -669,7 +667,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                     + " ?);";
             Connection conexao = null;
             PreparedStatement ps = null;
-
+            
             try {
                 conexao = ConnectionUtils.getConnection();
                 ps = conexao.prepareStatement(minhasql);
@@ -691,19 +689,19 @@ public class CadastroCliente extends javax.swing.JPanel {
                 ps.setString(13, cbxUFCliente.getSelectedItem().toString());
                 ps.setString(14, txtBairroCliente.getText());
                 ps.execute();
-
+                
                 JOptionPane.showMessageDialog(null, "Registro Inserido com Sucesso");
                 
-                 limpaTela();
-
+                limpaTela();
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel inserir o registro");
-
+                
             } finally {
                 ConnectionUtils.closeConnection(conexao, ps);
             }
         }
-        
+
     }//GEN-LAST:event_btnCriarClienteActionPerformed
 
     private void btnAlterarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarClienteActionPerformed
@@ -727,7 +725,7 @@ public class CadastroCliente extends javax.swing.JPanel {
                     + " where id = ?;";
             Connection conexao = null;
             PreparedStatement ps = null;
-
+            
             try {
                 conexao = ConnectionUtils.getConnection();
                 ps = conexao.prepareStatement(minhasql);
@@ -751,30 +749,30 @@ public class CadastroCliente extends javax.swing.JPanel {
                 Long idCliente = Long.parseLong(txtIdCliente.getText());
                 ps.setLong(15, idCliente);
                 ps.execute();
-
+                
                 JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
                 
                 limpaTela();
-
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
-
+                
             } finally {
                 ConnectionUtils.closeConnection(conexao, ps);
             }
-       
+
     }//GEN-LAST:event_btnAlterarClienteActionPerformed
     }
     private void btnExcluirClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirClienteActionPerformed
-
+        
         Object[] options = {"Confirmar", "Cancelar"};
         int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
-
+        
         if (escolha == 0) {
             String minhasql = "delete from cliente where id = ?;";
             Connection conexao = null;
             PreparedStatement ps = null;
-
+            
             try {
                 conexao = ConnectionUtils.getConnection();
                 ps = conexao.prepareStatement(minhasql);
@@ -783,18 +781,18 @@ public class CadastroCliente extends javax.swing.JPanel {
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Registro Excluído com Sucesso");
                 
-                 limpaTela();
-
+                limpaTela();
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel excluir o registro");
-
+                
             } finally {
                 ConnectionUtils.closeConnection(conexao, ps);
             }
         } else {
-
+            
         }
-       
+
     }//GEN-LAST:event_btnExcluirClienteActionPerformed
 
     private void txtIdClienteCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdClienteCaretUpdate
@@ -833,18 +831,17 @@ public class CadastroCliente extends javax.swing.JPanel {
 
     private void btnConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCEPActionPerformed
         // TODO add your handling code here:
-        ViaCEP viaCep = new ViaCEP();
-
+        String CEP = (util.StringUtils.limpaValorParaOBanco(txtCepCliente.getText()));
+        JSONObject endereco = util.ViaCep.buscarCep(CEP);
         try {
-            viaCep.buscar(util.StringUtils.limpaValorParaOBanco(txtCepCliente.getText()));
-            txtMunicipioCliente.setText(viaCep.getLocalidade());
-            txtLogradouroCliente.setText(viaCep.getLogradouro());
-            cbxUFCliente.setSelectedItem(viaCep.getUf());
-            txtBairroCliente.setText(viaCep.getBairro());
-
-        } catch (ViaCEPException ex) {
+            txtMunicipioCliente.setText(endereco.getString("localidade"));
+            txtLogradouroCliente.setText(endereco.getString("logradouro"));
+            txtBairroCliente.setText(endereco.getString("bairro"));
+            cbxUFCliente.setSelectedItem(endereco.getString("uf"));
+            txtComplementoCliente.setText(endereco.getString("complemento"));
+        } catch (JSONException ex) {
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Não foi possivel encontrar o CEP", "ERRO", JOptionPane.WARNING_MESSAGE);
-
         }
     }//GEN-LAST:event_btnConsultarCEPActionPerformed
 
