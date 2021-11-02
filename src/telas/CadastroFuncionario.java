@@ -28,7 +28,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         btnExcluirFuncionario.setEnabled(false);
     }
 
-     public void limpaTela() {
+    public void limpaTela() {
         txtNomeFuncionario.setText("");
         txtCPFFuncionario.setText("");
         txtTelefoneFuncionario.setText("");
@@ -47,11 +47,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         txtMunicipioFuncionario.setText("");
         txtSenhaFuncionario.setText("");
         txtConfirmarSenhaFuncionario.setText("");
-        
-        
 
     }
-     
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -723,7 +721,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
         Object[] options = {"Confirmar", "Cancelar"};
         int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja inserir um novo registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-        if (txtSenhaFuncionario.getText().equals(txtConfirmarSenhaFuncionario.getText())) {
+        char[] senha1 = txtSenhaFuncionario.getPassword();
+        char[] senha2 = txtConfirmarSenhaFuncionario.getPassword();
+        if (util.PasswordFieldUtils.confirmaSenhaIguais(senha1, senha2)) {
             if (escolha == 0) {
                 String minhasql = "INSERT INTO colaborador (cpf, nome, nascimento,genero, telefone, email, estado_civil, cep, cidade, logradouro, numero, complemento, uf, bairro, senha)"
                         + " VALUES "
@@ -765,7 +765,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                     ps.setString(12, txtComplementoFuncionario.getText());
                     ps.setString(13, cbxUFFuncionario.getSelectedItem().toString());
                     ps.setString(14, txtBairroFuncionario.getText());
-                    ps.setString(15, txtSenhaFuncionario.getText());
+                    ps.setString(15, new String(txtSenhaFuncionario.getPassword()));
                     ps.execute();
 
                     JOptionPane.showMessageDialog(null, "Registro inserido com sucesso");
@@ -792,8 +792,29 @@ public class CadastroFuncionario extends javax.swing.JPanel {
 
         Object[] options = {"Confirmar", "Cancelar"};
         int escolha = JOptionPane.showOptionDialog(null, "Tem certeza que deseja atualizar este registro?", "Selecione uma opção", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-        if (Arrays.equals(txtSenhaFuncionario.getPassword(), txtConfirmarSenhaFuncionario.getPassword())) {
-            if (escolha == 0) {
+        if (escolha == 0) {
+            Connection conexao = null;
+            PreparedStatement ps = null;
+            ResultSet resultado = null;
+            String senhaBD = null;
+
+            try {
+                String minhasql = "SELECT senha from colaborador where id = ?";
+                ps = conexao.prepareStatement(minhasql);
+                conexao = ConnectionUtils.getConnection();
+                Long idFuncionario = Long.parseLong(txtIdFuncionario.getText());
+                ps.setLong(1, idFuncionario);
+                resultado = ps.executeQuery();
+                if (resultado.next()) {
+                    senhaBD = resultado.getString("senha");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Confira se a sua senha está correta");
+            } finally {
+                ConnectionUtils.closeConnection(conexao, ps, resultado);
+            }
+            char[] senhaAtual = txtSenhaFuncionario.getPassword();
+            if (util.PasswordFieldUtils.confirmaSenhaIguais(senhaBD, senhaAtual)) {
                 String minhasql = "UPDATE colaborador SET cpf = ?,"
                         + " nome = ?,"
                         + " nascimento =?,"
@@ -810,8 +831,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                         + " bairro  =?,"
                         + "senha =?"
                         + " where id = ?;";
-                Connection conexao = null;
-                PreparedStatement ps = null;
 
                 try {
                     conexao = ConnectionUtils.getConnection();
@@ -833,15 +852,12 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                     ps.setString(12, txtComplementoFuncionario.getText());
                     ps.setString(13, cbxUFFuncionario.getSelectedItem().toString());
                     ps.setString(14, txtBairroFuncionario.getText());
-                    System.out.println(txtSenhaFuncionario.getPassword());
-                    ps.setString(15, Arrays.toString(txtSenhaFuncionario.getPassword()));
+                    ps.setString(15, new String(txtConfirmarSenhaFuncionario.getPassword()));
                     Long idFuncionario = Long.parseLong(txtIdFuncionario.getText());
                     ps.setLong(16, idFuncionario);
                     ps.execute();
-
                     JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
-                    
-                     limpaTela();
+                    limpaTela();
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
@@ -873,8 +889,8 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 ps.setLong(1, idFuncionario);
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "Registro Excluído com Sucesso");
-                
-                 limpaTela();
+
+                limpaTela();
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel excluir o registro");
@@ -946,10 +962,14 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             btnCriarFuncionario.setEnabled(false);
             btnAlterarFuncionario.setEnabled(true);
             btnExcluirFuncionario.setEnabled(true);
+            jLabel1.setText("Senha Atual:");
+            jLabel4.setText("Nova Senha:");
         } else {
             btnCriarFuncionario.setEnabled(true);
             btnAlterarFuncionario.setEnabled(false);
             btnExcluirFuncionario.setEnabled(false);
+            jLabel1.setText("Senha :");
+            jLabel4.setText("Confirmar Senha:");
         }
     }//GEN-LAST:event_txtIdFuncionarioCaretUpdate
 
@@ -958,7 +978,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     }//GEN-LAST:event_txtCepFuncionarioActionPerformed
 
     private void btnConsultarCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCEPActionPerformed
-         String CEP = (util.StringUtils.limpaValorParaOBanco(txtCepFuncionario.getText()));
+        String CEP = (util.StringUtils.limpaValorParaOBanco(txtCepFuncionario.getText()));
         JSONObject endereco = util.ViaCep.buscarCep(CEP);
         try {
             txtMunicipioFuncionario.setText(endereco.getString("localidade"));
