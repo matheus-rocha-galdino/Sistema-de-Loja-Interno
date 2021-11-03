@@ -258,7 +258,7 @@ public class Login extends javax.swing.JFrame {
         Connection conexao = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
-
+        
         try {
             conexao = ConnectionUtils.getConnection();
             ps = conexao.prepareStatement(minhasql);
@@ -269,7 +269,7 @@ public class Login extends javax.swing.JFrame {
             if (resultado.next()) {
                 dispose();
                 Tl_principalpi telaPrincipal = new Tl_principalpi();
-                telaPrincipal.show();
+                telaPrincipal.setVisible(true);
                 JOptionPane.showMessageDialog(null, "Bem vindo");
             } else {
                 JOptionPane.showMessageDialog(null, "Login ou senha invalidos");
@@ -278,7 +278,7 @@ public class Login extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Login não existe");
-
+            
         } finally {
             ConnectionUtils.closeConnection(conexao, ps, resultado);
         }

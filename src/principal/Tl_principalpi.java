@@ -39,19 +39,19 @@ public class Tl_principalpi extends javax.swing.JFrame {
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         execute();
     }
-
+    
     private void execute() {
-
+        
         painelCorpo.add(new Cartoes());
         painelCorpo.repaint();
         painelCorpo.revalidate();
-
+        
         ImageIcon iconUser = new ImageIcon(getClass().getResource("/menu/usuario.png"));
         ImageIcon iconCadastro = new ImageIcon(getClass().getResource("/menu/cadastro.png"));
         ImageIcon iconCompra = new ImageIcon(getClass().getResource("/menu/compra.png"));
         ImageIcon iconRelatorio = new ImageIcon(getClass().getResource("/menu/relatorio.png"));
         ImageIcon iconSubmenu = new ImageIcon(getClass().getResource("/menu/submenu.png"));
-
+        
         ItensdoMenu menuUser1 = new ItensdoMenu(iconSubmenu, "Meu Perfil", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -71,7 +71,6 @@ public class Tl_principalpi extends javax.swing.JFrame {
             }
         });
         
-
         ItensdoMenu menuCadastro1 = new ItensdoMenu(iconSubmenu, "Cliente", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -97,7 +96,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.add(new CadastroFuncionario());
                 painelCorpo.repaint();
                 painelCorpo.revalidate();
-
+                
             }
         });
         ItensdoMenu menuCadastro4 = new ItensdoMenu(iconSubmenu, "Produto", new ActionListener() {
@@ -109,7 +108,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-
+        
         ItensdoMenu menuCompra1 = new ItensdoMenu(iconSubmenu, "Venda de Produto", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -129,7 +128,6 @@ public class Tl_principalpi extends javax.swing.JFrame {
             }
         });
         
-
         ItensdoMenu menuRelatorio1 = new ItensdoMenu(iconSubmenu, "Analitíco", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -150,20 +148,20 @@ public class Tl_principalpi extends javax.swing.JFrame {
         });
         
         ItensdoMenu menuRelatorio3 = new ItensdoMenu(iconSubmenu, "Historico do Dia", null);
-
+        
         ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1, menuUser2);
         ItensdoMenu menuCadastro = new ItensdoMenu(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3, menuCadastro4);
         ItensdoMenu menuCompra = new ItensdoMenu(iconCompra, "VENDA/COMPRA", null, menuCompra1, menuCompra2);
         ItensdoMenu menuRelatorio = new ItensdoMenu(iconRelatorio, "RELATÓRIOS", null, menuRelatorio1, menuRelotorio2, menuRelatorio3);
-
+        
         addmenu(menuUser, menuCadastro, menuCompra, menuRelatorio);
-
+        
     }
-
+    
     private void addmenu(ItensdoMenu... menu) {
         for (int i = 0; i < menu.length; i++) {
             menus.add(menu[i]);
-
+            
             ArrayList<ItensdoMenu> subMenu = menu[i].getSubMenu();
             for (ItensdoMenu m : subMenu) {
                 addmenu(m);
@@ -215,6 +213,11 @@ public class Tl_principalpi extends javax.swing.JFrame {
         });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelCabecaLayout = new javax.swing.GroupLayout(painelCabeca);
         painelCabeca.setLayout(painelCabecaLayout);
@@ -282,6 +285,10 @@ public class Tl_principalpi extends javax.swing.JFrame {
         painelCorpo.repaint();
         painelCorpo.revalidate();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
