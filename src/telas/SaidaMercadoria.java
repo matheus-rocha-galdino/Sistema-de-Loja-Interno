@@ -888,6 +888,7 @@ public class SaidaMercadoria extends javax.swing.JPanel {
         jPanel8.setBackground(new java.awt.Color(226, 238, 251));
         jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jTable1.setBackground(new java.awt.Color(226, 238, 251));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
