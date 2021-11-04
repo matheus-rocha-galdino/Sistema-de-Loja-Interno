@@ -22,6 +22,7 @@ import menu.ItensdoMenu;
 import telas.Cartoes;
 import telas.EntradaMercadoria;
 import telas.MeuPerfil;
+import telas.PesquisaID;
 import telas.RelatorioSintetico;
 import telas.SaidaMercadoria;
 
@@ -147,7 +148,16 @@ public class Tl_principalpi extends javax.swing.JFrame {
             }
         });
         
-        ItensdoMenu menuRelatorio3 = new ItensdoMenu(iconSubmenu, "Historico do Dia", null);
+        ItensdoMenu menuRelatorio3 = new ItensdoMenu(iconSubmenu, "Pesquisa de Dados", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                painelCorpo.removeAll();
+                painelCorpo.add(new PesquisaID());
+                painelCorpo.repaint();
+                painelCorpo.revalidate();
+            }
+        });
+        
         
         ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1, menuUser2);
         ItensdoMenu menuCadastro = new ItensdoMenu(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3, menuCadastro4);
