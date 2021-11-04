@@ -833,6 +833,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
         String CEP = (util.StringUtils.limpaValorParaOBanco(txtCepCliente.getText()));
         JSONObject endereco = util.ViaCep.buscarCep(CEP);
+        
         try {
             txtMunicipioCliente.setText(endereco.getString("localidade"));
             txtLogradouroCliente.setText(endereco.getString("logradouro"));

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.ConnectionUtils;
-import util.tableUtils;
+import static util.tableUtils.carregaTabela;
 
 /**
  *
@@ -33,9 +33,8 @@ public class PesquisaID extends javax.swing.JPanel {
         ResultSet resultadoCliente = null;
         PreparedStatement psFornecedor = null;
         ResultSet resultadoFornecedor = null;
-        PreparedStatement psFuncionario = null;
-        ResultSet resultadoFuncionario = null;
-        
+        PreparedStatement psColaborador = null;
+        ResultSet resultadoColaborador = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
@@ -48,36 +47,27 @@ public class PesquisaID extends javax.swing.JPanel {
             String selectFornecedor = "select * from fornecedor;";
             psFornecedor = conexao.prepareStatement(selectFornecedor);
             resultadoFornecedor = psFornecedor.executeQuery(selectFornecedor);
-            String selectFuncionario = "select * from funcionario;";
-            psFuncionario = conexao.prepareStatement(selectFuncionario);
-            resultadoFuncionario = psFuncionario.executeQuery(selectFuncionario);
+            String selectColaborador = "select * from colaborador;";
+            psColaborador = conexao.prepareStatement(selectColaborador);
+            resultadoColaborador = psColaborador.executeQuery(selectColaborador);
+
+            String[] camposProduto = {"id", "nome", "valor_venda", "estoque"};
+            String[] camposColaborador = {"id", "nome", "cpf", "telefone"};
+            String[] camposCliente = {"id", "nome", "cpf", "telefone"};
+            String[] camposFornecedor = {"id", "nome", "cnpj", "telefone"};
 
             //chama função
-             String[] camposProduto = {"id", "nome", "valor_venda", "estoque"};
-
-            
-            String[] camposCliente = {"id", "nome", "CPF", "telefone"};
-
-          
-            String[] camposColaborador = {"id", "nome", "cpf", "telefone"};
-
-        
-            String[] camposFornecedor = {"id", "nome", "cnpj", "telefone"};
-            
-            util.tableUtils.carregaTabela(jTable1,camposProduto, resultadoProduto);
-            util.tableUtils.carregaTabela(jTable2, camposCliente, resultadoCliente);
-            util.tableUtils.carregaTabela(jTable3, camposColaborador, resultadoFuncionario);
-            util.tableUtils.carregaTabela(jTable4, camposFornecedor, resultadoFornecedor);
-
-            
-           
+            carregaTabela(jTable1, camposProduto, resultadoProduto);
+            carregaTabela(jTable2, camposCliente, resultadoCliente);
+            carregaTabela(jTable3, camposColaborador, resultadoColaborador);
+            carregaTabela(jTable4, camposFornecedor, resultadoFornecedor);
 
         } catch (SQLException ex) {
             Logger.getLogger(PesquisaID.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionUtils.closeConnection(conexao, psProduto, resultadoProduto);
             ConnectionUtils.closeConnection(conexao, psCliente, resultadoCliente);
-            ConnectionUtils.closeConnection(conexao, psFuncionario, resultadoFuncionario);
+            ConnectionUtils.closeConnection(conexao, psColaborador, resultadoColaborador);
             ConnectionUtils.closeConnection(conexao, psFornecedor, resultadoFornecedor);
         }
 
