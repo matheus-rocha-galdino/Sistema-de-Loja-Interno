@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import util.StringUtils;
 
 public class RelatorioAnalitico extends javax.swing.JPanel {
 
@@ -72,7 +73,7 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
             if (resultado.next()) {
                 lblRecebeNomeCliente1.setText(resultado.getString("nome_cliente"));
                 lblRecebeNomeVendedor.setText(resultado.getString("nome_colaborador"));
-                jLabel1.setText(resultado.getString("hora_venda"));
+                jLabel1.setText(StringUtils.converteDataEHoraParaOPrograma(resultado.getString("hora_venda")));
                 jLabel5.setText(resultado.getString("total_venda"));
             } else {
                 JOptionPane.showMessageDialog(null, "ID não existente!");

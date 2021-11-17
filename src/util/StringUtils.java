@@ -18,14 +18,24 @@ public class StringUtils {
         //2001-04-26
         return dataBD;
     }
-    
+
     public static String converteDataParaOPrograma(String dataBD) {
 
         //2001-04-26
         String data[] = dataBD.split("-");
-        String dataCampo = (data[2] +""+ data[1] + "" + data[0]);
+        String dataCampo = (data[2] + "" + data[1] + "" + data[0]);
         //26042001
         return dataCampo;
+    }
+
+    public static String converteDataEHoraParaOPrograma(String dataBD) {
+
+        //2001-04-26 12:00:00
+        String dataEHora[] = dataBD.split(" ");
+        String data[] = dataEHora[0].split("-");
+        String dataEHORaCampo = (data[2] + "/" + data[1] + "/" + data[0] + " " + dataEHora[1]);
+        //26042001 12:00:00
+        return dataEHORaCampo;
     }
 
     public static String limpaValorParaOBanco(String valor) {
