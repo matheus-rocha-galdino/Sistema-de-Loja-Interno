@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import util.StringUtils;
 
 public class RelatorioSintetico extends javax.swing.JPanel {
 
@@ -53,7 +54,7 @@ public class RelatorioSintetico extends javax.swing.JPanel {
                     resultado.getString("id"),
                     resultado.getString("valor_venda"),
                     resultado.getString("nome"),
-                    resultado.getString("hora_venda"),});
+                    StringUtils.converteDataEHoraParaOPrograma(resultado.getString("hora_venda")),});
             }
 
             if (tblResumoVendas.getRowCount() == 0) {
