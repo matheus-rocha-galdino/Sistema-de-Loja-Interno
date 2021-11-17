@@ -121,7 +121,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
             }
         });
         
-        ItensdoMenu menuRelatorio1 = new ItensdoMenu(iconSubmenu, "Analitíco", new ActionListener() {
+        ItensdoMenu menuRelatorio1 = new ItensdoMenu(iconSubmenu, "Analitíco vendas", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
@@ -130,7 +130,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        ItensdoMenu menuRelotorio2 = new ItensdoMenu(iconSubmenu, "Sintético", new ActionListener() {
+        ItensdoMenu menuRelotorio2 = new ItensdoMenu(iconSubmenu, "Sintético vendas", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
@@ -140,7 +140,20 @@ public class Tl_principalpi extends javax.swing.JFrame {
             }
         });
         
-        ItensdoMenu menuRelatorio3 = new ItensdoMenu(iconSubmenu, "Pesquisa de Dados", new ActionListener() {
+        ItensdoMenu menuRelotorio3 = new ItensdoMenu(iconSubmenu, "Sintético compras", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+        ItensdoMenu menuRelotorio4 = new ItensdoMenu(iconSubmenu, "Sintético compras", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+        
+        ItensdoMenu menuRelatorio5 = new ItensdoMenu(iconSubmenu, "Pesquisa de Dados", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
@@ -154,7 +167,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
         ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1);
         ItensdoMenu menuCadastro = new ItensdoMenu(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3, menuCadastro4);
         ItensdoMenu menuCompra = new ItensdoMenu(iconCompra, "VENDA/COMPRA", null, menuCompra1, menuCompra2);
-        ItensdoMenu menuRelatorio = new ItensdoMenu(iconRelatorio, "RELATÓRIOS", null, menuRelatorio1, menuRelotorio2, menuRelatorio3);
+        ItensdoMenu menuRelatorio = new ItensdoMenu(iconRelatorio, "RELATÓRIOS", null, menuRelatorio1, menuRelotorio2, menuRelotorio3, menuRelotorio4, menuRelatorio5);
         
         addmenu(menuUser, menuCadastro, menuCompra, menuRelatorio);
         
