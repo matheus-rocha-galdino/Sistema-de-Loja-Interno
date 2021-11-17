@@ -62,15 +62,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
                 painelCorpo.revalidate();
             }
         });
-        ItensdoMenu menuUser2 = new ItensdoMenu(iconSubmenu, "Minhas Vendas", new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                painelCorpo.removeAll();
-                painelCorpo.add(new Panel2());
-                painelCorpo.repaint();
-                painelCorpo.revalidate();
-            }
-        });
+        
         
         ItensdoMenu menuCadastro1 = new ItensdoMenu(iconSubmenu, "Cliente", new ActionListener() {
             @Override
@@ -159,7 +151,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
         });
         
         
-        ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1, menuUser2);
+        ItensdoMenu menuUser = new ItensdoMenu(iconUser, "USUÁRIO", null, menuUser1);
         ItensdoMenu menuCadastro = new ItensdoMenu(iconCadastro, "CADASTROS", null, menuCadastro1, menuCadastro2, menuCadastro3, menuCadastro4);
         ItensdoMenu menuCompra = new ItensdoMenu(iconCompra, "VENDA/COMPRA", null, menuCompra1, menuCompra2);
         ItensdoMenu menuRelatorio = new ItensdoMenu(iconRelatorio, "RELATÓRIOS", null, menuRelatorio1, menuRelotorio2, menuRelatorio3);
