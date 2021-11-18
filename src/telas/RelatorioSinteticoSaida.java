@@ -10,13 +10,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import util.StringUtils;
 
-public class RelatorioSintetico extends javax.swing.JPanel {
+public class RelatorioSinteticoSaida extends javax.swing.JPanel {
 
     public Connection con;
     public Statement st;
     public ResultSet resultado = null;
 
-    public RelatorioSintetico() {
+    public RelatorioSinteticoSaida() {
         initComponents();
         try {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");

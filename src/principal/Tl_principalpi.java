@@ -6,7 +6,7 @@
 package principal;
 
 import telas.CadastroCliente;
-import telas.RelatorioAnalitico;
+import telas.RelatorioAnaliticoSaida;
 import telas.CadastroFornecedor;
 import telas.CadastroFuncionario;
 import telas.CadastroProduto;
@@ -23,7 +23,7 @@ import telas.Cartoes;
 import telas.EntradaMercadoria;
 import telas.MeuPerfil;
 import telas.PesquisaID;
-import telas.RelatorioSintetico;
+import telas.RelatorioSinteticoSaida;
 import telas.SaidaMercadoria;
 
 /**
@@ -125,7 +125,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
-                painelCorpo.add(new RelatorioAnalitico());
+                painelCorpo.add(new RelatorioAnaliticoSaida());
                 painelCorpo.repaint();
                 painelCorpo.revalidate();
             }
@@ -134,7 +134,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();
-                painelCorpo.add(new RelatorioSintetico());
+                painelCorpo.add(new RelatorioSinteticoSaida());
                 painelCorpo.repaint();
                 painelCorpo.revalidate();
             }

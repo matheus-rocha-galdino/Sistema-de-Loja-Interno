@@ -8,15 +8,14 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import util.StringUtils;
 
-public class RelatorioAnalitico extends javax.swing.JPanel {
+public class RelatorioAnaliticoEntrada extends javax.swing.JPanel {
 
     public Connection con;
     public Statement st;
     public ResultSet resultado = null;
 
-    public RelatorioAnalitico() {
+    public RelatorioAnaliticoEntrada() {
         initComponents();
         try {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
@@ -42,18 +41,18 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
         tblResumoDaVenda.getColumnModel().getColumn(2).setCellRenderer(centralizado);
 
         try {
-            String comandoTabela = "select CL.nome as nome_cliente, CO.nome as nome_colaborador, VE.hora_venda as hora_venda, VE.valor_venda as total_venda, \n"
-                    + "PR.nome as nome_produto, PR.valor_venda as valor_produto, PV.quantidade as quantidade_venda\n"
-                    + "from venda as VE inner join produto_venda as PV on VE.id = PV.fk_id_venda\n"
-                    + "inner join colaborador as CO on CO.id = VE.fk_id\n"
-                    + "inner join cliente as CL on VE.fk_cpf = CL.cpf\n"
-                    + "inner join produto as PR on PV.fk_id_produto = PR.id where VE.id = " + txtIdVenda.getText();
+            String comandoTabela = "select CO.id as Id, CO.valor_compra as total, CO.hora_compra as data_compra, FO.nome as nome, PO.nome as produto, POC.quantidade as quantidade, POC.total_item as valor_unitario\n"
+                    + "from compra as CO \n"
+                    + "inner join produto_compra as POC on CO.id = POC.fk_id_compra\n"
+                    + "inner join fornecedor as FO on CO.fk_cnpj = FO.cnpj\n"
+                    + "inner join produto as PO on POC.fk_id_produto = PO.id \n"
+                    + "where CO.id = " + txtIdVenda.getText();
             resultado = st.executeQuery(comandoTabela);
             while (resultado.next()) {
                 tabela.addRow(new Object[]{
-                    resultado.getString("nome_produto"),
-                    resultado.getString("valor_produto"),
-                    resultado.getString("quantidade_venda"),});
+                    resultado.getString("produto"),
+                    resultado.getString("valor_unitario"),
+                    resultado.getString("quantidade"),});
             }
 
         } catch (Exception e) {
@@ -63,18 +62,18 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
 
     private void carregaVendaAnalitica() {
         try {
-            String pesquisaAnalitica = "select CL.nome as nome_cliente, CO.nome as nome_colaborador, VE.hora_venda as hora_venda, VE.valor_venda as total_venda, \n"
-                    + "PR.nome as nome_produto, PR.valor_venda as valor_produto, PV.quantidade as quantidade_venda\n"
-                    + "from venda as VE inner join produto_venda as PV on VE.id = PV.fk_id_venda\n"
-                    + "inner join colaborador as CO on CO.id = VE.fk_id\n"
-                    + "inner join cliente as CL on VE.fk_cpf = CL.cpf\n"
-                    + "inner join produto as PR on PV.fk_id_produto = PR.id where VE.id = " + txtIdVenda.getText();
+            String pesquisaAnalitica = "select CO.id as Id, CO.valor_compra as total, CO.hora_compra as data_compra, FO.nome as nome, PO.nome as produto, POC.quantidade as quantidade, POC.total_item as valor_unitario\n"
+                    + "from compra as CO \n"
+                    + "inner join produto_compra as POC on CO.id = POC.fk_id_compra\n"
+                    + "inner join fornecedor as FO on CO.fk_cnpj = FO.cnpj\n"
+                    + "inner join produto as PO on POC.fk_id_produto = PO.id \n"
+                    + "where CO.id = " + txtIdVenda.getText();
             resultado = st.executeQuery(pesquisaAnalitica);
             if (resultado.next()) {
-                lblRecebeNomeCliente1.setText(resultado.getString("nome_cliente"));
-                lblRecebeNomeVendedor.setText(resultado.getString("nome_colaborador"));
-                jLabel1.setText(StringUtils.converteDataEHoraParaOPrograma(resultado.getString("hora_venda")));
-                jLabel5.setText(resultado.getString("total_venda"));
+                lblRecebeNomeCliente1.setText(resultado.getString("nome"));
+                String data = carregaData(resultado.getString("data_compra"));
+                jLabel1.setText(data);
+                jLabel5.setText(resultado.getString("total"));
             } else {
                 JOptionPane.showMessageDialog(null, "ID não existente!");
             }
@@ -88,7 +87,7 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
         String id = txtIdVenda.getText().trim();
 
         if (id.isEmpty() == true) {
-            JOptionPane.showMessageDialog(null, "Campo ID DA VENDA vazio!");
+            JOptionPane.showMessageDialog(null, "Campo ID DA COMPRA vazio!");
             vazio = true;
         }
 
@@ -98,12 +97,22 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
     private void limpaDados() {
         txtIdVenda.setText("");
         lblRecebeNomeCliente1.setText("");
-        lblRecebeNomeVendedor.setText("");
         jLabel1.setText("");
         jLabel5.setText("");
         DefaultTableModel dm = (DefaultTableModel) tblResumoDaVenda.getModel();
         dm.getDataVector().removeAllElements();
         dm.fireTableDataChanged();
+    }
+
+    private String carregaData(String data) {
+        String ano = data.substring(0, 4);
+        String mes = data.substring(5, 7);
+        String dia = data.substring(8, 10);
+        String barra = "/";
+        String complemento = data.substring(10, data.length());
+
+        String dataFormatada = dia.concat(barra.concat(mes.concat(barra.concat((ano.concat(complemento))))));
+        return dataFormatada;
     }
 
     @SuppressWarnings("unchecked")
@@ -121,20 +130,12 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
         btnConsultarVenda = new javax.swing.JButton();
         txtIdVenda = new javax.swing.JTextField();
         lblNomeCliente = new javax.swing.JLabel();
-        lblNomeVendedor = new javax.swing.JLabel();
-        lblRecebeNomeVendedor = new javax.swing.JLabel();
         lblRecebeNomeCliente1 = new javax.swing.JLabel();
         lblNomeVendedor1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-
-        setBackground(new java.awt.Color(226, 238, 251));
-
-        jPanel1.setBackground(new java.awt.Color(226, 238, 251));
-
-        jPanelHead.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -147,7 +148,7 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Detalhes dos Produtos Comprados por Venda");
+        jLabel6.setText("Detalhes dos Produtos Entrada");
 
         javax.swing.GroupLayout jPanelHeadLayout = new javax.swing.GroupLayout(jPanelHead);
         jPanelHead.setLayout(jPanelHeadLayout);
@@ -172,8 +173,6 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanelBody.setBackground(new java.awt.Color(226, 238, 251));
-
         tblResumoDaVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -194,7 +193,7 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("ID da venda:");
+        jLabel3.setText("ID da entrada:");
 
         btnConsultarVenda.setBackground(new java.awt.Color(226, 238, 251));
         btnConsultarVenda.setBorder(null);
@@ -214,15 +213,7 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
 
         lblNomeCliente.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblNomeCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNomeCliente.setText("Nome do Cliente:");
-
-        lblNomeVendedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblNomeVendedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNomeVendedor.setText("Nome do Vendedor:");
-
-        lblRecebeNomeVendedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblRecebeNomeVendedor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRecebeNomeVendedor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lblNomeCliente.setText("Nome do Fornecedor");
 
         lblRecebeNomeCliente1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblRecebeNomeCliente1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -234,7 +225,7 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Data da Compra:");
+        jLabel4.setText("Data da Entrada:");
 
         jButton1.setText("Pesquisar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -269,10 +260,6 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
                                         .addComponent(lblNomeVendedor1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelBodyLayout.createSequentialGroup()
-                                        .addComponent(lblNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblRecebeNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanelBodyLayout.createSequentialGroup()
                                         .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,12 +297,8 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
                     .addGroup(jPanelBodyLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRecebeNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNomeVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNomeVendedor1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,10 +376,8 @@ public class RelatorioAnalitico extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelHead;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNomeCliente;
-    private javax.swing.JLabel lblNomeVendedor;
     private javax.swing.JLabel lblNomeVendedor1;
     private javax.swing.JLabel lblRecebeNomeCliente1;
-    private javax.swing.JLabel lblRecebeNomeVendedor;
     private javax.swing.JTable tblResumoDaVenda;
     private javax.swing.JTextField txtIdVenda;
     // End of variables declaration//GEN-END:variables

@@ -148,7 +148,8 @@ public class EntradaMercadoria extends javax.swing.JPanel {
             for (int i = 0; i < jTable1.getRowCount(); i++) {
                 String quantidade = jTable1.getValueAt(i, 2).toString();
                 String id_produto = jTable1.getValueAt(i, 0).toString();
-                String produto_compra = "insert into produto_compra (quantidade, fk_id_compra, fk_id_produto) values (" + quantidade + "," + ultimoRegistroId + " ," + id_produto + ")";
+                String total_item = jTable1.getValueAt(i, 3).toString();
+                String produto_compra = "insert into produto_compra (quantidade, fk_id_compra, fk_id_produto, total_item) values (" + quantidade + "," + ultimoRegistroId + " ," + id_produto + "," + total_item + ")";
                 st.executeUpdate(produto_compra);
 
                 atualizaEstoquePositivo(quantidade, id_produto);
