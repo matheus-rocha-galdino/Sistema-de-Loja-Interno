@@ -142,7 +142,7 @@ public class Tl_principalpi extends javax.swing.JFrame {
             }
         });
         
-        ItensdoMenu menuRelotorio3 = new ItensdoMenu(iconSubmenu, "Analitico compras", new ActionListener() {
+        ItensdoMenu menuRelotorio3 = new ItensdoMenu(iconSubmenu, "Analitíco compras", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 painelCorpo.removeAll();

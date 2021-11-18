@@ -137,6 +137,12 @@ public class RelatorioAnaliticoEntrada extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(226, 238, 251));
+
+        jPanel1.setBackground(new java.awt.Color(226, 238, 251));
+
+        jPanelHead.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -172,6 +178,8 @@ public class RelatorioAnaliticoEntrada extends javax.swing.JPanel {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        jPanelBody.setBackground(new java.awt.Color(226, 238, 251));
 
         tblResumoDaVenda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
