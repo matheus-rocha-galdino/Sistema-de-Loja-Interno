@@ -23,6 +23,8 @@ import telas.Cartoes;
 import telas.EntradaMercadoria;
 import telas.MeuPerfil;
 import telas.PesquisaID;
+import telas.RelatorioAnaliticoEntrada;
+import telas.RelatorioSinteticoEntrada;
 import telas.RelatorioSinteticoSaida;
 import telas.SaidaMercadoria;
 
@@ -140,15 +142,23 @@ public class Tl_principalpi extends javax.swing.JFrame {
             }
         });
         
-        ItensdoMenu menuRelotorio3 = new ItensdoMenu(iconSubmenu, "Sintético compras", new ActionListener() {
+        ItensdoMenu menuRelotorio3 = new ItensdoMenu(iconSubmenu, "Analitico compras", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                painelCorpo.removeAll();
+                painelCorpo.add(new RelatorioAnaliticoEntrada());
+                painelCorpo.repaint();
+                painelCorpo.revalidate();
                 
             }
         });
         ItensdoMenu menuRelotorio4 = new ItensdoMenu(iconSubmenu, "Sintético compras", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                painelCorpo.removeAll();
+                painelCorpo.add(new RelatorioSinteticoEntrada());
+                painelCorpo.repaint();
+                painelCorpo.revalidate();
                 
             }
         });
