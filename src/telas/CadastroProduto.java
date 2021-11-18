@@ -1,5 +1,7 @@
 package telas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.Connection;
@@ -21,7 +23,24 @@ public class CadastroProduto extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não conectado.");
         }
+        
+         Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension tamTela = kit.getScreenSize();
+
+//Pega largura e altura da tela 
+        int larg = tamTela.width;
+        int alt = tamTela.height;
+
+        /* larg x 0.7; para ocupar 70% da tela por exemplo  */
+ /* alt x 0.7;*/
+//Manda o JFrame utilizar suas dimensões  
+        setSize(larg, alt);
+        
     }
+    
+    
+    
+    
 
     public void limpaTela() {
         txtIdProduto.setText("");
@@ -188,8 +207,6 @@ public class CadastroProduto extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         cdc = new javax.swing.JPanel();
-        jPanelHeader = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jPanelBody = new javax.swing.JPanel();
         jPanelCRUD = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -208,43 +225,22 @@ public class CadastroProduto extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         imgProduto = new javax.swing.JLabel();
         txtValorProduto = new javax.swing.JFormattedTextField();
+        jPanelHeader = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(226, 238, 251));
+        setPreferredSize(new java.awt.Dimension(1150, 895));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         cdc.setBackground(new java.awt.Color(226, 238, 251));
-
-        jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelHeader.setPreferredSize(new java.awt.Dimension(795, 55));
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Cadastro de Produto");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout jPanelHeaderLayout = new javax.swing.GroupLayout(jPanelHeader);
-        jPanelHeader.setLayout(jPanelHeaderLayout);
-        jPanelHeaderLayout.setHorizontalGroup(
-            jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelHeaderLayout.createSequentialGroup()
-                .addGap(404, 404, 404)
-                .addComponent(jLabel2)
-                .addContainerGap(425, Short.MAX_VALUE))
-        );
-        jPanelHeaderLayout.setVerticalGroup(
-            jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        cdc.setPreferredSize(new java.awt.Dimension(1150, 887));
 
         jPanelBody.setBackground(new java.awt.Color(226, 238, 251));
 
         jPanelCRUD.setBackground(new java.awt.Color(226, 238, 251));
         jPanelCRUD.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelCRUD.setPreferredSize(new java.awt.Dimension(1049, 83));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("ID Produto:");
@@ -304,7 +300,7 @@ public class CadastroProduto extends javax.swing.JPanel {
                 .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnConsultarProduto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 327, Short.MAX_VALUE)
                 .addComponent(btnCriarProduto)
                 .addGap(70, 70, 70)
                 .addComponent(btnAlterarProduto)
@@ -330,6 +326,7 @@ public class CadastroProduto extends javax.swing.JPanel {
 
         jPanelDados.setBackground(new java.awt.Color(226, 238, 251));
         jPanelDados.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelDados.setPreferredSize(new java.awt.Dimension(1049, 303));
 
         lblNomeProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblNomeProduto.setText("Nome:");
@@ -368,7 +365,7 @@ public class CadastroProduto extends javax.swing.JPanel {
             .addGroup(jPanelDadosLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel11)
-                .addContainerGap(816, Short.MAX_VALUE))
+                .addContainerGap(884, Short.MAX_VALUE))
             .addGroup(jPanelDadosLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -407,7 +404,7 @@ public class CadastroProduto extends javax.swing.JPanel {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanelDadosLayout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 35, Short.MAX_VALUE))))
+                                .addGap(0, 59, Short.MAX_VALUE))))
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(imgProduto)
@@ -419,18 +416,18 @@ public class CadastroProduto extends javax.swing.JPanel {
         jPanelBodyLayout.setHorizontalGroup(
             jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBodyLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelDados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelCRUD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(9, 9, 9))
+                .addContainerGap()
+                .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelDados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE)
+                    .addComponent(jPanelCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, 986, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelBodyLayout.setVerticalGroup(
             jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBodyLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jPanelCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(16, 16, 16)
+                .addGap(37, 37, 37)
+                .addComponent(jPanelCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addGap(59, 59, 59)
                 .addComponent(jPanelDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -439,19 +436,17 @@ public class CadastroProduto extends javax.swing.JPanel {
         cdc.setLayout(cdcLayout);
         cdcLayout.setHorizontalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1067, Short.MAX_VALUE)
             .addGroup(cdcLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(63, 63, 63)
                 .addComponent(jPanelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(69, 69, 69))
+                .addGap(71, 71, 71))
         );
         cdcLayout.setVerticalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cdcLayout.createSequentialGroup()
-                .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(33, 33, 33)
                 .addComponent(jPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 502, Short.MAX_VALUE))
+                .addContainerGap(355, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -467,11 +462,40 @@ public class CadastroProduto extends javax.swing.JPanel {
                 .addGap(0, 22, Short.MAX_VALUE))
         );
 
+        jPanelHeader.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelHeader.setPreferredSize(new java.awt.Dimension(795, 55));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Cadastro de Produto");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanelHeaderLayout = new javax.swing.GroupLayout(jPanelHeader);
+        jPanelHeader.setLayout(jPanelHeaderLayout);
+        jPanelHeaderLayout.setHorizontalGroup(
+            jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHeaderLayout.createSequentialGroup()
+                .addGap(404, 404, 404)
+                .addComponent(jLabel2)
+                .addContainerGap(427, Short.MAX_VALUE))
+        );
+        jPanelHeaderLayout.setVerticalGroup(
+            jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHeaderLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1067, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1069, Short.MAX_VALUE)
+                .addGap(66, 66, 66))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -480,7 +504,10 @@ public class CadastroProduto extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 957, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                .addGap(967, 967, 967))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

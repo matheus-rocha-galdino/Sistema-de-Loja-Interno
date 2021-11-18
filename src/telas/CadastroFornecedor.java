@@ -5,6 +5,8 @@
  */
 package telas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.Connection;
@@ -31,6 +33,17 @@ public class CadastroFornecedor extends javax.swing.JPanel {
 
         btnAlterarFornecedor.setEnabled(false);
         btnExcluirFornecedor.setEnabled(false);
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension tamTela = kit.getScreenSize();
+
+//Pega largura e altura da tela 
+        int larg = tamTela.width;
+        int alt = tamTela.height;
+
+        /* larg x 0.7; para ocupar 70% da tela por exemplo  */
+ /* alt x 0.7;*/
+//Manda o JFrame utilizar suas dimensões  
+        setSize(larg, alt);
 
     }
 
@@ -94,7 +107,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
         cbxUFFornecedor = new javax.swing.JComboBox<>();
         btnConsultarCep = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(226, 238, 251));
 
         cdc.setBackground(new java.awt.Color(226, 238, 251));
 
@@ -217,6 +230,7 @@ public class CadastroFornecedor extends javax.swing.JPanel {
 
         jPanelDadosFornecedor.setBackground(new java.awt.Color(226, 238, 251));
         jPanelDadosFornecedor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelDadosFornecedor.setRequestFocusEnabled(false);
 
         lblNomeFornecedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblNomeFornecedor.setText("Nome:");

@@ -5,6 +5,8 @@
  */
 package telas;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +28,18 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         initComponents();
         btnAlterarFuncionario.setEnabled(false);
         btnExcluirFuncionario.setEnabled(false);
+
+        Toolkit kit = Toolkit.getDefaultToolkit();
+        Dimension tamTela = kit.getScreenSize();
+
+//Pega largura e altura da tela 
+        int larg = tamTela.width;
+        int alt = tamTela.height;
+
+        /* larg x 0.7; para ocupar 70% da tela por exemplo  */
+ /* alt x 0.7;*/
+//Manda o JFrame utilizar suas dimensões  
+        setSize(larg, alt);
     }
 
     public void limpaTela() {
