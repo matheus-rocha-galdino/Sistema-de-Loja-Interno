@@ -83,7 +83,7 @@ public class CadastroProduto extends javax.swing.JPanel {
             String nomeProduto = txtNomeProduto.getText();
             String descricaoProduto = txtDescricaoProduto.getText();
             String valorProduto = txtValorProduto.getText().replaceAll(",", ".");
-            String adicionaProduto = "insert into produto(nome, descricao, valor_venda) values ('" + nomeProduto + "', '" + descricaoProduto + "', '" + valorProduto + "')";
+            String adicionaProduto = "insert into produto(nome, descricao, valor_venda, estoque) values ('" + nomeProduto + "', '" + descricaoProduto + "', '" + valorProduto + "', 0)";
             st.executeUpdate(adicionaProduto);
             JOptionPane.showMessageDialog(null, "Item adicionado");
         } catch (Exception e) {

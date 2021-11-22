@@ -289,6 +289,7 @@ public class EntradaMercadoria extends javax.swing.JPanel {
         return formato.format(data);
     }
 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
