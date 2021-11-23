@@ -26,7 +26,8 @@ public class SaidaMercadoria extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não conectado.");
         }
-
+        
+        jFormattedTextField3.setEditable(false);
         jFormattedTextField6.setEditable(false);
         jFormattedTextField7.setEditable(false);
     }
@@ -932,7 +933,7 @@ public class SaidaMercadoria extends javax.swing.JPanel {
 
         jLabel38.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel38.setText("FINALIZAR ENTRADA");
+        jLabel38.setText("FINALIZAR SAIDA");
         jLabel38.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel38MouseClicked(evt);
@@ -1049,14 +1050,14 @@ public class SaidaMercadoria extends javax.swing.JPanel {
 
         jLabel43.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel43.setText("TOTAL ENTRADA");
+        jLabel43.setText("TOTAL SAIDA");
 
         jPanel15.setBackground(new java.awt.Color(226, 238, 251));
         jPanel15.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel44.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel44.setText("NOVA ENTRADA");
+        jLabel44.setText("NOVA SAIDA");
         jLabel44.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel44MouseClicked(evt);
@@ -1092,7 +1093,7 @@ public class SaidaMercadoria extends javax.swing.JPanel {
 
         jLabel46.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel46.setText("ENTRADA No.");
+        jLabel46.setText("SAIDA No.");
 
         jFormattedTextField7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jFormattedTextField7.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
