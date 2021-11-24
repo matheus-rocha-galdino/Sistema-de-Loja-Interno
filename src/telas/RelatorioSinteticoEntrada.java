@@ -46,7 +46,7 @@ public class RelatorioSinteticoEntrada extends javax.swing.JPanel {
         String dataFinal = formataData(txtDataCliente2.getText().replaceAll("\\p{Punct}", ""));
 
         try {
-            String comandoTabela = "select * from compra as C inner join fornecedor as F on C.fk_cnpj = F.cnpj where hora_compra between '" + dataInicial + "' and '" + dataFinal + "'";
+            String comandoTabela = "select * from compra as C inner join fornecedor as F on C.fk_cnpj = F.cnpj where hora_compra between '" + dataInicial + "' and DATE_ADD('" + dataFinal + "', INTERVAL 1 DAY)";
             resultado = st.executeQuery(comandoTabela);
             while (resultado.next()) {
                 tabela.addRow(new Object[]{
