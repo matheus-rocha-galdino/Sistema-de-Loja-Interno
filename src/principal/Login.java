@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import util.ConnectionUtils;
 
@@ -23,6 +24,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -48,8 +50,10 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(92, 195, 235));
 
         jPanel1.setBackground(new java.awt.Color(92, 195, 235));
+        jPanel1.setForeground(new java.awt.Color(92, 195, 235));
 
         img_login.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         img_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/principal/LogoAutorama.png"))); // NOI18N
