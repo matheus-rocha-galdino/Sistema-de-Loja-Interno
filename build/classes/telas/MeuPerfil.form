@@ -45,12 +45,10 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jPanelHeader" alignment="0" pref="1179" max="32767" attributes="0"/>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jPanelBody" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jPanelBody" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -58,14 +56,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanelHeader" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="799" max="32767" attributes="0"/>
-              </Group>
-              <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                      <Component id="jPanelBody" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
-                  </Group>
+                  <EmptySpace pref="58" max="32767" attributes="0"/>
+                  <Component id="jPanelBody" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -132,7 +125,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanelEndereco" alignment="1" pref="1099" max="32767" attributes="0"/>
+                          <Component id="jPanelEndereco" alignment="1" pref="1134" max="32767" attributes="0"/>
                           <Component id="jPanelDadosPessoais" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanelCRUD" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -176,7 +169,7 @@
                           <Component id="txtIdFuncionario" min="-2" pref="63" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="btnConsultarFuncionario" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="773" max="32767" attributes="0"/>
+                          <EmptySpace pref="858" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -301,7 +294,7 @@
                                   <Component id="lblDataNasc" min="-2" pref="149" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="306" max="32767" attributes="0"/>
+                          <EmptySpace pref="341" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -525,7 +518,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="324" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="990" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -573,7 +566,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="374" max="32767" attributes="0"/>
+                                  <EmptySpace pref="409" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

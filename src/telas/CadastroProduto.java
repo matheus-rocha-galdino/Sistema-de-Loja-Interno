@@ -293,8 +293,8 @@ public class CadastroProduto extends javax.swing.JPanel {
         jPanelCRUD.setLayout(jPanelCRUDLayout);
         jPanelCRUDLayout.setHorizontalGroup(
             jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCRUDLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCRUDLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,26 +302,26 @@ public class CadastroProduto extends javax.swing.JPanel {
                 .addComponent(btnConsultarProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCriarProduto)
-                .addGap(70, 70, 70)
+                .addGap(67, 67, 67)
                 .addComponent(btnAlterarProduto)
                 .addGap(70, 70, 70)
                 .addComponent(btnExcluirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(66, 66, 66))
         );
         jPanelCRUDLayout.setVerticalGroup(
             jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCRUDLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3))
-                    .addComponent(btnConsultarProduto)
-                    .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnExcluirProduto)
-                        .addComponent(btnCriarProduto)
-                        .addComponent(btnAlterarProduto)))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addGap(75, 75, 75)
+                .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtIdProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addComponent(btnConsultarProduto))
+                    .addComponent(btnAlterarProduto)
+                    .addComponent(btnCriarProduto)
+                    .addComponent(btnExcluirProduto))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         jPanelDados.setBackground(new java.awt.Color(226, 238, 251));
@@ -347,7 +347,7 @@ public class CadastroProduto extends javax.swing.JPanel {
         lblDescricaoProduto.setText("Descrição:");
 
         lblValorProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblValorProduto.setText("Valor");
+        lblValorProduto.setText("Valor:");
 
         txtDescricaoProduto.setColumns(20);
         txtDescricaoProduto.setRows(5);
@@ -362,53 +362,57 @@ public class CadastroProduto extends javax.swing.JPanel {
         jPanelDados.setLayout(jPanelDadosLayout);
         jPanelDadosLayout.setHorizontalGroup(
             jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDadosLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanelDadosLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNomeProduto)
-                    .addComponent(lblDescricaoProduto))
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
-                        .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
-                        .addComponent(lblValorProduto)
+                        .addComponent(lblDescricaoProduto)
                         .addGap(18, 18, 18)
-                        .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 344, Short.MAX_VALUE)
-                .addComponent(imgProduto)
-                .addGap(106, 106, 106))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelDadosLayout.createSequentialGroup()
+                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblValorProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNomeProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                            .addComponent(txtValorProduto))))
+                .addGap(650, 650, 650))
+            .addGroup(jPanelDadosLayout.createSequentialGroup()
+                .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDadosLayout.createSequentialGroup()
+                        .addGap(978, 978, 978)
+                        .addComponent(imgProduto))
+                    .addGroup(jPanelDadosLayout.createSequentialGroup()
+                        .addGap(750, 750, 750)
+                        .addComponent(jLabel11)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDadosLayout.setVerticalGroup(
             jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
+                .addGap(30, 30, 30)
+                .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNomeProduto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblValorProduto)
+                    .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNomeProduto)
-                            .addComponent(lblValorProduto)
-                            .addComponent(txtValorProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(jPanelDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelDadosLayout.createSequentialGroup()
-                                .addComponent(lblDescricaoProduto)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanelDadosLayout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 53, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(imgProduto)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(31, 31, 31)
+                        .addComponent(lblDescricaoProduto)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelDadosLayout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(imgProduto)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelBodyLayout = new javax.swing.GroupLayout(jPanelBody);
@@ -418,8 +422,8 @@ public class CadastroProduto extends javax.swing.JPanel {
             .addGroup(jPanelBodyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE)
-                    .addComponent(jPanelCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE))
+                    .addComponent(jPanelDados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE)
+                    .addComponent(jPanelCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelBodyLayout.setVerticalGroup(
@@ -450,7 +454,7 @@ public class CadastroProduto extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cdc, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
+            .addComponent(cdc, javax.swing.GroupLayout.DEFAULT_SIZE, 1120, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

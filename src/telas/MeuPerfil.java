@@ -139,7 +139,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                 .addComponent(txtIdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(btnConsultarFuncionario)
-                .addContainerGap(773, Short.MAX_VALUE))
+                .addContainerGap(858, Short.MAX_VALUE))
         );
         jPanelCRUDLayout.setVerticalGroup(
             jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,7 +236,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                         .addComponent(lblDataNasCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addContainerGap(341, Short.MAX_VALUE))
         );
         jPanelDadosPessoaisLayout.setVerticalGroup(
             jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +338,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addComponent(jLabel13)
-                        .addGap(0, 324, Short.MAX_VALUE))
+                        .addGap(0, 990, Short.MAX_VALUE))
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
@@ -374,7 +374,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                                         .addComponent(jLabel16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(374, Short.MAX_VALUE))))
+                        .addContainerGap(409, Short.MAX_VALUE))))
         );
         jPanelEnderecoLayout.setVerticalGroup(
             jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -423,7 +423,7 @@ public class MeuPerfil extends javax.swing.JPanel {
             .addGroup(jPanelBodyLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE)
+                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE)
                     .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelCRUD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(9, 9, 9))
@@ -444,22 +444,18 @@ public class MeuPerfil extends javax.swing.JPanel {
         cdcLayout.setHorizontalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1179, Short.MAX_VALUE)
-            .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(cdcLayout.createSequentialGroup()
-                    .addGap(32, 32, 32)
-                    .addComponent(jPanelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(33, 33, 33)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cdcLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         cdcLayout.setVerticalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cdcLayout.createSequentialGroup()
                 .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 799, Short.MAX_VALUE))
-            .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(cdcLayout.createSequentialGroup()
-                    .addGap(63, 63, 63)
-                    .addComponent(jPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(92, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

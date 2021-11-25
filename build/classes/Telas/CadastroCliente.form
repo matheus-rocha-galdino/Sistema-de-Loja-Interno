@@ -126,9 +126,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanelEndereco" alignment="1" pref="1624" max="32767" attributes="0"/>
                           <Component id="jPanelDadosPessoais" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanelCRUD" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jPanelEndereco" alignment="0" pref="1624" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   </Group>
