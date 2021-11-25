@@ -93,7 +93,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         rbtnOutrosFuncionario = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         txtEmailFuncionario = new javax.swing.JTextField();
-        imgCliente = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtCPFFuncionario = new javax.swing.JFormattedTextField();
         txtTelefoneFuncionario = new javax.swing.JFormattedTextField();
@@ -140,9 +139,9 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jPanelHeaderLayout.setHorizontalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderLayout.createSequentialGroup()
-                .addContainerGap(394, Short.MAX_VALUE)
+                .addContainerGap(681, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(513, Short.MAX_VALUE))
+                .addContainerGap(794, Short.MAX_VALUE))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +236,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                         .addComponent(jLabel3))
                     .addComponent(btnCriarFuncionario)
                     .addComponent(btnAlterarFuncionario))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanelDadosPessoais.setBackground(new java.awt.Color(226, 238, 251));
@@ -326,8 +325,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             }
         });
 
-        imgCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/funcionario.png"))); // NOI18N
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Estado Civil:");
 
@@ -377,90 +374,81 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         jPanelDadosPessoaisLayout.setHorizontalGroup(
             jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
+                        .addGap(350, 350, 350)
                         .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(25, 25, 25)
-                                .addComponent(rbtnMascFuncionario)
-                                .addGap(27, 27, 27)
-                                .addComponent(rbtnFeminFuncionario)
-                                .addGap(40, 40, 40)
-                                .addComponent(rbtnOutrosFuncionario)
-                                .addGap(118, 118, 118)
-                                .addComponent(txtSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtConfirmarSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jLabel11)))
-                        .addContainerGap(209, Short.MAX_VALUE))
-                    .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosPessoaisLayout.createSequentialGroup()
-                                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtCPFFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                                        .addComponent(lblNomeFuncionario)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addComponent(lblDataNasCliente)
+                                .addComponent(lblNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDataFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtCPFFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtEmailFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
+                                .addGap(64, 64, 64)
+                                .addComponent(rbtnMascFuncionario)
+                                .addGap(26, 26, 26)
+                                .addComponent(rbtnFeminFuncionario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbtnOutrosFuncionario))
+                            .addComponent(jLabel9))
+                        .addGap(158, 158, 158)
+                        .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
+                                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(375, 375, 375))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDadosPessoaisLayout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtEmailFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(21, 21, 21)))
-                                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(txtSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
                                         .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cbxEstadoCivFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(txtTelefoneFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(imgCliente)
-                        .addGap(116, 116, 116))))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cbxEstadoCivFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtConfirmarSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosPessoaisLayout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTelefoneFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosPessoaisLayout.createSequentialGroup()
+                                    .addComponent(lblDataNasCliente)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtDataFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
+                        .addGap(771, 771, 771)
+                        .addComponent(jLabel11)))
+                .addGap(378, 378, 378))
         );
         jPanelDadosPessoaisLayout.setVerticalGroup(
             jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
-                .addGap(17, 17, 17)
-                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                        .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNomeFuncionario)
-                            .addComponent(lblDataNasCliente)
-                            .addComponent(txtDataFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(txtCPFFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTelefoneFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(imgCliente))
+                .addGap(39, 39, 39)
+                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNomeFuncionario)
+                    .addComponent(lblDataNasCliente)
+                    .addComponent(txtDataFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
+                    .addComponent(txtCPFFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefoneFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txtEmailFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxEstadoCivFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmailFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxEstadoCivFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
                 .addGap(20, 20, 20)
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -469,10 +457,10 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                     .addComponent(rbtnFeminFuncionario)
                     .addComponent(rbtnOutrosFuncionario)
                     .addComponent(jLabel1)
-                    .addComponent(txtSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(txtConfirmarSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                    .addComponent(txtConfirmarSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jPanelEndereco.setBackground(new java.awt.Color(226, 238, 251));
@@ -620,7 +608,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel20)
                     .addComponent(txtNumeroFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelBodyLayout = new javax.swing.GroupLayout(jPanelBody);
@@ -630,7 +618,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             .addGroup(jPanelBodyLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1156, Short.MAX_VALUE)
+                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1718, Short.MAX_VALUE)
                     .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelCRUD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(9, 9, 9))
@@ -643,14 +631,14 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
-                .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+                .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cdcLayout = new javax.swing.GroupLayout(cdc);
         cdc.setLayout(cdcLayout);
         cdcLayout.setHorizontalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1195, Short.MAX_VALUE)
+            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1763, Short.MAX_VALUE)
             .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cdcLayout.createSequentialGroup()
                     .addContainerGap()
@@ -1016,7 +1004,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbxUFFuncionario;
     private javax.swing.JPanel cdc;
     private javax.swing.ButtonGroup generoFuncionario;
-    private javax.swing.JLabel imgCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

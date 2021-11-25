@@ -48,7 +48,7 @@ public class tableUtils {
                 );
             }
             if (jTable1.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(null, "Nenhum dado encontrado! na tabela ");
+                JOptionPane.showMessageDialog(null, "Nenhum dado encontrado na tabela! ");
             }
 
         } catch (Exception e) {

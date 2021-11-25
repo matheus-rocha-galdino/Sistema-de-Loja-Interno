@@ -48,7 +48,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanelHeader" alignment="0" pref="1195" max="32767" attributes="0"/>
+              <Component id="jPanelHeader" alignment="0" pref="1763" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -89,9 +89,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="394" max="32767" attributes="0"/>
+                      <EmptySpace pref="681" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="513" max="32767" attributes="0"/>
+                      <EmptySpace pref="794" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -133,7 +133,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanelEndereco" alignment="1" pref="1156" max="32767" attributes="0"/>
+                          <Component id="jPanelEndereco" alignment="1" pref="1718" max="32767" attributes="0"/>
                           <Component id="jPanelDadosPessoais" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanelCRUD" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -149,7 +149,7 @@
                       <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
                       <Component id="jPanelDadosPessoais" max="32767" attributes="0"/>
                       <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                      <Component id="jPanelEndereco" pref="299" max="32767" attributes="0"/>
+                      <Component id="jPanelEndereco" pref="298" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -201,7 +201,7 @@
                               <Component id="btnCriarFuncionario" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="btnAlterarFuncionario" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="25" max="32767" attributes="0"/>
+                          <EmptySpace pref="24" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -312,82 +312,75 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="350" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                          <Component id="rbtnMascFuncionario" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="rbtnFeminFuncionario" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                          <Component id="rbtnOutrosFuncionario" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                                          <Component id="txtSenhaFuncionario" min="-2" pref="144" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txtConfirmarSenhaFuncionario" min="-2" pref="144" max="-2" attributes="0"/>
-                                      </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace pref="209" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="txtCPFFuncionario" min="-2" pref="327" max="-2" attributes="0"/>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="lblNomeFuncionario" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="txtNomeFuncionario" min="-2" pref="327" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Component id="lblNomeFuncionario" min="-2" pref="49" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="txtCPFFuncionario" min="-2" pref="291" max="-2" attributes="0"/>
+                                              <Component id="txtNomeFuncionario" min="-2" pref="291" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="lblDataNasCliente" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jLabel5" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel8" min="-2" pref="49" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtDataFuncionario" min="-2" pref="159" max="-2" attributes="0"/>
+                                          <Component id="txtEmailFuncionario" min="-2" pref="291" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="375" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                                          <Component id="rbtnMascFuncionario" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                          <Component id="rbtnFeminFuncionario" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="rbtnOutrosFuncionario" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                                  <Component id="txtSenhaFuncionario" min="-2" pref="144" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
-                                                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="txtEmailFuncionario" min="-2" pref="327" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
                                                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   <Component id="cbxEstadoCivFuncionario" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                                  <Component id="txtTelefoneFuncionario" min="-2" pref="229" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtConfirmarSenhaFuncionario" min="-2" pref="144" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="txtTelefoneFuncionario" min="-2" pref="212" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblDataNasCliente" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtDataFuncionario" min="-2" pref="159" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="imgCliente" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="771" max="-2" attributes="0"/>
+                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" pref="378" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -396,30 +389,25 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txtNomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblNomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblDataNasCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtDataFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtCPFFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtTelefoneFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Component id="imgCliente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtNomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNomeFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDataNasCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtDataFuncionario" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCPFFuncionario" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="txtTelefoneFuncionario" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtEmailFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbxEstadoCivFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtEmailFuncionario" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="cbxEstadoCivFuncionario" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="jLabel10" alignment="3" pref="32" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -429,11 +417,11 @@
                               <Component id="rbtnFeminFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="rbtnOutrosFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtSenhaFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtSenhaFuncionario" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtConfirmarSenhaFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtConfirmarSenhaFuncionario" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="55" max="32767" attributes="0"/>
+                          <EmptySpace pref="52" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -587,13 +575,6 @@
                     <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtEmailFuncionarioMouseEntered"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailFuncionarioActionPerformed"/>
                   </Events>
-                </Component>
-                <Component class="javax.swing.JLabel" name="imgCliente">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/imagens/funcionario.png"/>
-                    </Property>
-                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
                   <Properties>
@@ -799,7 +780,7 @@
                               <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="txtNumeroFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="61" max="32767" attributes="0"/>
+                          <EmptySpace pref="41" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

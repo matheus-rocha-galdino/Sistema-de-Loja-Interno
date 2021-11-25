@@ -49,7 +49,6 @@ public class MeuPerfil extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        imgCliente = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lblGenero = new javax.swing.JLabel();
         lblCpf = new javax.swing.JLabel();
@@ -74,9 +73,8 @@ public class MeuPerfil extends javax.swing.JPanel {
         lblUf = new javax.swing.JLabel();
         lblComplemento = new javax.swing.JLabel();
         lblBairro = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(226, 238, 251));
 
         cdc.setBackground(new java.awt.Color(226, 238, 251));
 
@@ -95,9 +93,9 @@ public class MeuPerfil extends javax.swing.JPanel {
         jPanelHeaderLayout.setHorizontalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderLayout.createSequentialGroup()
-                .addGap(466, 466, 466)
+                .addContainerGap(489, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addContainerGap(552, Short.MAX_VALUE))
+                .addContainerGap(574, Short.MAX_VALUE))
         );
         jPanelHeaderLayout.setVerticalGroup(
             jPanelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,8 +177,6 @@ public class MeuPerfil extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("Dados Pessoais");
 
-        imgCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/funcionario.png"))); // NOI18N
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Estado Civil:");
 
@@ -225,7 +221,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                         .addComponent(lblNomeFuncionario)
                         .addGap(18, 18, 18)
                         .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 86, Short.MAX_VALUE)
+                .addGap(86, 86, 86)
                 .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelDadosPessoaisLayout.createSequentialGroup()
@@ -240,9 +236,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                         .addComponent(lblDataNasCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(60, 60, 60)
-                .addComponent(imgCliente)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         jPanelDadosPessoaisLayout.setVerticalGroup(
             jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,10 +284,6 @@ public class MeuPerfil extends javax.swing.JPanel {
                         .addComponent(lblTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25)))
                 .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(jPanelDadosPessoaisLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(imgCliente)
-                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jPanelEndereco.setBackground(new java.awt.Color(226, 238, 251));
@@ -338,8 +328,6 @@ public class MeuPerfil extends javax.swing.JPanel {
         lblComplemento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         lblBairro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Casa.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelEnderecoLayout = new javax.swing.GroupLayout(jPanelEndereco);
         jPanelEndereco.setLayout(jPanelEnderecoLayout);
@@ -386,9 +374,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                                         .addComponent(jLabel16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(96, 96, 96))))
+                        .addContainerGap(374, Short.MAX_VALUE))))
         );
         jPanelEnderecoLayout.setVerticalGroup(
             jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,37 +389,31 @@ public class MeuPerfil extends javax.swing.JPanel {
                     .addComponent(jLabel15))
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel17)
+                            .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel17)
-                                    .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblLogradouro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEnderecoLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35))
-                            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLogradouro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEnderecoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelEnderecoLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel20)
-                                    .addComponent(lblNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lblComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(33, Short.MAX_VALUE))
-                    .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(74, Short.MAX_VALUE))))
+                            .addComponent(jLabel20)
+                            .addComponent(lblNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelBodyLayout = new javax.swing.GroupLayout(jPanelBody);
@@ -443,7 +423,7 @@ public class MeuPerfil extends javax.swing.JPanel {
             .addGroup(jPanelBodyLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1054, Short.MAX_VALUE)
+                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1099, Short.MAX_VALUE)
                     .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelCRUD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(9, 9, 9))
@@ -463,7 +443,7 @@ public class MeuPerfil extends javax.swing.JPanel {
         cdc.setLayout(cdcLayout);
         cdcLayout.setHorizontalGroup(
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE)
+            .addComponent(jPanelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 1179, Short.MAX_VALUE)
             .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cdcLayout.createSequentialGroup()
                     .addGap(32, 32, 32)
@@ -547,8 +527,6 @@ public class MeuPerfil extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConsultarFuncionario;
     private javax.swing.JPanel cdc;
-    private javax.swing.JLabel imgCliente;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;

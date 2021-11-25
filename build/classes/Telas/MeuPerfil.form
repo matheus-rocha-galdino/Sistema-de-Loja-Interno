@@ -3,7 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+      <Color blue="fb" green="ee" red="e2" type="rgb"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -44,7 +44,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jPanelHeader" alignment="0" pref="1134" max="32767" attributes="0"/>
+              <Component id="jPanelHeader" alignment="0" pref="1179" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -85,9 +85,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="466" max="-2" attributes="0"/>
+                      <EmptySpace pref="489" max="32767" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="552" max="32767" attributes="0"/>
+                      <EmptySpace pref="574" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -132,7 +132,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jPanelEndereco" alignment="1" pref="1054" max="32767" attributes="0"/>
+                          <Component id="jPanelEndereco" alignment="1" pref="1099" max="32767" attributes="0"/>
                           <Component id="jPanelDadosPessoais" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanelCRUD" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -281,7 +281,7 @@
                                   <Component id="lblNome" min="-2" pref="288" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="0" pref="86" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -301,9 +301,7 @@
                                   <Component id="lblDataNasc" min="-2" pref="149" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                          <Component id="imgCliente" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="101" max="32767" attributes="0"/>
+                          <EmptySpace pref="306" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -370,11 +368,6 @@
                           </Group>
                           <EmptySpace pref="35" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                          <Component id="imgCliente" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="90" max="32767" attributes="0"/>
-                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -433,13 +426,6 @@
                       <Font name="Arial" size="18" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Dados Pessoais"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="imgCliente">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/imagens/funcionario.png"/>
-                    </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel10">
@@ -587,9 +573,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                                  <EmptySpace pref="374" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -598,7 +582,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -608,50 +592,41 @@
                               <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblCidade" min="-2" pref="26" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace pref="25" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel18" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
-                                              <Component id="lblLogradouro" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="lblBairro" min="-2" pref="26" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel16" max="32767" attributes="0"/>
-                                      </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblCidade" min="-2" pref="26" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="25" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblNumero" min="-2" pref="24" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Component id="lblComplemento" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="jLabel18" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
+                                      <Component id="lblLogradouro" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="33" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="lblBairro" min="-2" pref="26" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <EmptySpace pref="74" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel16" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblNumero" min="-2" pref="24" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="lblComplemento" min="-2" pref="28" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="33" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -781,13 +756,6 @@
                       <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                         <EtchetBorder/>
                       </Border>
-                    </Property>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel1">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/imagens/Casa.png"/>
                     </Property>
                   </Properties>
                 </Component>
