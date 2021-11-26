@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import objetos.Singleton;
 
 public class SaidaMercadoria extends javax.swing.JPanel {
 
@@ -19,6 +20,10 @@ public class SaidaMercadoria extends javax.swing.JPanel {
 
     public SaidaMercadoria() {
         initComponents();
+        
+        Singleton usuario = Singleton.getInstance(0);
+        int idColaborador = usuario.value;
+        jFormattedTextField1.setText(""+idColaborador);
 
         try {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
@@ -26,7 +31,7 @@ public class SaidaMercadoria extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Não conectado.");
         }
-        
+
         jFormattedTextField3.setEditable(false);
         jFormattedTextField6.setEditable(false);
         jFormattedTextField7.setEditable(false);
@@ -34,6 +39,7 @@ public class SaidaMercadoria extends javax.swing.JPanel {
 
     public void pesquisaColaborador() {
         try {
+
             String pesquisaColaborador = "select * from colaborador where id = " + jFormattedTextField1.getText();
             resultado = st.executeQuery(pesquisaColaborador);
             if (resultado.next()) {

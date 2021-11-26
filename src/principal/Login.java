@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import objetos.Singleton;
 import util.ConnectionUtils;
 
 /**
@@ -260,7 +261,7 @@ public class Login extends javax.swing.JFrame {
         Connection conexao = null;
         PreparedStatement ps = null;
         ResultSet resultado = null;
-        
+
         try {
             conexao = ConnectionUtils.getConnection();
             ps = conexao.prepareStatement(minhasql);
@@ -270,9 +271,13 @@ public class Login extends javax.swing.JFrame {
             resultado = ps.executeQuery();
             if (resultado.next()) {
                 dispose();
+                //criação do usuario
+                int id = (int) resultado.getLong("id");
+                Singleton usuario = Singleton.getInstance(id);
+                String nome = resultado.getString("nome");
                 Tl_principalpi telaPrincipal = new Tl_principalpi();
                 telaPrincipal.setVisible(true);
-                JOptionPane.showMessageDialog(null, "Bem vindo");
+                JOptionPane.showMessageDialog(null, "Nome do Usuário: "+nome);
             } else {
                 JOptionPane.showMessageDialog(null, "Login ou senha invalidos");
                 txtCPFColaborador.setText("");
@@ -280,7 +285,7 @@ public class Login extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Login não existe");
-            
+
         } finally {
             ConnectionUtils.closeConnection(conexao, ps, resultado);
         }

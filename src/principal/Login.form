@@ -112,27 +112,18 @@
                                   <Component id="btn_sair" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lbl_usuario" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lbl_senha" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="txtSenhaColaborador" min="-2" pref="360" max="-2" attributes="0"/>
+                                  <Component id="txtCPFColaborador" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lbl_usuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lbl_senha" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtSenhaColaborador" alignment="0" min="-2" pref="360" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="txtCPFColaborador" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

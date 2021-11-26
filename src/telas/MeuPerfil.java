@@ -15,13 +15,14 @@ import util.buttonGroupUtils;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import objetos.Singleton;
 
 public class MeuPerfil extends javax.swing.JPanel {
 
-
     public MeuPerfil() {
         initComponents();
-       
+        consultaUsuario();
+
     }
 
     /**
@@ -37,10 +38,6 @@ public class MeuPerfil extends javax.swing.JPanel {
         jPanelHeader = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanelBody = new javax.swing.JPanel();
-        jPanelCRUD = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        txtIdFuncionario = new javax.swing.JTextField();
-        btnConsultarFuncionario = new javax.swing.JButton();
         jPanelDadosPessoais = new javax.swing.JPanel();
         lblNomeFuncionario = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -105,53 +102,6 @@ public class MeuPerfil extends javax.swing.JPanel {
         );
 
         jPanelBody.setBackground(new java.awt.Color(226, 238, 251));
-
-        jPanelCRUD.setBackground(new java.awt.Color(226, 238, 251));
-        jPanelCRUD.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Busca pelo Id:");
-
-        txtIdFuncionario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtIdFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdFuncionarioActionPerformed(evt);
-            }
-        });
-
-        btnConsultarFuncionario.setBackground(new java.awt.Color(226, 238, 251));
-        btnConsultarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Pesquisar.png"))); // NOI18N
-        btnConsultarFuncionario.setBorder(null);
-        btnConsultarFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarFuncionarioActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelCRUDLayout = new javax.swing.GroupLayout(jPanelCRUD);
-        jPanelCRUD.setLayout(jPanelCRUDLayout);
-        jPanelCRUDLayout.setHorizontalGroup(
-            jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCRUDLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtIdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnConsultarFuncionario)
-                .addContainerGap(858, Short.MAX_VALUE))
-        );
-        jPanelCRUDLayout.setVerticalGroup(
-            jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCRUDLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnConsultarFuncionario)
-                    .addGroup(jPanelCRUDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtIdFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
 
         jPanelDadosPessoais.setBackground(new java.awt.Color(226, 238, 251));
         jPanelDadosPessoais.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -236,7 +186,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                         .addComponent(lblDataNasCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblDataNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         jPanelDadosPessoaisLayout.setVerticalGroup(
             jPanelDadosPessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +288,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addComponent(jLabel13)
-                        .addGap(0, 990, Short.MAX_VALUE))
+                        .addGap(0, 1011, Short.MAX_VALUE))
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
@@ -374,7 +324,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                                         .addComponent(jLabel16)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(lblBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(409, Short.MAX_VALUE))))
+                        .addContainerGap(433, Short.MAX_VALUE))))
         );
         jPanelEnderecoLayout.setVerticalGroup(
             jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,7 +343,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel17)
                             .addComponent(lblCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblLogradouro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -413,7 +363,7 @@ public class MeuPerfil extends javax.swing.JPanel {
                             .addComponent(jLabel20)
                             .addComponent(lblNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelBodyLayout = new javax.swing.GroupLayout(jPanelBody);
@@ -421,22 +371,19 @@ public class MeuPerfil extends javax.swing.JPanel {
         jPanelBodyLayout.setHorizontalGroup(
             jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBodyLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1134, Short.MAX_VALUE)
-                    .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelCRUD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(9, 9, 9))
+                .addContainerGap()
+                .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1155, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelBodyLayout.setVerticalGroup(
             jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBodyLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jPanelCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(12, 12, 12)
-                .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout cdcLayout = new javax.swing.GroupLayout(cdc);
@@ -453,7 +400,7 @@ public class MeuPerfil extends javax.swing.JPanel {
             cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cdcLayout.createSequentialGroup()
                 .addComponent(jPanelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48))
         );
@@ -467,17 +414,12 @@ public class MeuPerfil extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(cdc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addComponent(cdc, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIdFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdFuncionarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdFuncionarioActionPerformed
-
-    private void btnConsultarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFuncionarioActionPerformed
-      
+    public void consultaUsuario() {
         String minhasql = "SELECT * from colaborador where id = ?";
         Connection conexao = null;
         PreparedStatement ps = null;
@@ -486,15 +428,20 @@ public class MeuPerfil extends javax.swing.JPanel {
         try {
             conexao = ConnectionUtils.getConnection();
             ps = conexao.prepareStatement(minhasql);
-            Long idColaborador = Long.parseLong(txtIdFuncionario.getText());
+            Singleton usuario = Singleton.getInstance(0);
+            int idColaborador = usuario.value;
             ps.setLong(1, idColaborador);
             resultado = ps.executeQuery();
             if (resultado.next()) {
                 lblCpf.setText(resultado.getString("cpf"));
                 lblNome.setText(resultado.getString("nome"));
-                lblDataNasc.setText("nascimento");
-                lblEstdCivil.setText("estado_civil");
-                lblGenero.setText("genero");
+                String data = StringUtils.converteDataParaOPrograma(resultado.getString("nascimento"));
+                String dia = data.substring(0, 2);
+                String mes = data.substring(2, 4);
+                String ano = data.substring(4, 8);
+                lblDataNasc.setText(dia + "/" + mes + "/" + ano);
+                lblEstdCivil.setText(resultado.getString("estado_civil"));
+                lblGenero.setText(resultado.getString("genero"));
                 lblTelefone.setText(resultado.getString("telefone"));
                 lblEmail.setText(resultado.getString("email"));
                 lblCep.setText(resultado.getString("cep"));
@@ -514,14 +461,9 @@ public class MeuPerfil extends javax.swing.JPanel {
         } finally {
             ConnectionUtils.closeConnection(conexao, ps, resultado);
         }
-
-
-         
-    }//GEN-LAST:event_btnConsultarFuncionarioActionPerformed
-
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConsultarFuncionario;
     private javax.swing.JPanel cdc;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -534,13 +476,11 @@ public class MeuPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelBody;
-    private javax.swing.JPanel jPanelCRUD;
     private javax.swing.JPanel jPanelDadosPessoais;
     private javax.swing.JPanel jPanelEndereco;
     private javax.swing.JPanel jPanelHeader;
@@ -560,6 +500,5 @@ public class MeuPerfil extends javax.swing.JPanel {
     private javax.swing.JLabel lblNumero;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JLabel lblUf;
-    private javax.swing.JTextField txtIdFuncionario;
     // End of variables declaration//GEN-END:variables
 }
