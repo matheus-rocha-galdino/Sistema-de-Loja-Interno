@@ -114,16 +114,16 @@ public class PesquisaID extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(453, 453, 453)
+                .addGap(708, 708, 708)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(495, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jTabbedPane6.setBackground(new java.awt.Color(226, 238, 251));
@@ -151,7 +151,7 @@ public class PesquisaID extends javax.swing.JPanel {
 
         jPanel2.add(jPanel6, java.awt.BorderLayout.CENTER);
 
-        jTabbedPane6.addTab("           Produto           ", jPanel2);
+        jTabbedPane6.addTab("            Produto           ", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(226, 238, 251));
         jPanel3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -175,7 +175,7 @@ public class PesquisaID extends javax.swing.JPanel {
 
         jPanel3.add(jPanel7, java.awt.BorderLayout.CENTER);
 
-        jTabbedPane6.addTab("            Cliente            ", jPanel3);
+        jTabbedPane6.addTab("              Cliente                ", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(226, 238, 251));
         jPanel4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -199,7 +199,7 @@ public class PesquisaID extends javax.swing.JPanel {
 
         jPanel4.add(jPanel8, java.awt.BorderLayout.CENTER);
 
-        jTabbedPane6.addTab("          Colaborador          ", jPanel4);
+        jTabbedPane6.addTab("            Colaborador              ", jPanel4);
 
         jPanel5.setBackground(new java.awt.Color(226, 238, 251));
         jPanel5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -223,21 +223,25 @@ public class PesquisaID extends javax.swing.JPanel {
 
         jPanel5.add(jPanel9, java.awt.BorderLayout.CENTER);
 
-        jTabbedPane6.addTab("          Fornecedor          ", jPanel5);
+        jTabbedPane6.addTab("            Fornecedor              ", jPanel5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane6, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
+                .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
