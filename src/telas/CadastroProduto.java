@@ -17,6 +17,8 @@ public class CadastroProduto extends javax.swing.JPanel {
 
     public CadastroProduto() {
         initComponents();
+        btnAlterarProduto.setEnabled(false);
+        btnExcluirProduto.setEnabled(false);
         try {
             con = DriverManager.getConnection("jdbc:mysql://remotemysql.com:3306/NdocPxAAyg", "NdocPxAAyg", "SbEfPjeOfH");
             st = (Statement) con.createStatement();
@@ -246,6 +248,11 @@ public class CadastroProduto extends javax.swing.JPanel {
         jLabel3.setText("ID Produto:");
 
         txtIdProduto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtIdProduto.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtIdProdutoCaretUpdate(evt);
+            }
+        });
         txtIdProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdProdutoActionPerformed(evt);
@@ -408,7 +415,7 @@ public class CadastroProduto extends javax.swing.JPanel {
                     .addGroup(jPanelDadosLayout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(lblDescricaoProduto)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
             .addGroup(jPanelDadosLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(imgProduto)
@@ -422,8 +429,8 @@ public class CadastroProduto extends javax.swing.JPanel {
             .addGroup(jPanelBodyLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE)
-                    .addComponent(jPanelCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, 1090, Short.MAX_VALUE))
+                    .addComponent(jPanelDados, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE)
+                    .addComponent(jPanelCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelBodyLayout.setVerticalGroup(
@@ -454,7 +461,7 @@ public class CadastroProduto extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cdc, javax.swing.GroupLayout.DEFAULT_SIZE, 1120, Short.MAX_VALUE)
+            .addComponent(cdc, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,6 +560,18 @@ public class CadastroProduto extends javax.swing.JPanel {
     private void txtNomeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeProdutoActionPerformed
 
     }//GEN-LAST:event_txtNomeProdutoActionPerformed
+
+    private void txtIdProdutoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtIdProdutoCaretUpdate
+        if (!txtIdProduto.getText().isEmpty()) {
+            btnCriarProduto.setEnabled(false);
+            btnAlterarProduto.setEnabled(true);
+            btnExcluirProduto.setEnabled(true);
+        } else {
+            btnCriarProduto.setEnabled(true);
+            btnAlterarProduto.setEnabled(false);
+            btnExcluirProduto.setEnabled(false);
+        }
+    }//GEN-LAST:event_txtIdProdutoCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

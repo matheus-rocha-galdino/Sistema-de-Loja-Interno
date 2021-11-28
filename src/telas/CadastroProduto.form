@@ -61,7 +61,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="cdc" alignment="0" pref="1120" max="32767" attributes="0"/>
+              <Component id="cdc" alignment="0" pref="1126" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -114,8 +114,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPanelDados" alignment="1" pref="1090" max="32767" attributes="0"/>
-                              <Component id="jPanelCRUD" alignment="0" pref="1090" max="32767" attributes="0"/>
+                              <Component id="jPanelDados" alignment="1" pref="1102" max="32767" attributes="0"/>
+                              <Component id="jPanelCRUD" alignment="0" pref="1102" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -208,6 +208,7 @@
                         </Property>
                       </Properties>
                       <Events>
+                        <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtIdProdutoCaretUpdate"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdProdutoActionPerformed"/>
                       </Events>
                     </Component>
@@ -360,7 +361,7 @@
                                       <Component id="lblDescricaoProduto" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="52" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
