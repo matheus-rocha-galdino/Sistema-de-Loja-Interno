@@ -128,7 +128,7 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jPanelDadosPessoais" alignment="0" max="32767" attributes="0"/>
                           <Component id="jPanelCRUD" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jPanelEndereco" alignment="0" pref="1624" max="32767" attributes="0"/>
+                          <Component id="jPanelEndereco" alignment="0" pref="1642" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                   </Group>
@@ -142,7 +142,7 @@
                       <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
                       <Component id="jPanelDadosPessoais" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="jPanelEndereco" pref="307" max="32767" attributes="0"/>
+                      <Component id="jPanelEndereco" pref="319" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
