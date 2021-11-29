@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
+import util.PasswordFieldUtils;
 
 public class CadastroFuncionario extends javax.swing.JPanel {
 
@@ -160,11 +161,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
         txtIdFuncionario.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 txtIdFuncionarioCaretUpdate(evt);
-            }
-        });
-        txtIdFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdFuncionarioActionPerformed(evt);
             }
         });
 
@@ -594,9 +590,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                     .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelEnderecoLayout.createSequentialGroup()
-                                .addComponent(btnConsultarCEP)
-                                .addGap(110, 110, 110))
+                            .addComponent(btnConsultarCEP)
                             .addGroup(jPanelEnderecoLayout.createSequentialGroup()
                                 .addGroup(jPanelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel14)
@@ -624,9 +618,8 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGap(6, 6, 6)
                 .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelCRUD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelBodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanelEndereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1630, Short.MAX_VALUE)))
+                    .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 1630, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelBodyLayout.setVerticalGroup(
@@ -637,7 +630,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addComponent(jPanelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
-                .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+                .addComponent(jPanelEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout cdcLayout = new javax.swing.GroupLayout(cdc);
@@ -648,7 +641,7 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             .addGroup(cdcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(cdcLayout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanelBody, javax.swing.GroupLayout.PREFERRED_SIZE, 1632, Short.MAX_VALUE)
+                    .addComponent(jPanelBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         cdcLayout.setVerticalGroup(
@@ -676,10 +669,6 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtIdFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdFuncionarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdFuncionarioActionPerformed
 
     private void btnConsultarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarFuncionarioActionPerformed
         String minhasql = "SELECT * from colaborador where id = ?";
@@ -804,41 +793,35 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             ResultSet resultado = null;
             String senhaBD = null;
 
+            char[] senhaAtual = txtSenhaFuncionario.getPassword();
             try {
                 String minhasql = "SELECT senha from colaborador where id = ?";
-                ps = conexao.prepareStatement(minhasql);
                 conexao = ConnectionUtils.getConnection();
+                ps = conexao.prepareStatement(minhasql);
                 Long idFuncionario = Long.parseLong(txtIdFuncionario.getText());
                 ps.setLong(1, idFuncionario);
                 resultado = ps.executeQuery();
                 if (resultado.next()) {
                     senhaBD = resultado.getString("senha");
                 }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Confira se a sua senha está correta");
-            } finally {
-                ConnectionUtils.closeConnection(conexao, ps, resultado);
-            }
-            char[] senhaAtual = txtSenhaFuncionario.getPassword();
-            if (util.PasswordFieldUtils.confirmaSenhaIguais(senhaBD, senhaAtual)) {
-                String minhasql = "UPDATE colaborador SET cpf = ?,"
-                        + " nome = ?,"
-                        + " nascimento =?,"
-                        + "genero =?, "
-                        + "telefone =?,"
-                        + "email =?,"
-                        + "estado_civil =?,"
-                        + "cep =?,"
-                        + "cidade =?,"
-                        + "logradouro =?,"
-                        + "numero =?,"
-                        + "complemento =?,"
-                        + "uf =?,"
-                        + " bairro  =?,"
-                        + "senha =?"
-                        + " where id = ?;";
+                if (PasswordFieldUtils.confirmaSenhaIguais(senhaBD, senhaAtual)) {
+                    minhasql = "UPDATE colaborador SET cpf = ?,"
+                            + " nome = ?,"
+                            + " nascimento =?,"
+                            + "genero =?, "
+                            + "telefone =?,"
+                            + "email =?,"
+                            + "estado_civil =?,"
+                            + "cep =?,"
+                            + "cidade =?,"
+                            + "logradouro =?,"
+                            + "numero =?,"
+                            + "complemento =?,"
+                            + "uf =?,"
+                            + " bairro  =?,"
+                            + "senha =?"
+                            + " where id = ?;";
 
-                try {
                     conexao = ConnectionUtils.getConnection();
                     ps = conexao.prepareStatement(minhasql);
                     String CPF = StringUtils.limpaValorParaOBanco(txtCPFFuncionario.getText());
@@ -858,24 +841,23 @@ public class CadastroFuncionario extends javax.swing.JPanel {
                     ps.setString(12, txtComplementoFuncionario.getText());
                     ps.setString(13, cbxUFFuncionario.getSelectedItem().toString());
                     ps.setString(14, txtBairroFuncionario.getText());
+                    System.out.println(txtConfirmarSenhaFuncionario.getPassword());
                     ps.setString(15, new String(txtConfirmarSenhaFuncionario.getPassword()));
-                    Long idFuncionario = Long.parseLong(txtIdFuncionario.getText());
-                    ps.setLong(16, idFuncionario);
+                    Long NovoIdFuncionario = Long.parseLong(txtIdFuncionario.getText());
+                    ps.setLong(16, NovoIdFuncionario);
                     ps.execute();
                     JOptionPane.showMessageDialog(null, "Registro Atualizado com Sucesso");
                     limpaTela();
-
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
-
-                } finally {
-                    ConnectionUtils.closeConnection(conexao, ps);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Senha divergente");
                 }
-            } else {
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel atualizar o registro");
 
+            } finally {
+                ConnectionUtils.closeConnection(conexao, ps);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Senha divergente");
         }
     }//GEN-LAST:event_btnAlterarFuncionarioActionPerformed
 
@@ -992,8 +974,10 @@ public class CadastroFuncionario extends javax.swing.JPanel {
             txtBairroFuncionario.setText(endereco.getString("bairro"));
             cbxUFFuncionario.setSelectedItem(endereco.getString("uf"));
             txtComplementoFuncionario.setText(endereco.getString("complemento"));
+
         } catch (JSONException ex) {
-            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroCliente.class
+                    .getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Não foi possivel encontrar o CEP", "ERRO", JOptionPane.WARNING_MESSAGE);
         }
 
